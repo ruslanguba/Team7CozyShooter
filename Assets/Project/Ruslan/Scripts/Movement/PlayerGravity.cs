@@ -1,24 +1,17 @@
 using UnityEngine;
 
-public class GravityHandler : MonoBehaviour
+public class PlayerGravity
 {
-    [SerializeField] private float _gravity;
-
+    private PlayerSettings _settings;
     private CharacterController _controller;
     private Vector3 _velocity;
 
     public Vector3 VerticalVelocity => _velocity;
-    public float GetGravity => _gravity;
 
-
-    private void Awake()
+    public PlayerGravity(PlayerSettings settings, CharacterController controller)
     {
-        _controller = GetComponent<CharacterController>(); 
-    }
-
-    private void Update()
-    {
-        UpdateGravity();
+        _settings = settings;
+        _controller = controller;
     }
 
     public void UpdateGravity()
@@ -26,7 +19,7 @@ public class GravityHandler : MonoBehaviour
         if (_controller.isGrounded && _velocity.y < 0f)
             _velocity.y = -2f;
 
-        _velocity.y += _gravity * Time.fixedDeltaTime;
+        _velocity.y += _settings.gravity * Time.deltaTime;
     }
 
     public void SetYVelocity(float value)
