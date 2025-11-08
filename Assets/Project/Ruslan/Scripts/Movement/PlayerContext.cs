@@ -13,8 +13,14 @@ public class PlayerContext : MonoBehaviour
     private PlayerJump _jump;
     private PlayerLook _look;
 
+    void Start()
+    {
+        PlayerManager.CurrentPlayer = transform;
+    }
+
     private void Awake()
     {
+        
         _controller = GetComponent<CharacterController>();
         _inputReader = GetComponent<InputReader>();
         _movement = new PlayerMovement(_settings, _controller, _cameraPivot, _inputReader);
