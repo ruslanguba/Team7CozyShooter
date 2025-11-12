@@ -9,7 +9,7 @@ public class PlayerArmoury : MonoBehaviour
     [SerializeField] private InputReader input;
 
     void Start()
-    {
+    {       
         TakeGun(_currentGunIndex);
     }
 

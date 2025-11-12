@@ -12,7 +12,7 @@ public class Guns : MonoBehaviour
     [SerializeField] private GameObject _flash;
 
     private float shootingTimer;
-    private InputReader input;    
+    private InputReader input;
 
     public void SetInputReader(InputReader reader)
     {
@@ -20,12 +20,6 @@ public class Guns : MonoBehaviour
         if (input != null)
             input.OnFire += OnFireAction;
     }
-
-    //private void OnEnable()
-    //{
-    //    if (InputReader.Instance != null)
-    //        InputReader.Instance.OnFire += OnFireAction;
-    //}
 
     private void OnFireAction()
     {
@@ -53,6 +47,7 @@ public class Guns : MonoBehaviour
     {
         GameObject newBullet = Instantiate(_bulletPrefab, _spawn.position, _spawn.rotation);
         newBullet.GetComponent<Rigidbody>().linearVelocity = _spawn.forward * _bulletSpeed;
+
         _shotSound.Play();
         _flash.SetActive(true);
         Invoke("HideFlash", 0.1f);

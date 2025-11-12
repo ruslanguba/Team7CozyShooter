@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1896916426467307673}
   - component: {fileID: 6096811464754694517}
   - component: {fileID: 1220722689009541486}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CinemachineCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4208453262069550946}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ Transform:
   m_GameObject: {fileID: 1304657359768285771}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: 0.568}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 4940571274068578017}
   - component: {fileID: 9007333793967607930}
   - component: {fileID: 2117579137279811082}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pillow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 6205864608019477500}
   - component: {fileID: 8309574412125053847}
   - component: {fileID: 8802576209807115281}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,6 @@ Transform:
   m_Children:
   - {fileID: 5518830332567870229}
   - {fileID: 7050287440660062741}
-  - {fileID: 173669371736350453}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &6904616630101655574
@@ -381,7 +380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5855175698411990004}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8477358886802110365}
   - component: {fileID: 6234897113365768880}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CameraPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,37 +448,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6134825959131643434}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &6240365277363721565
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 173669371736350453}
-  m_Layer: 0
-  m_Name: PoolBullets
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &173669371736350453
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6240365277363721565}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 836827321150279473}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6282000462144884673
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,7 +459,7 @@ GameObject:
   - component: {fileID: 5518830332567870229}
   - component: {fileID: 3054262446258273097}
   - component: {fileID: 4211271338777675728}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -577,7 +545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7461659139616154490}
   - component: {fileID: 2865467973794640205}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PillowGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +594,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2161372628078249489}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ThrowPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2718121605359175436}
   - component: {fileID: 2178211080328231879}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PaintGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -700,7 +668,7 @@ MonoBehaviour:
   _shotPeriod: 0.1
   _shotSound: {fileID: 8238642194066029901}
   _flash: {fileID: 4732404599787136619}
-  _numberOfBullets: 30
+  _numberOfBullets: 15
   _textOfBullets: {fileID: 0}
   _playerArmoury: {fileID: 6205864608019477500}
 --- !u!1 &8933741322537342243
@@ -714,7 +682,7 @@ GameObject:
   - component: {fileID: 6471227018294253714}
   - component: {fileID: 5025236565531596689}
   - component: {fileID: 4242703346141745584}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4385487682146973513}
   - component: {fileID: 8238642194066029901}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShotSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -815,7 +783,7 @@ Transform:
   m_GameObject: {fileID: 9203401050709318735}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -981,6 +949,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1167e8b2443e3bb45a90898bc2e10277, type: 3}
       propertyPath: m_Name
       value: MuzzleFlash
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1167e8b2443e3bb45a90898bc2e10277, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1167e8b2443e3bb45a90898bc2e10277, type: 3}
       propertyPath: m_IsActive

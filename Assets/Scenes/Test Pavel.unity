@@ -925,6 +925,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3760700110384798753, guid: 9ce4142b18056ab4b813713b878856ca, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1090,6 +1094,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9161789534435240797, guid: 79df10228d0b33d46a50c33e4711bbf6, type: 3}
+      propertyPath: _health
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1103,6 +1111,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2548238965762196066, guid: 174121f62c1ef014aba06ee9e19a5c10, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -141.48486
+      objectReference: {fileID: 0}
     - target: {fileID: 2827759606017735538, guid: 174121f62c1ef014aba06ee9e19a5c10, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1183,9 +1195,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7078157937200560145, guid: 174121f62c1ef014aba06ee9e19a5c10, type: 3}
+      propertyPath: m_Text
+      value: 'Total score:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871449994338784276, guid: 174121f62c1ef014aba06ee9e19a5c10, type: 3}
+      propertyPath: m_Name
+      value: TotalScoreNumberText
+      objectReference: {fileID: 0}
     - target: {fileID: 8051589519757930821, guid: 174121f62c1ef014aba06ee9e19a5c10, type: 3}
       propertyPath: m_Name
       value: CanvasPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 8322615010366716887, guid: 174121f62c1ef014aba06ee9e19a5c10, type: 3}
+      propertyPath: m_Name
+      value: TotalScoreText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1813,11 +1837,23 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2178211080328231879, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: _bulletSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2178211080328231879, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: _textOfBullets
       value: 
       objectReference: {fileID: 2032531594}
+    - target: {fileID: 2865467973794640205, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: _bulletSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4964921936793022460, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: _totalCoinsText
+      value: 
+      objectReference: {fileID: 1913232345}
+    - target: {fileID: 4964921936793022460, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: _totalScoreText
       value: 
       objectReference: {fileID: 1913232345}
     - target: {fileID: 4964921936793022460, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}

@@ -3,17 +3,21 @@ using UnityEngine.UI;
 
 public class PaintGun : Guns
 {
-    [SerializeField] private int _numberOfBullets;
+    [SerializeField] private int _numberOfBullets = 10;
     [SerializeField] private Text _textOfBullets;
     [SerializeField] private PlayerArmoury _playerArmoury;
 
     public override void Shot()
     {
-        base.Shot();
-        _numberOfBullets--;
-        UpdateText();
+        if (_numberOfBullets > 0)
+        {
+            base.Shot();
+            _numberOfBullets--;
+            UpdateText();
+        }
+        
 
-        if ( _numberOfBullets == 0)
+        if ( _numberOfBullets <= 0)
         {
             _playerArmoury.TakeGun(0);
         }

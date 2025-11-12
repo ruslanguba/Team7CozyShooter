@@ -5,18 +5,20 @@ using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private int _health = 2;
+    [SerializeField] private float _health = 2f;
     [SerializeField] private UnityEvent _eventOnTakeDamage;
 
-    public void TakeDamage(int damageValue)
+    public void TakeDamage(float damageValue)
     {
         _health -= damageValue;
         _eventOnTakeDamage.Invoke();
 
+        Debug.Log(damageValue);
+
         if (_health <= 0)
         {
             ScoreManager.Instance.AddNightmare(1);
-            Die(0.2f);           
+            Die(0.1f);           
         }       
     }
 
