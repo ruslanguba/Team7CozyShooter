@@ -28,8 +28,8 @@ public class PlayerMovement
         float targetSpeed = moveInput.sqrMagnitude > 0.0001f ? _settings.walkSpeed : 0f;
         _currentSpeed = Mathf.MoveTowards(_currentSpeed, targetSpeed, _settings.acceleration * Time.deltaTime);
 
-        Vector3 forward = _cameraTransform.forward;
-        Vector3 right = _cameraTransform.right;
+        Vector3 forward = Vector3.forward;
+        Vector3 right = Vector3.right;
         forward.y = 0f;
         right.y = 0f;
         forward.Normalize();

@@ -4,20 +4,6 @@ using UnityEngine.InputSystem;
 
 public class InputReader : MonoBehaviour
 {
-    //public static InputReader Instance { get; private set; }
-
-    //private void Awake()
-    //{
-    //    if (Instance == null)
-    //    {
-    //        Instance = this;
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
-
     [Header("Input Actions")]
     [SerializeField] private InputActionReference _moveAction;
     [SerializeField] private InputActionReference _lookAction;

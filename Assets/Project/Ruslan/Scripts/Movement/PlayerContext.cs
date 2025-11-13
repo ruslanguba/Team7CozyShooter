@@ -11,7 +11,7 @@ public class PlayerContext : MonoBehaviour
     private PlayerMovement _movement;
     private PlayerGravity _gravity;
     private PlayerJump _jump;
-    private PlayerLook _look;
+    //private PlayerLook _look;
 
     void Start()
     {
@@ -26,7 +26,7 @@ public class PlayerContext : MonoBehaviour
         _movement = new PlayerMovement(_settings, _controller, _cameraPivot, _inputReader);
         _gravity = new PlayerGravity(_settings, _controller);
         _jump = new PlayerJump(_settings, _controller, _gravity, _inputReader);
-        _look = new PlayerLook(_settings, _cameraPivot, transform, _inputReader);
+        //_look = new PlayerLook(_settings, _cameraPivot, transform, _inputReader);
     }
 
     private void OnEnable()
@@ -39,7 +39,7 @@ public class PlayerContext : MonoBehaviour
     }
     private void Update()
     {
-        _look.UpdateLook();
+        //_look.UpdateLook();
         _movement.UpdateMovement();
         _gravity.UpdateGravity();
         _movement.ApplyMovement(_gravity.VerticalVelocity);
