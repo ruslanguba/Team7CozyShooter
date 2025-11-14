@@ -249,6 +249,7 @@ GameObject:
   - component: {fileID: 8003670849571966402}
   - component: {fileID: 1862127912752304666}
   - component: {fileID: 8919067272021322657}
+  - component: {fileID: 33161734553813145}
   - component: {fileID: 1346743859270759125}
   - component: {fileID: 9161789534435240797}
   m_Layer: 9
@@ -459,7 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyHealth: {fileID: 9161789534435240797}
---- !u!114 &1346743859270759125
+--- !u!114 &33161734553813145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -467,6 +468,25 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3847555914299995048}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 391dd017498b7a44daa38148417932a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _points:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _speed: 2
+  _rotationSpeed: 2
+--- !u!114 &1346743859270759125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3847555914299995048}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ead53b797fbac84f9b17198e995984f, type: 3}
   m_Name: 
