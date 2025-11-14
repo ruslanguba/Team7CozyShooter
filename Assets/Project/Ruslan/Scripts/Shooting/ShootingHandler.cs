@@ -6,9 +6,12 @@ public class ShootingHandler : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private float _shootingForce;
     [SerializeField] private float _shootingRate;
+    [SerializeField] private Guns _currentGun;
+    [SerializeField] private PlayerArmoury _armoury;
 
     private float _shootingTimer;
     private InputReader input;
+
 
     private void Awake()
     {
@@ -18,6 +21,11 @@ public class ShootingHandler : MonoBehaviour
     private void OnEnable()
     {
         input.OnFire += OnFireAction;
+    }
+
+    private void OnDisable()
+    {
+        input.OnFire -= OnFireAction;
     }
 
     private void OnFireAction()

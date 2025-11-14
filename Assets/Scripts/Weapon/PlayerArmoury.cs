@@ -7,6 +7,9 @@ public class PlayerArmoury : MonoBehaviour
     [SerializeField] private Guns[] _guns;
     [SerializeField] private int _currentGunIndex;
     [SerializeField] private InputReader input;
+    //[SerializeField] private Guns _currentGun;
+
+    //public Guns CurrentGun => _currentGun;
 
     void Start()
     {       
@@ -35,6 +38,7 @@ public class PlayerArmoury : MonoBehaviour
             if (i == gunIndex)
             {
                 _guns[i].SetInputReader(input);
+                //_currentGun = _guns[i];
                 _guns[i].Activate();
             }
 

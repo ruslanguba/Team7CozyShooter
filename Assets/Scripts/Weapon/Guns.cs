@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Guns : MonoBehaviour
 {
-    [SerializeField] private GameObject _bulletPrefab;
-    [SerializeField] private Transform _spawn;
-    [SerializeField] private float _bulletSpeed = 20f;
+    //[SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] protected Transform _spawn;
+    [SerializeField] protected float _bulletSpeed = 20f;
     [SerializeField] private float _shotPeriod = 0.5f;
-    [SerializeField] private AudioSource _shotSound;
-    [SerializeField] private GameObject _flash;
+    [SerializeField] protected AudioSource _shotSound;
+    [SerializeField] protected GameObject _flash;
 
     private float shootingTimer;
     private InputReader input;
@@ -45,15 +45,15 @@ public class Guns : MonoBehaviour
 
     public virtual void Shot()
     {
-        GameObject newBullet = Instantiate(_bulletPrefab, _spawn.position, _spawn.rotation);
-        newBullet.GetComponent<Rigidbody>().linearVelocity = _spawn.forward * _bulletSpeed;
+        //GameObject newBullet = Instantiate(_bulletPrefab, _spawn.position, _spawn.rotation);
+        //newBullet.GetComponent<Rigidbody>().linearVelocity = _spawn.forward * _bulletSpeed;
 
-        _shotSound.Play();
-        _flash.SetActive(true);
-        Invoke("HideFlash", 0.1f);
+        //_shotSound.Play();
+        //_flash.SetActive(true);
+        //Invoke("HideFlash", 0.1f);
     }
 
-    void HideFlash() 
+    protected virtual void HideFlash() 
     {
         _flash.SetActive(false);
     }

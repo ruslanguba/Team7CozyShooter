@@ -4,64 +4,45 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    //[SerializeField] private float _initialDamage = 1f;
-    ////[SerializeField] private float _decayFactor = 1f;
-    //[SerializeField] private int _maxHits = 5;
-    //[SerializeField] private float _lifeTime = 2f;
-    //[SerializeField] private float _speed = 10f;
+    private ParticleSystem _effect;
+    private float _damage;
+    private int _maxCollisionCount;
+    private int _collisionCount;
+    private Transform _shootPoint;
 
-    //private int hits = 0;
-    ////private float currentDamage;
-    //private bool canHitAgain = true;
-
-    //private void Start()
-    //{
-    //    //currentDamage = _initialDamage;
-    //    Destroy(gameObject, _lifeTime);
-    //}
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Enemy") && hits < _maxHits && canHitAgain)
-    //    {
-    //        EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
-    //        if (enemyHealth != null)
-    //        {
-    //            enemyHealth.TakeDamage(_initialDamage);
-    //            hits++;
-    //            //currentDamage *= _decayFactor;
-    //            canHitAgain = false;
-
-    //            Invoke(nameof(ResetHitState), 0.2f);
-    //            ScoreManager.Instance.HandleHit(hits);
-    //        }
-    //    }
-    //}
-
-    //private void ResetHitState()
-    //{
-    //    canHitAgain = true;
-    //}
-
-
-
-
-
-    [SerializeField] private GameObject _effect;
-
-    void Start()
+    public void InitBullet(Transform shootPoint, ParticleSystem hitEffect, float damage, int maxCollisionCount)
     {
-        Destroy(gameObject, 2f);
+        _effect = hitEffect;
+        _damage = damage;
+        _maxCollisionCount = maxCollisionCount;
+        _shootPoint = shootPoint;
+        _collisionCount = 0;
     }
-
+    
     private void OnCollisionEnter(Collision collision)
     {
-        if (_effect != null)
+        if (collision.gameObject.TryGetComponent<EnemyHealth>(out EnemyHealth enemyHealth))
         {
-            GameObject systemParticle = Instantiate(_effect, transform.position, Quaternion.identity);
-            Destroy(systemParticle, 2);
+            enemyHealth.TakeDamage(_damage);
         }
 
-        Destroy(gameObject);
+        if (_effect != null)
+        {
+            PlayPartical(_effect, transform.position);
+        }
+        _collisionCount++;
+        Debug.Log(_collisionCount);
+
+        if(_collisionCount >= _maxCollisionCount)
+        {
+            transform.position = _shootPoint.position;
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void PlayPartical(ParticleSystem _effect, Vector3 point)
+    {
+        _effect.transform.position = point;
+        _effect.Play();
     }
 }
