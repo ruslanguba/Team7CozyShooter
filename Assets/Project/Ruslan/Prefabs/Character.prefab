@@ -1,5 +1,117 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< Updated upstream
+=======
+--- !u!1 &124808089787323933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7050287440660062741}
+  - component: {fileID: 1896916426467307673}
+  - component: {fileID: 6096811464754694517}
+  - component: {fileID: 1220722689009541486}
+  m_Layer: 9
+  m_Name: CinemachineCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7050287440660062741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124808089787323933}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00000007560296, y: 0.0000000050510502, z: 0.000000001567088, w: 1}
+  m_LocalPosition: {x: 0, y: 0.64, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 836827321150279473}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1896916426467307673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124808089787323933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Priority:
+    Enabled: 0
+    m_Value: 0
+  OutputChannel: 1
+  StandbyUpdate: 2
+  m_StreamingVersion: 20241001
+  m_LegacyPriority: 0
+  Target:
+    TrackingTarget: {fileID: 8477358886802110365}
+    LookAtTarget: {fileID: 0}
+    CustomLookAtTarget: 0
+  Lens:
+    FieldOfView: 60
+    OrthographicSize: 5
+    NearClipPlane: 0.3
+    FarClipPlane: 1000
+    Dutch: 0
+    ModeOverride: 0
+    PhysicalProperties:
+      GateFit: 2
+      SensorSize: {x: 21.946, y: 16.002}
+      LensShift: {x: 0, y: 0}
+      FocusDistance: 10
+      Iso: 200
+      ShutterSpeed: 0.005
+      Aperture: 16
+      BladeCount: 5
+      Curvature: {x: 2, y: 11}
+      BarrelClipping: 0.25
+      Anamorphism: 0
+  BlendHint: 0
+--- !u!114 &6096811464754694517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124808089787323933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b617507da6d07e749b7efdb34e1173e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackerSettings:
+    BindingMode: 1
+    PositionDamping: {x: 0.2, y: 0.2, z: 0.2}
+    AngularDampingMode: 0
+    RotationDamping: {x: 1, y: 1, z: 1}
+    QuaternionDamping: 1
+  FollowOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &1220722689009541486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124808089787323933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4afa82ae3200b82408d605c3dbdd1e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damping: 0
+>>>>>>> Stashed changes
 --- !u!1 &1304657359768285771
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4208453262069550946}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +155,7 @@ GameObject:
   - component: {fileID: 4940571274068578017}
   - component: {fileID: 9007333793967607930}
   - component: {fileID: 2117579137279811082}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Pillow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,10 +241,14 @@ GameObject:
   - component: {fileID: 6205864608019477500}
   - component: {fileID: 8309574412125053847}
   - component: {fileID: 8802576209807115281}
+<<<<<<< Updated upstream
   - component: {fileID: 8245448711494543436}
   m_Layer: 6
+=======
+  m_Layer: 9
+>>>>>>> Stashed changes
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,7 +400,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5855175698411990004}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8477358886802110365}
   - component: {fileID: 6234897113365768880}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: CameraPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +479,7 @@ GameObject:
   - component: {fileID: 5518830332567870229}
   - component: {fileID: 3054262446258273097}
   - component: {fileID: 4211271338777675728}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7461659139616154490}
   - component: {fileID: 2865467973794640205}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: PillowGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 528227266972043996, guid: b753da398d6776949bc900c141967131, type: 3}
   _spawn: {fileID: 4208453262069550946}
-  _bulletSpeed: 30
+  _bulletSpeed: 20
   _shotPeriod: 2
   _shotSound: {fileID: 8238642194066029901}
   _flash: {fileID: 4732404599787136619}
@@ -498,7 +614,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2161372628078249489}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: ThrowPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2718121605359175436}
   - component: {fileID: 2178211080328231879}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: PaintGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -568,7 +684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 4070374934291767179, guid: b6880e24fc26d4e4ebd6ce1f5a577844, type: 3}
   _spawn: {fileID: 4208453262069550946}
-  _bulletSpeed: 30
+  _bulletSpeed: 25
   _shotPeriod: 0.1
   _shotSound: {fileID: 8238642194066029901}
   _flash: {fileID: 4732404599787136619}
@@ -586,7 +702,7 @@ GameObject:
   - component: {fileID: 6471227018294253714}
   - component: {fileID: 5025236565531596689}
   - component: {fileID: 4242703346141745584}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -671,7 +787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4385487682146973513}
   - component: {fileID: 8238642194066029901}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: ShotSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -856,7 +972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1167e8b2443e3bb45a90898bc2e10277, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1167e8b2443e3bb45a90898bc2e10277, type: 3}
       propertyPath: m_IsActive
@@ -888,6 +1004,14 @@ PrefabInstance:
     - target: {fileID: 528227266972043996, guid: b753da398d6776949bc900c141967131, type: 3}
       propertyPath: m_Name
       value: Pillow
+      objectReference: {fileID: 0}
+    - target: {fileID: 528227266972043996, guid: b753da398d6776949bc900c141967131, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924953010146686801, guid: b753da398d6776949bc900c141967131, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5088383694316309064, guid: b753da398d6776949bc900c141967131, type: 3}
       propertyPath: m_LocalPosition.x
