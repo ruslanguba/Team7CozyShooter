@@ -8,7 +8,7 @@ public abstract class GunBase : MonoBehaviour
     [SerializeField] protected float _bulletSpeed = 20f;
     [SerializeField] protected float _shotPeriod = 0.5f;
     [SerializeField] protected AudioSource _shotSound;
-    [SerializeField] protected GameObject _flash;
+    [SerializeField] protected ParticleSystem _particleFlash;
 
     protected float shootingTimer;
     protected InputReader input;
@@ -32,7 +32,8 @@ public abstract class GunBase : MonoBehaviour
 
     protected virtual void HideFlash() 
     {
-        _flash.SetActive(false);
+        _particleFlash.Play();
+        //_particleFlash.SetActive(false);
     }
 
     public virtual void Activate(InputReader reader) 

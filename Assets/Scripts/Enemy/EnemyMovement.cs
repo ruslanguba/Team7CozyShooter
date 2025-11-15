@@ -28,7 +28,7 @@ public class EnemyMovement : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
         transform.Translate(Vector3.forward * _speed * Time.deltaTime);
 
-        if (direction.magnitude <= 0.1f)
+        if (direction.magnitude <= 0.5f)
         {
             currentPointIndex++;
 

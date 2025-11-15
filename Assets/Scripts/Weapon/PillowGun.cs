@@ -52,7 +52,7 @@ public class PillowGun : GunBase
         _bullet.InitBullet(_spawn, _hitPartical, _damage, _maxCollisionCount);
         _bulletRigidbody.AddForce(_spawn.forward * _bulletSpeed, ForceMode.VelocityChange);
         _shotSound.Play();
-        _flash.SetActive(true);
+        _particleFlash.Play();
         Invoke("HideFlash", 0.1f);
         _isFirePressed = false;
         _trajectorySimulator.HideTrajectory();
