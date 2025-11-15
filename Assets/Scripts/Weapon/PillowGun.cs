@@ -10,6 +10,7 @@ public class PillowGun : GunBase
     [SerializeField] private float _damage;
     [SerializeField] private int _maxCollisionCount;
     [SerializeField] private TrajectorySimulator _trajectorySimulator;
+    [SerializeField] private Transform _character;
     private Rigidbody _bulletRigidbody;
     private bool _isFirePressed;
 
@@ -51,7 +52,7 @@ public class PillowGun : GunBase
         _bullet.gameObject.SetActive(true);
         _bulletRigidbody.linearVelocity = Vector3.zero;
         _bullet.InitBullet(_spawn, _hitPartical, _damage, _maxCollisionCount);
-        _bulletRigidbody.AddForce(_spawn.forward * _bulletSpeed, ForceMode.VelocityChange);
+        _bulletRigidbody.AddForce(_character.transform.forward * _bulletSpeed, ForceMode.VelocityChange);
         //_shotSound.Play();
         //_particleFlash.Play();
         Invoke("HideFlash", 0.1f);
@@ -66,7 +67,7 @@ public class PillowGun : GunBase
     {
         if (_isFirePressed)
         {
-            Vector3 direction = _spawn.forward * _bulletSpeed;
+            Vector3 direction = _character.transform.forward * _bulletSpeed;
             _trajectorySimulator.ShowTrajectory(_spawn.position, direction);
         }
     }

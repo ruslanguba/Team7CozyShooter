@@ -6,18 +6,20 @@ public class TrajectorySimulator : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private float _timeStep = 0.2f;
     [SerializeField] private int _maxSteps = 300;
-
+    [SerializeField] private PhysicsObjectsRegistry _physicsObjectsRegistry;
     private Vector3[] _points;
     private LineRenderer _lineRenderer;
 
     private GameObject simBullet;
     private Rigidbody simRb;
 
-    private Dictionary <Rigidbody, BodyData> _bodies = new Dictionary<Rigidbody, BodyData>();
+    //private Dictionary <Rigidbody, BodyData> _bodiesData = new Dictionary<Rigidbody, BodyData>();
 
     private void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
+        if (_physicsObjectsRegistry != null )
+            _physicsObjectsRegistry = GetComponent<PhysicsObjectsRegistry>();
         _points = new Vector3[_maxSteps];
 
         // создаЄм симул€ционную пулю
@@ -26,21 +28,22 @@ public class TrajectorySimulator : MonoBehaviour
 
         simBullet.SetActive(false);
 
-        foreach (var rb in FindObjectsByType<Rigidbody>(0))
-        {
-            _bodies.Add(rb, new BodyData());
-        }
+        //foreach (var rb in FindObjectsByType<Rigidbody>(0))
+        //{
+        //    _bodiesData.Add(rb, new BodyData());
+        //}
     }
 
     public void ShowTrajectory(Vector3 origin, Vector3 initialVelocity)
     {
-        foreach (var rb in _bodies) 
-        {
-            rb.Value.position = rb.Key.transform.position;
-            rb.Value.rotation = rb.Key.transform.rotation;
-            rb.Value.velocity = rb.Key.linearVelocity;
-            rb.Value.angularVelocity = rb.Key.angularVelocity;
-        }
+        //foreach (var rb in _physicsObjectsRegistry.Bodies) 
+        //{
+        //    rb.Value.position = rb.Key.transform.position;
+        //    rb.Value.rotation = rb.Key.transform.rotation;
+        //    rb.Value.velocity = rb.Key.linearVelocity;
+        //    rb.Value.angularVelocity = rb.Key.angularVelocity;
+        //}
+        _physicsObjectsRegistry.SaveRigitbodiesData();
         // активируем симул€ционную пулю
         simBullet.transform.position = origin;
         simBullet.transform.rotation = Quaternion.identity;
@@ -63,14 +66,14 @@ public class TrajectorySimulator : MonoBehaviour
         _lineRenderer.SetPositions(_points);
 
         Physics.simulationMode = SimulationMode.FixedUpdate;
-
-        foreach (var rb in _bodies)
-        {
-            rb.Key.transform.position = rb.Value.position;
-            rb.Key.transform.rotation = rb.Value.rotation;
-            rb.Key.linearVelocity = rb.Value.velocity;
-            rb.Key.angularVelocity = rb.Value.angularVelocity;
-        }
+        _physicsObjectsRegistry.LoadRigitbodiesData();
+        //foreach (var rb in _physicsObjectsRegistry.Bodies)
+        //{
+        //    rb.Key.transform.position = rb.Value.position;
+        //    rb.Key.transform.rotation = rb.Value.rotation;
+        //    rb.Key.linearVelocity = rb.Value.velocity;
+        //    rb.Key.angularVelocity = rb.Value.angularVelocity;
+        //}
         simBullet.SetActive(false);
     }
 
@@ -78,12 +81,4 @@ public class TrajectorySimulator : MonoBehaviour
     {
         _lineRenderer.positionCount = 0;
     }
-}
-
-public class BodyData
-{
-    public Vector3 position;
-    public Quaternion rotation;
-    public Vector3 velocity;
-    public Vector3 angularVelocity;
 }

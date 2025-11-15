@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEngine.ParticleSystem;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public event Action<Rigidbody> OnDeath;
     [SerializeField] private float _health = 2f;
     [SerializeField] private UnityEvent _eventOnTakeDamage;
     [SerializeField] private ParticleSystem _particleSystem;
@@ -31,6 +32,10 @@ public class EnemyHealth : MonoBehaviour
 
     void Die(float time)
     {
+        if (TryGetComponent(out Rigidbody rigidbody))
+        {
+            OnDeath?.Invoke(rigidbody);
+        }
         Destroy(gameObject, time);
     }
 }

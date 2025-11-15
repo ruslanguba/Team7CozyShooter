@@ -40,8 +40,8 @@ public class Bullet : MonoBehaviour
 
         if (_collisionCount >= _maxCollisionCount)
         {
-            transform.position = _shootPoint.position;
             gameObject.SetActive(false);
+            transform.position = _shootPoint.position;
         }
     }
 

@@ -3,32 +3,67 @@ using UnityEngine;
 
 public class PhysicsObjectsRegistry : MonoBehaviour
 {
-    public static PhysicsObjectsRegistry Instance { get; private set; }
+    public class BodyData
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+        public Vector3 velocity;
+        public Vector3 angularVelocity;
+    }
 
-    public TrajectorySimulator TrajectorySimulator;
-    public List<Collider> AllColliders = new List<Collider>();
-    public List<Rigidbody> AllRigidbodies = new List<Rigidbody>();
+    //public Dictionary<Rigidbody, BodyData> Bodies => _bodiesData;
+    private Dictionary<Rigidbody, BodyData> _bodiesData = new Dictionary<Rigidbody, BodyData>();
 
     private void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-
-        RegisterAllObjects();
+        RegisterRigitbodiesOnScine();
     }
 
-    private void RegisterAllObjects()
+    private void RegisterRigitbodiesOnScine()
     {
-        // Найти ВСЕ коллайдеры сцены
-        AllColliders.AddRange(FindObjectsByType<Collider>(0));
+        foreach (var rb in FindObjectsByType<Rigidbody>(0))
+        {
+            _bodiesData.Add(rb, new BodyData());
+            if(rb.TryGetComponent(out EnemyHealth enemyHealth))
+            {
+                enemyHealth.OnDeath += DeleateRigitbody;
+            }
+        }
+    }
 
-        // Найти ВСЕ Rigidbody
-        AllRigidbodies.AddRange(FindObjectsByType<Rigidbody>(0));
-        Debug.Log($"[Registry] Found {AllColliders.Count} colliders, {AllRigidbodies.Count} rigidbodies");
+    public void RegisterNewRigitbody(Rigidbody rb)
+    {
+        _bodiesData.Add(rb, new BodyData());
+        if (rb.TryGetComponent(out EnemyHealth enemyHealth))
+        {
+            enemyHealth.OnDeath += DeleateRigitbody;
+        }
+    }
+
+    public void DeleateRigitbody(Rigidbody rb)
+    {
+        _bodiesData.Remove(rb);
+    }
+
+    public void SaveRigitbodiesData()
+    {
+        foreach (var rb in _bodiesData)
+        {
+            rb.Value.position = rb.Key.transform.position;
+            rb.Value.rotation = rb.Key.transform.rotation;
+            rb.Value.velocity = rb.Key.linearVelocity;
+            rb.Value.angularVelocity = rb.Key.angularVelocity;
+        }
+    }
+
+    public void LoadRigitbodiesData()
+    {
+        foreach (var rb in _bodiesData)
+        {
+            rb.Key.transform.position = rb.Value.position;
+            rb.Key.transform.rotation = rb.Value.rotation;
+            rb.Key.linearVelocity = rb.Value.velocity;
+            rb.Key.angularVelocity = rb.Value.angularVelocity;
+        }
     }
 }
