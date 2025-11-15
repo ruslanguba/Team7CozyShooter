@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerArmoury : MonoBehaviour
 {
-    [SerializeField] private Guns[] _guns;
+    [SerializeField] private GunBase[] _guns;
     [SerializeField] private int _currentGunIndex;
     [SerializeField] private InputReader input;
-    //[SerializeField] private Guns _currentGun;
+    //[SerializeField] private GunBase _currentGun;
 
-    //public Guns CurrentGun => _currentGun;
+    //public GunBase CurrentGun => _currentGun;
 
     void Start()
     {       
@@ -36,10 +36,9 @@ public class PlayerArmoury : MonoBehaviour
         for (int i = 0; i < _guns.Length; i++)
         {
             if (i == gunIndex)
-            {
-                _guns[i].SetInputReader(input);
+            { 
                 //_currentGun = _guns[i];
-                _guns[i].Activate();
+                _guns[i].Activate(input);
             }
 
             else

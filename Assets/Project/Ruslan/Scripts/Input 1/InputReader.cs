@@ -20,6 +20,7 @@ public class InputReader : MonoBehaviour
     // Одноразовые события
     public event Action OnJump;
     public event Action OnFire;
+    public event Action OnFireRealesed;
     public event Action OnReload;
     public event Action OnThrow;
     public event Action OnInteract;
@@ -68,8 +69,12 @@ public class InputReader : MonoBehaviour
 
     private void SubscribeEvents()
     {
+        if (_fireAction?.action != null)
+        {
+            _fireAction.action.performed += ctx => OnFire?.Invoke();
+            _fireAction.action.canceled += ctx => OnFireRealesed?.Invoke();
+        }
         if (_jumpAction?.action != null) _jumpAction.action.performed += ctx => OnJump?.Invoke();
-        if (_fireAction?.action != null) _fireAction.action.performed += ctx => OnFire?.Invoke();
         if (_reloadAction?.action != null) _reloadAction.action.performed += ctx => OnReload?.Invoke();
         if (_throwAction?.action != null) _throwAction.action.performed += ctx => OnThrow?.Invoke();
         if (_interractAction?.action != null) _interractAction.action.performed += ctx => OnInteract?.Invoke();
@@ -80,8 +85,12 @@ public class InputReader : MonoBehaviour
 
     private void UnsubscribeEvents()
     {
+        if (_fireAction?.action != null)
+        {
+            _fireAction.action.performed -= ctx => OnFire?.Invoke();
+            _fireAction.action.canceled -= ctx => OnFireRealesed?.Invoke();
+        }
         if (_jumpAction?.action != null) _jumpAction.action.performed -= ctx => OnJump?.Invoke();
-        if (_fireAction?.action != null) _fireAction.action.performed -= ctx => OnFire?.Invoke();
         if (_reloadAction?.action != null) _reloadAction.action.performed -= ctx => OnReload?.Invoke();
         if (_throwAction?.action != null) _throwAction.action.performed -= ctx => OnThrow?.Invoke();
         if (_interractAction?.action != null) _interractAction.action.performed -= ctx => OnInteract?.Invoke();

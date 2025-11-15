@@ -21,19 +21,19 @@ public class Bullet : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
+        _collisionCount++;
         if (collision.gameObject.TryGetComponent<EnemyHealth>(out EnemyHealth enemyHealth))
         {
             enemyHealth.TakeDamage(_damage);
+            ScoreManager.Instance.HandleHit(_collisionCount);
         }
 
         if (_effect != null)
         {
             PlayPartical(_effect, transform.position);
         }
-        _collisionCount++;
-        Debug.Log(_collisionCount);
 
-        if(_collisionCount >= _maxCollisionCount)
+        if (_collisionCount >= _maxCollisionCount)
         {
             transform.position = _shootPoint.position;
             gameObject.SetActive(false);

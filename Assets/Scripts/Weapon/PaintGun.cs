@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PaintGun : Guns
+public class PaintGun : GunBase
 {
     [SerializeField] private int _numberOfBullets = 10;
     [SerializeField] private Text _textOfBullets;
@@ -23,9 +23,9 @@ public class PaintGun : Guns
         }
     }
 
-    public override void Activate()
+    public override void Activate(InputReader inputReader)
     {
-        base.Activate();
+        base.Activate(inputReader);
         _textOfBullets.gameObject.SetActive(true);
         UpdateText();
     }
