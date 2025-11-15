@@ -23,9 +23,9 @@ public class PaintGun : GunBase
         }
     }
 
-    public override void Activate(InputReader inputReader)
+    public override void Activate()
     {
-        base.Activate(inputReader);
+        base.Activate();
         _textOfBullets.gameObject.SetActive(true);
         UpdateText();
     }

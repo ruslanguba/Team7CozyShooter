@@ -22,10 +22,15 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         _collisionCount++;
-        if (collision.gameObject.TryGetComponent<EnemyHealth>(out EnemyHealth enemyHealth))
+        if (collision.gameObject.TryGetComponent(out EnemyHealth enemyHealth))
         {
             enemyHealth.TakeDamage(_damage);
             ScoreManager.Instance.HandleHit(_collisionCount);
+        }
+
+        if (collision.gameObject.TryGetComponent(out IInteractable interactable))
+        {
+            interactable.OnInteract();
         }
 
         if (_effect != null)

@@ -20,15 +20,16 @@ public class PillowGun : GunBase
         _bullet.gameObject.SetActive(false);
     }
 
-    public override void Activate(InputReader reader)
+    public override void Activate()
     {
-        base.Activate(reader);
+        base.Activate();
         input.OnFire += StartSimulation;
         input.OnFireRealesed += StartShot;
     }
 
     public override void Deactivate()
     {
+        base.Deactivate();
         input.OnFire -= StartSimulation;
         input.OnFireRealesed -= StartShot;
     }
@@ -51,12 +52,14 @@ public class PillowGun : GunBase
         _bulletRigidbody.linearVelocity = Vector3.zero;
         _bullet.InitBullet(_spawn, _hitPartical, _damage, _maxCollisionCount);
         _bulletRigidbody.AddForce(_spawn.forward * _bulletSpeed, ForceMode.VelocityChange);
-        _shotSound.Play();
-        _particleFlash.Play();
+        //_shotSound.Play();
+        //_particleFlash.Play();
         Invoke("HideFlash", 0.1f);
         _isFirePressed = false;
         _trajectorySimulator.HideTrajectory();
-        
+        Debug.Log("StartShot");
+;
+
     }
 
     private void CalculateTrajectory()

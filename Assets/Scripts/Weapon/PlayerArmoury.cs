@@ -38,12 +38,16 @@ public class PlayerArmoury : MonoBehaviour
             if (i == gunIndex)
             { 
                 //_currentGun = _guns[i];
-                _guns[i].Activate(input);
+                _guns[i].Activate();
+                Debug.Log("Activate");
+                Debug.Log(i);
             }
 
             else
             {
                 _guns[i].Deactivate();
+                Debug.Log("Deactivate");
+                Debug.Log(i);
             }
         }
     }

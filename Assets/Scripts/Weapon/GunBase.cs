@@ -7,12 +7,17 @@ public abstract class GunBase : MonoBehaviour
     [SerializeField] protected Transform _spawn;
     [SerializeField] protected float _bulletSpeed = 20f;
     [SerializeField] protected float _shotPeriod = 0.5f;
-    [SerializeField] protected AudioSource _shotSound;
-    [SerializeField] protected ParticleSystem _particleFlash;
+    //[SerializeField] protected AudioSource _shotSound;
+    //[SerializeField] protected ParticleSystem _particleFlash;
 
     protected float shootingTimer;
-    protected InputReader input;
+    [SerializeField] protected InputReader input;
 
+    private void Awake()
+    {
+        if (input != null) 
+            input = GetComponentInParent<InputReader>();
+    }
     protected bool IsCanShoot()
     {
         return shootingTimer <= 0;
@@ -32,14 +37,13 @@ public abstract class GunBase : MonoBehaviour
 
     protected virtual void HideFlash() 
     {
-        _particleFlash.Play();
+        //_particleFlash.Play();
         //_particleFlash.SetActive(false);
     }
 
-    public virtual void Activate(InputReader reader) 
+    public virtual void Activate() 
     {
         gameObject.SetActive(true);
-        input = reader;
     }
 
     public virtual void Deactivate()
