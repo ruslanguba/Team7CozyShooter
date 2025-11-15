@@ -7,10 +7,12 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private Text _totalScoreText;
     [SerializeField] private Text _totalNightmareText;
+    [SerializeField] private Text _bestScoreText;
 
     public static ScoreManager Instance;
     public static int TotalScore;
     public static int TotalNightmare;
+    public static int BestScore;
 
     private void Awake()
     {
@@ -24,16 +26,13 @@ public class ScoreManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        TotalScore = PlayerPrefs.GetInt("TotalScore", 0);
-        _totalScoreText.text = TotalScore.ToString();
+        BestScore = PlayerPrefs.GetInt("BestScore", 0);
+        _bestScoreText.text = BestScore.ToString();
 
-        TotalNightmare = PlayerPrefs.GetInt("TotalNightmare", 0);
-        _totalNightmareText.text = TotalNightmare.ToString();
-
-        //PlayerPrefs.SetInt("TotalScore", TotalScore);
-        //_totalScoreText.text = PlayerPrefs.GetInt("TotalScore", 0).ToString();
-        //PlayerPrefs.SetInt("TotalNightmare", TotalNightmare);
-        //_totalNightmareText.text = PlayerPrefs.GetInt("TotalNightmare", 0).ToString();
+        PlayerPrefs.SetInt("TotalScore", TotalScore);
+        _totalScoreText.text = PlayerPrefs.GetInt("TotalScore", 0).ToString();
+        PlayerPrefs.SetInt("TotalNightmare", TotalNightmare);
+        _totalNightmareText.text = PlayerPrefs.GetInt("TotalNightmare", 0).ToString();
     }
 
     public void HandleHit(int hits)
@@ -44,7 +43,7 @@ public class ScoreManager : MonoBehaviour
                 AddScore(10); // Одно попадание даёт 10 очков
                 break;
             case 2:
-                AddScore(20); // Двух-кратное попадание (Комбо) даёт дополнительно 20 очков
+                AddScore(30); // Двух-кратное попадание (Комбо) даёт дополнительно 20 очков
                 break;
             default:
                 AddScore(20 * hits); // Больше трёх попаданий — бонус х3 за каждого дополнительного врага
@@ -56,8 +55,15 @@ public class ScoreManager : MonoBehaviour
     {
         TotalScore += digit;
 
+        if (TotalScore > BestScore)
+        {
+            BestScore = TotalScore;
+        }
+
         PlayerPrefs.SetInt("TotalScore", TotalScore);
-        _totalScoreText.text = TotalScore.ToString();      
+        _totalScoreText.text = TotalScore.ToString();
+        PlayerPrefs.SetInt("BestScore", BestScore);
+        _bestScoreText.text = BestScore.ToString();
     }
 
     public void AddNightmare(int score)

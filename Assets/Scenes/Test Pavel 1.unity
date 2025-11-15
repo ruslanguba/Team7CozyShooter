@@ -7960,10 +7960,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2548238965762196066, guid: 174121f62c1ef014aba06ee9e19a5c10, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -141.48486
-      objectReference: {fileID: 0}
     - target: {fileID: 2827759606017735538, guid: 174121f62c1ef014aba06ee9e19a5c10, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -8044,21 +8040,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7078157937200560145, guid: 174121f62c1ef014aba06ee9e19a5c10, type: 3}
-      propertyPath: m_Text
-      value: 'Total score:'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7871449994338784276, guid: 174121f62c1ef014aba06ee9e19a5c10, type: 3}
-      propertyPath: m_Name
-      value: TotalScoreNumberText
-      objectReference: {fileID: 0}
     - target: {fileID: 8051589519757930821, guid: 174121f62c1ef014aba06ee9e19a5c10, type: 3}
       propertyPath: m_Name
       value: CanvasPause
-      objectReference: {fileID: 0}
-    - target: {fileID: 8322615010366716887, guid: 174121f62c1ef014aba06ee9e19a5c10, type: 3}
-      propertyPath: m_Name
-      value: TotalScoreText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9564,6 +9548,17 @@ Transform:
   - {fileID: 1552527515}
   m_Father: {fileID: 1276780081}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1541627337 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1744324425614527981, guid: 174121f62c1ef014aba06ee9e19a5c10, type: 3}
+  m_PrefabInstance: {fileID: 1136792485}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1552527514
 GameObject:
   m_ObjectHideFlags: 0
@@ -12870,6 +12865,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2550018942221683917, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: _bestScoreText
+      value: 
+      objectReference: {fileID: 1541627337}
     - target: {fileID: 2550018942221683917, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: _totalScoreText
       value: 
