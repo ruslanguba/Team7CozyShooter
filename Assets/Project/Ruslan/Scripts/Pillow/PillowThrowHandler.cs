@@ -8,11 +8,9 @@ public class PillowThrowHandler : GunBase
     [SerializeField] private float _maxForce = 15f;
     [SerializeField] private float _chargeSpeed = 10f;
     [SerializeField] protected float _returnSpeed;
-    //[SerializeField] private Transform _throwPoint;
     [SerializeField] private Transform _pillow;
     private Collider _collider;
     private Rigidbody _rb;
-    //[SerializeField] private InputReader _input;
     private float _currentForce;
     [SerializeField] private bool _charging;
     [SerializeField] private bool _isThrowed = false;

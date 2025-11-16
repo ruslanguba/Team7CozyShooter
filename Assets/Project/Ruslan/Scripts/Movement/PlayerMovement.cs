@@ -6,6 +6,7 @@ public class PlayerMovement
     private CharacterController _controller;
     private Transform _cameraTransform;
     private InputReader _inputReader;
+    private Animator _animator;
 
     private Vector3 _horizontalVelocity;
     private float _currentSpeed;
@@ -13,12 +14,13 @@ public class PlayerMovement
 
     public Vector3 HorizontalVelocity => _horizontalVelocity;
 
-    public PlayerMovement(PlayerSettings settings, CharacterController controller, Transform cameraTransform, InputReader inputReader)
+    public PlayerMovement(PlayerSettings settings, CharacterController controller, Transform cameraTransform, InputReader inputReader, Animator animator)
     {
         _settings = settings;
         _controller = controller;
         _cameraTransform = cameraTransform;
         _inputReader = inputReader;
+        _animator = animator;
     }
 
     public void UpdateMovement()
@@ -42,6 +44,7 @@ public class PlayerMovement
     public void ApplyMovement(Vector3 verticalVelocity)
     {
         _controller.Move((_horizontalVelocity + verticalVelocity) * Time.deltaTime);
+        _animator.SetFloat("speed", _currentSpeed);
     }
 
     public void SetSpeedMultiplier(float multiplier)

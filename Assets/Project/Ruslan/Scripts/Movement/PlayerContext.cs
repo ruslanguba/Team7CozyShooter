@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.LowLevel;
 
 public class PlayerContext : MonoBehaviour
 {
     [SerializeField] private PlayerSettings _settings;
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private Transform _cameraPivot;
+    [SerializeField] private Animator _animator;
 
     private CharacterController _controller;
     private PlayerMovement _movement;
@@ -20,10 +20,10 @@ public class PlayerContext : MonoBehaviour
 
     private void Awake()
     {
-        
         _controller = GetComponent<CharacterController>();
         _inputReader = GetComponent<InputReader>();
-        _movement = new PlayerMovement(_settings, _controller, _cameraPivot, _inputReader);
+        _animator = GetComponent<Animator>();
+        _movement = new PlayerMovement(_settings, _controller, _cameraPivot, _inputReader, _animator);
         _gravity = new PlayerGravity(_settings, _controller);
         _jump = new PlayerJump(_settings, _controller, _gravity, _inputReader);
         _look = new PlayerLook(_settings, _cameraPivot, transform, _inputReader);

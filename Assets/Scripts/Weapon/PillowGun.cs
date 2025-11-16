@@ -13,6 +13,7 @@ public class PillowGun : GunBase
     [SerializeField] private Transform _character;
     private Rigidbody _bulletRigidbody;
     private bool _isFirePressed;
+    private bool _isActive;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class PillowGun : GunBase
     public override void Activate()
     {
         base.Activate();
+        _isActive = true;
         input.OnFire += StartSimulation;
         input.OnFireRealesed += StartShot;
     }
@@ -31,14 +33,18 @@ public class PillowGun : GunBase
     public override void Deactivate()
     {
         base.Deactivate();
+        _isActive = false;
         input.OnFire -= StartSimulation;
         input.OnFireRealesed -= StartShot;
     }
 
     override protected void Update()
     {
-        base.Update();
-        CalculateTrajectory();
+        if (_isActive)
+        {
+            base.Update();
+            CalculateTrajectory();
+        }
     }
     private void StartSimulation()
     {

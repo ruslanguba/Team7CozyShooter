@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float _health = 2f;
     [SerializeField] private UnityEvent _eventOnTakeDamage;
     [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private LayerMask _deadLayerMask;
 
     public void TakeDamage(float damageValue)
     {
@@ -36,6 +37,6 @@ public class EnemyHealth : MonoBehaviour
         {
             OnDeath?.Invoke(rigidbody);
         }
-        Destroy(gameObject, time);
+        gameObject.layer = LayerMask.NameToLayer("Player");
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -8,7 +6,7 @@ public class Bullet : MonoBehaviour
     private float _damage;
     private int _maxCollisionCount;
     private int _collisionCount;
-    private Transform _shootPoint;
+    [SerializeField] private Transform _shootPoint;
 
     public void InitBullet(Transform shootPoint, ParticleSystem hitEffect, float damage, int maxCollisionCount)
     {
@@ -40,8 +38,8 @@ public class Bullet : MonoBehaviour
 
         if (_collisionCount >= _maxCollisionCount)
         {
-            gameObject.SetActive(false);
             transform.position = _shootPoint.position;
+            gameObject.SetActive(false);
         }
     }
 

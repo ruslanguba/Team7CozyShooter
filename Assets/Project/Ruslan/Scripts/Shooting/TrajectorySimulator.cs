@@ -27,22 +27,10 @@ public class TrajectorySimulator : MonoBehaviour
         simRb = simBullet.GetComponent<Rigidbody>();
 
         simBullet.SetActive(false);
-
-        //foreach (var rb in FindObjectsByType<Rigidbody>(0))
-        //{
-        //    _bodiesData.Add(rb, new BodyData());
-        //}
     }
 
     public void ShowTrajectory(Vector3 origin, Vector3 initialVelocity)
     {
-        //foreach (var rb in _physicsObjectsRegistry.Bodies) 
-        //{
-        //    rb.Value.position = rb.Key.transform.position;
-        //    rb.Value.rotation = rb.Key.transform.rotation;
-        //    rb.Value.velocity = rb.Key.linearVelocity;
-        //    rb.Value.angularVelocity = rb.Key.angularVelocity;
-        //}
         _physicsObjectsRegistry.SaveRigitbodiesData();
         // активируем симуляционную пулю
         simBullet.transform.position = origin;
@@ -67,13 +55,7 @@ public class TrajectorySimulator : MonoBehaviour
 
         Physics.simulationMode = SimulationMode.FixedUpdate;
         _physicsObjectsRegistry.LoadRigitbodiesData();
-        //foreach (var rb in _physicsObjectsRegistry.Bodies)
-        //{
-        //    rb.Key.transform.position = rb.Value.position;
-        //    rb.Key.transform.rotation = rb.Value.rotation;
-        //    rb.Key.linearVelocity = rb.Value.velocity;
-        //    rb.Key.angularVelocity = rb.Value.angularVelocity;
-        //}
+
         simBullet.SetActive(false);
     }
 
