@@ -36,16 +36,16 @@ public class PlayerDamageReciver : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.H)) 
-        {
-            if (hits < _maxHits)
-            {
-                hits++;
-                currentHealth = hits / _maxHits;
-                changeCoroutine = StartCoroutine(SmoothlyChangeVignette(currentHealth, smoothChangeDuration));
-                currentRestoreTimer = 0;
-            }
-        }
+        //if (Input.GetKeyUp(KeyCode.H)) 
+        //{
+        //    if (hits < _maxHits)
+        //    {
+        //        hits++;
+        //        currentHealth = hits / _maxHits;
+        //        changeCoroutine = StartCoroutine(SmoothlyChangeVignette(currentHealth, smoothChangeDuration));
+        //        currentRestoreTimer = 0;
+        //    }
+        //}
 
         if( hits > _minHits && currentRestoreTimer < restoreTimer)
         {
@@ -57,6 +57,17 @@ public class PlayerDamageReciver : MonoBehaviour
                 hits = _minHits;
                 currentHealth = hits / _maxHits;
             }
+        }
+    }
+
+    public void TakeDamage()
+    {
+        if (hits < _maxHits)
+        {
+            hits++;
+            currentHealth = hits / _maxHits;
+            changeCoroutine = StartCoroutine(SmoothlyChangeVignette(currentHealth, smoothChangeDuration));
+            currentRestoreTimer = 0;
         }
     }
 

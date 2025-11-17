@@ -8,9 +8,11 @@ public class Enemy : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float acceleration = 6f;
-    [SerializeField] private float attackRange = 5f;
+    [SerializeField] private float attackRange = 5f; // дистанция на которой начинает атаковать
+    [SerializeField] private float throwForce = 5f;
+    [SerializeField] private float chaseRange = 7f; // дистанция на которой начинает преследовать
 
-    [SerializeField] private float attackCooldown = 2f; // секунда между атаками
+    [SerializeField] private float attackCooldown = 2f; // время между атаками
     [SerializeField] private GameObject attackPrefab; // объект, который враг кидает
     [SerializeField] private Transform attackSpawn; // точка спауна атаки
 
@@ -22,6 +24,8 @@ public class Enemy : MonoBehaviour
     public float MoveSpeed => moveSpeed;
     public float Acceleration => acceleration;
     public float AttackRange => attackRange;
+    public float ThrowForce => throwForce;
+    public float ChaseRange => chaseRange;
 
     public float AttackCooldown => attackCooldown;
     public GameObject AttackPrefab => attackPrefab;
@@ -31,12 +35,14 @@ public class Enemy : MonoBehaviour
     public Transform[] PatrolPoints => patrolPoints;
     public EnemyPatrolState PatrolState => patrolState;
     public EnemyAttackState AttackState => attackState;
+    public EnemyChaseState ChaseState => chaseState;
     public EnemyDeathState DeathState => deathState;
 
     private EnemyStateMachine stateMachine;
 
     private EnemyPatrolState patrolState;
     private EnemyAttackState attackState;
+    private EnemyChaseState chaseState;
     private EnemyDeathState deathState;
 
     private void Awake()
@@ -49,6 +55,7 @@ public class Enemy : MonoBehaviour
 
         patrolState = new EnemyPatrolState(this, stateMachine);
         attackState = new EnemyAttackState(this, stateMachine);
+        chaseState = new EnemyChaseState(this, stateMachine);
         deathState = new EnemyDeathState(this, stateMachine);
 
         stateMachine.Initialize(patrolState);

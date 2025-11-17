@@ -6,6 +6,8 @@ public class PlayerContext : MonoBehaviour
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private Transform _cameraPivot;
     [SerializeField] private Animator _animator;
+    public PlayerGravity PlayerGravity => _gravity;
+    public PlayerMovement PlayerMovement => _movement;
 
     private CharacterController _controller;
     private PlayerMovement _movement;
@@ -43,11 +45,5 @@ public class PlayerContext : MonoBehaviour
         _movement.UpdateMovement();
         _gravity.UpdateGravity();
         _movement.ApplyMovement(_gravity.VerticalVelocity);
-    }
-
-    private void OnSpeedChanged(bool isAiming)
-    {
-        // Меняем скорость движения при прицеливании
-        _movement.SetSpeedMultiplier(isAiming ? 0.5f : 1f); // например, половина скорости
     }
 }

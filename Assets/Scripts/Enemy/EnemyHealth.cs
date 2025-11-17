@@ -15,8 +15,6 @@ public class EnemyHealth : MonoBehaviour
         _health -= damageValue;
         _eventOnTakeDamage.Invoke();
 
-        Debug.Log(damageValue);
-
         if (_health <= 0)
         {
             ScoreManager.Instance.AddNightmare(1);

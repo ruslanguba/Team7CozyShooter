@@ -38,13 +38,18 @@ public class PlayerMovement
         right.Normalize();
 
         _horizontalVelocity = (forward * moveInput.y + right * moveInput.x).normalized * _currentSpeed * _speedMultiplier;
-
     }
 
     public void ApplyMovement(Vector3 verticalVelocity)
     {
         _controller.Move((_horizontalVelocity + verticalVelocity) * Time.deltaTime);
         _animator.SetFloat("speed", _currentSpeed);
+    }
+
+    public void ResetHorizontalVelocity()
+    {
+        _horizontalVelocity = Vector3.zero;
+        _controller.Move(_horizontalVelocity);
     }
 
     public void SetSpeedMultiplier(float multiplier)

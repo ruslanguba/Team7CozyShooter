@@ -14,9 +14,9 @@ public class EnemyPatrolState: BaseState
 
     public override void Update()
     {
-        if (Vector3.Distance(enemy.transform.position, enemy.Target.position) < enemy.AttackRange)
+        if (Vector3.Distance(enemy.transform.position, enemy.Target.position) < enemy.ChaseRange)
         {
-            stateMachine.ChangeState(enemy.AttackState);
+            stateMachine.ChangeState(enemy.ChaseState);
             return;
         }
     }
@@ -33,8 +33,6 @@ public class EnemyPatrolState: BaseState
         {
             target = enemy.PatrolPoints[index].position;
         }
-        //var targetPoint = enemy.PatrolPoints[index].position;
-        //var dir = (targetPoint - enemy.transform.position).normalized;
         direction = (target - enemy.transform.position).normalized;
         MoveTowards(direction);
 
