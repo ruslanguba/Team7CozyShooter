@@ -13,7 +13,6 @@ public class PhysicsObjectsRegistry : MonoBehaviour
 
     //public Dictionary<Rigidbody, BodyData> Bodies => _bodiesData;
     private Dictionary<Rigidbody, BodyData> _bodiesData = new Dictionary<Rigidbody, BodyData>();
-
     private void Awake()
     {
         RegisterRigitbodiesOnScine();

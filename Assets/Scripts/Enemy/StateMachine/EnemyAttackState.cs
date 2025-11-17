@@ -36,8 +36,9 @@ public class EnemyAttackState : BaseState
     {
         if (enemy.AttackPrefab != null && enemy.AttackSpawn != null)
         {
-            GameObject projectile = GameObject.Instantiate(enemy.AttackPrefab, enemy.AttackSpawn.position, Quaternion.identity);
-            if (projectile.TryGetComponent<Rigidbody>(out Rigidbody rb))
+            GameObject projectile = Object.Instantiate(enemy.AttackPrefab, enemy.AttackSpawn.position, Quaternion.identity);
+            Object.Destroy(projectile, 5);
+            if (projectile.TryGetComponent(out Rigidbody rb))
             {
                 Vector3 dir = (enemy.Target.position - enemy.AttackSpawn.position).normalized;
                 rb.AddForce(dir * enemy.ThrowForce, ForceMode.Impulse);

@@ -29,6 +29,13 @@ public class PlayerArmoury : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        foreach (var gun in _guns)
+        {
+            gun.Deactivate();
+        }
+    }
     public void TakeGun(int gunIndex)
     {
         _currentGunIndex = gunIndex;

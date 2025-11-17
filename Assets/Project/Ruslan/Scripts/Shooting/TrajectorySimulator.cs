@@ -5,15 +5,15 @@ public class TrajectorySimulator : MonoBehaviour
 {
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private float _timeStep = 0.2f;
-    [SerializeField] private int _maxSteps = 300;
+    [SerializeField] private int _maxSteps = 50;
     [SerializeField] private PhysicsObjectsRegistry _physicsObjectsRegistry;
     private Vector3[] _points;
     private LineRenderer _lineRenderer;
 
     private GameObject simBullet;
     private Rigidbody simRb;
-
-    //private Dictionary <Rigidbody, BodyData> _bodiesData = new Dictionary<Rigidbody, BodyData>();
+    public bool IsSimulating =>_isSimulating;
+    private bool _isSimulating;
 
     private void Awake()
     {
@@ -31,6 +31,7 @@ public class TrajectorySimulator : MonoBehaviour
 
     public void ShowTrajectory(Vector3 origin, Vector3 initialVelocity)
     {
+        _isSimulating = true;
         _physicsObjectsRegistry.SaveRigitbodiesData();
         // активируем симуляционную пулю
         simBullet.transform.position = origin;
@@ -61,6 +62,7 @@ public class TrajectorySimulator : MonoBehaviour
 
     public void HideTrajectory()
     {
+        _isSimulating = false;
         _lineRenderer.positionCount = 0;
     }
 }

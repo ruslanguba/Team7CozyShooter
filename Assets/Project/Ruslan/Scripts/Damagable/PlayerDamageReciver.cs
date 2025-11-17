@@ -67,8 +67,8 @@ public class PlayerDamageReciver : MonoBehaviour
             hits++;
             currentHealth = hits / _maxHits;
             changeCoroutine = StartCoroutine(SmoothlyChangeVignette(currentHealth, smoothChangeDuration));
-            currentRestoreTimer = 0;
         }
+        currentRestoreTimer = 0;
     }
 
     IEnumerator SmoothlyChangeVignette(float targetValue, float changeDuration)
