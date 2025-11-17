@@ -35,6 +35,5 @@ public class EnemyHealth : MonoBehaviour
         {
             OnDeath?.Invoke(rigidbody);
         }
-        gameObject.layer = LayerMask.NameToLayer("Player");
     }
 }

@@ -8,17 +8,9 @@ public class EnemyDeathState: BaseState
     public override void Enter()
     {
         // Отключаем движение
-        //enemy.Rb.linearVelocity = Vector3.zero;
+        enemy.Rb.freezeRotation = false;
         enemy.Rb.isKinematic = false;
         enemy.Rb.useGravity = true;
-        // включаем анимацию, если есть
-        //enemy.Animator?.SetTrigger("Die");
-
-        // отключаем коллайдеры если надо
-        //foreach (var col in enemy.Colliders)
-        //    col.enabled = false;
-
-        // Можно запланировать удаление
         
         Object.Destroy(enemy.gameObject, 7f);
     }
