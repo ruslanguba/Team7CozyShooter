@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class InterectEnemy : MonoBehaviour
+public class InterectObject : MonoBehaviour
 {
     [SerializeField] Animator _animator;
     [SerializeField] GameObject _enemy;
     [SerializeField] private bool isEnemy;
+    [SerializeField] private bool _isOpen;
 
     void Awake()
     {
@@ -16,15 +17,23 @@ public class InterectEnemy : MonoBehaviour
         
         if (collision.gameObject.TryGetComponent(out Bullet bullet))
         {
-            _animator.SetTrigger("open");
+            if (!_isOpen)
+            {
+                _animator.SetTrigger("open");
+                _isOpen = true;
 
-            if (isEnemy)
-            {             
-                Invoke("EnemyCreate", 1.3f);
-                isEnemy = false;
+                if (isEnemy)
+                {
+                    Invoke("EnemyCreate", 1.3f);
+                    isEnemy = false;
+                }
             }
-            
 
+            else
+            {
+                _animator.SetTrigger("close");
+                _isOpen = false;
+            }                       
         }
 
         //if (collision.gameObject.TryGetComponent(out InterectEnemy enemy))
