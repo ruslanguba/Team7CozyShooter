@@ -31,6 +31,6 @@ public class EnemyHealth : MonoBehaviour
 
     void Die(float time)
     {
-            OnDeath?.Invoke();
+         OnDeath?.Invoke();
     }
 }

@@ -2,10 +2,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreText : MonoBehaviour
+public class ScoreUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshPro _currentScoreText;
-    [SerializeField] private TextMeshPro _enemiesToKill;
+    [SerializeField] private TextMeshProUGUI _currentScoreText;
+    [SerializeField] private TextMeshProUGUI _enemiesToKill;
 
     public void UpdateCurrentScoreText(string text)
     {
