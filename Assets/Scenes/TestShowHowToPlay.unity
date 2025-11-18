@@ -1098,6 +1098,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490872244}
   m_Mesh: {fileID: -3132628772946453785, guid: 4bd43e25b5e4be74789f57247e054a7f, type: 3}
+--- !u!1 &539117394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 861708476874599261, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+  m_PrefabInstance: {fileID: 8705279971912568158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &556619491
 GameObject:
   m_ObjectHideFlags: 0
@@ -3016,6 +3021,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228907312}
   m_Mesh: {fileID: 7450741763379908841, guid: 4bd43e25b5e4be74789f57247e054a7f, type: 3}
+--- !u!1 &1250380569 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2141287380153946342, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+  m_PrefabInstance: {fileID: 8705279971912568158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1271742510
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,17 +3220,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300765755}
   m_Mesh: {fileID: -612376834313925032, guid: 4bd43e25b5e4be74789f57247e054a7f, type: 3}
---- !u!114 &1345259440 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 147717031582706565, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
-  m_PrefabInstance: {fileID: 8705279971912568158}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 791297b10d18fb044a936631b69b0b14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1346320665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6101,7 +6100,7 @@ PrefabInstance:
     - target: {fileID: 2910567664296643195, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: '_guns.Array.data[1]'
       value: 
-      objectReference: {fileID: 1345259440}
+      objectReference: {fileID: 0}
     - target: {fileID: 3235786453319587640, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: _staticObjectsRegistry
       value: 
@@ -6126,6 +6125,18 @@ PrefabInstance:
       propertyPath: InitialModule.startSize.minScalar
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 3699286833143479731, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: _pillows.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699286833143479731, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: '_pillows.Array.data[0]'
+      value: 
+      objectReference: {fileID: 539117394}
+    - target: {fileID: 3699286833143479731, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: '_pillows.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1250380569}
     - target: {fileID: 3723565891389618284, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: proxyPrefab
       value: 

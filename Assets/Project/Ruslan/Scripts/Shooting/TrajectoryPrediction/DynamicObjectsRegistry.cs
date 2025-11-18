@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DynamicObjectsRegistry : MonoBehaviour
 {
-    private readonly List<Rigidbody> _dynamicBodies = new();
+    [SerializeField] private List<Rigidbody> _dynamicBodies = new();
     public IReadOnlyList<Rigidbody> DynamicBodies => _dynamicBodies;
 
     [SerializeField] private int _batchSize = 50; // сколько объектов обрабатывать за кадр
@@ -23,8 +23,11 @@ public class DynamicObjectsRegistry : MonoBehaviour
 
         foreach (var rb in bodies)
         {
-            if (!rb.gameObject.TryGetComponent(out Bullet bullet) || !rb.gameObject.TryGetComponent(out EnemyBullet enemybullet))
-            {// исключаем снаряды
+            if (  !rb.gameObject.TryGetComponent(out PlayerContext player) 
+                ||!rb.gameObject.TryGetComponent(out Bullet bullet) 
+                ||!rb.gameObject.TryGetComponent(out EnemyBullet enemybullet)
+                ||!rb.gameObject.TryGetComponent(out PlayerSafePosition playerSafePosition))
+            {
                 Register(rb);
             }
 
@@ -46,6 +49,10 @@ public class DynamicObjectsRegistry : MonoBehaviour
             {
                 enemyhealth.OnDeath += Unregister;
             }
+        }
+        else
+        {
+            Debug.Log(rb);
         }
     }
 

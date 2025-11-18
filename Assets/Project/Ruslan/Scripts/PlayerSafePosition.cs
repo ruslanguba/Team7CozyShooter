@@ -4,13 +4,12 @@ public class PlayerSafePosition : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private float saveInterval = 0.3f;
-    [SerializeField] private float moveToPlatformSpeed = 50;
+    //[SerializeField] private float moveToPlatformSpeed = 50;
     [SerializeField] private PlayerContext playerContext;
     private CharacterController characterController;
 
     [SerializeField] private Vector3 lastSafePos;
     private float timer;
-    private bool isMovingToPlatform = false;
 
     void Start()
     {

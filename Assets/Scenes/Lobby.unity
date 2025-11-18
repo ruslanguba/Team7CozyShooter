@@ -1055,17 +1055,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731799201}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &744415145 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 147717031582706565, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
-  m_PrefabInstance: {fileID: 8705279971912568158}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 791297b10d18fb044a936631b69b0b14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &789605990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,6 +1788,17 @@ LineRenderer:
   m_CorrespondingSourceObject: {fileID: 3718601740686074402, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
   m_PrefabInstance: {fileID: 8705279971912568158}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1070929110 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3235786453319587640, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+  m_PrefabInstance: {fileID: 8705279971912568158}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da87317cf2ff7c547b847606e8db6c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1090485381
 GameObject:
   m_ObjectHideFlags: 0
@@ -3490,9 +3490,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 147717031582706565, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 361712155086738839, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 861708476874599261, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1793419508162467940, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: _globalVolume
@@ -3519,9 +3527,13 @@ PrefabInstance:
       value: Character
       objectReference: {fileID: 0}
     - target: {fileID: 2910567664296643195, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: _guns.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910567664296643195, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: '_guns.Array.data[1]'
       value: 
-      objectReference: {fileID: 744415145}
+      objectReference: {fileID: 0}
     - target: {fileID: 3412302369794539948, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: m_Drag
       value: 0
@@ -3655,6 +3667,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2120099317}
     - target: {fileID: 6361901262951257810, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: _prediction
+      value: 
+      objectReference: {fileID: 1070929110}
+    - target: {fileID: 6361901262951257810, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: _bulletSpeed
       value: 10
       objectReference: {fileID: 0}
@@ -3706,10 +3722,26 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7793452192480277754, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863899753236708386, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: _recallAction
+      value: 
+      objectReference: {fileID: -140423579040724872, guid: 4c92c3c2f526f174e9016441e4b60b91, type: 3}
+    - target: {fileID: 7863899753236708386, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: _secondaryFire
+      value: 
+      objectReference: {fileID: -6507731803240713867, guid: 4c92c3c2f526f174e9016441e4b60b91, type: 3}
     - target: {fileID: 7863899753236708386, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: _interractAction
       value: 
       objectReference: {fileID: 3315331455547496477, guid: 4c92c3c2f526f174e9016441e4b60b91, type: 3}
+    - target: {fileID: 8819703625309835073, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8822167447810253032, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: m_Mass
       value: 1

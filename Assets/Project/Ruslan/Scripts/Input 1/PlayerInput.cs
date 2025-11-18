@@ -111,7 +111,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Aim"",
+                    ""name"": ""SecondaryFire"",
                     ""type"": ""Button"",
                     ""id"": ""a10c394c-1f91-43dc-835d-a6f0636cbc1f"",
                     ""expectedControlType"": """",
@@ -248,7 +248,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aim"",
+                    ""action"": ""SecondaryFire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -355,7 +355,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_GP = asset.FindActionMap("GP", throwIfNotFound: true);
         m_GP_Move = m_GP.FindAction("Move", throwIfNotFound: true);
         m_GP_Fire = m_GP.FindAction("Fire", throwIfNotFound: true);
-        m_GP_Aim = m_GP.FindAction("Aim", throwIfNotFound: true);
+        m_GP_SecondaryFire = m_GP.FindAction("SecondaryFire", throwIfNotFound: true);
         m_GP_Jump = m_GP.FindAction("Jump", throwIfNotFound: true);
         m_GP_Interact = m_GP.FindAction("Interact", throwIfNotFound: true);
         m_GP_ThrowProjectile = m_GP.FindAction("ThrowProjectile", throwIfNotFound: true);
@@ -448,7 +448,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IGPActions> m_GPActionsCallbackInterfaces = new List<IGPActions>();
     private readonly InputAction m_GP_Move;
     private readonly InputAction m_GP_Fire;
-    private readonly InputAction m_GP_Aim;
+    private readonly InputAction m_GP_SecondaryFire;
     private readonly InputAction m_GP_Jump;
     private readonly InputAction m_GP_Interact;
     private readonly InputAction m_GP_ThrowProjectile;
@@ -475,9 +475,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Fire => m_Wrapper.m_GP_Fire;
         /// <summary>
-        /// Provides access to the underlying input action "GP/Aim".
+        /// Provides access to the underlying input action "GP/SecondaryFire".
         /// </summary>
-        public InputAction @Aim => m_Wrapper.m_GP_Aim;
+        public InputAction @SecondaryFire => m_Wrapper.m_GP_SecondaryFire;
         /// <summary>
         /// Provides access to the underlying input action "GP/Jump".
         /// </summary>
@@ -534,9 +534,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
-            @Aim.started += instance.OnAim;
-            @Aim.performed += instance.OnAim;
-            @Aim.canceled += instance.OnAim;
+            @SecondaryFire.started += instance.OnSecondaryFire;
+            @SecondaryFire.performed += instance.OnSecondaryFire;
+            @SecondaryFire.canceled += instance.OnSecondaryFire;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
@@ -572,9 +572,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
-            @Aim.started -= instance.OnAim;
-            @Aim.performed -= instance.OnAim;
-            @Aim.canceled -= instance.OnAim;
+            @SecondaryFire.started -= instance.OnSecondaryFire;
+            @SecondaryFire.performed -= instance.OnSecondaryFire;
+            @SecondaryFire.canceled -= instance.OnSecondaryFire;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
@@ -744,12 +744,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnFire(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Aim" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "SecondaryFire" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnAim(InputAction.CallbackContext context);
+        void OnSecondaryFire(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Jump" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
