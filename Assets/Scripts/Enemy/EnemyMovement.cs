@@ -35,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (direction.magnitude <= 0.5f)
         {
-            currentPointIndex++;
+            //currentPointIndex++;
 
             transform.Translate(Vector3.zero * _speed * Time.deltaTime);
 

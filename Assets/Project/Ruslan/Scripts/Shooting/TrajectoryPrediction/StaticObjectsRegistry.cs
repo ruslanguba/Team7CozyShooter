@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class StaticObjectsRegistry : MonoBehaviour
 {
-    private readonly List<Collider> _staticColliders = new();
+    [SerializeField] private List<Collider> _staticColliders = new();
     public IReadOnlyList<Collider> StaticColliders => _staticColliders;
 
     [SerializeField] private PredictionSceneProvider _sceneProvider; // ссылка на сцену для клонирования

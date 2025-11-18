@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class PillowGun : GunBase
 {
-    [SerializeField] private PredictionBootstrap _prediction;
+    //[SerializeField] private PredictionBootstrap _prediction;
     //[SerializeField] private PhysicsObjectsRegistry _physicsObjectsRegistry;
+    [SerializeField] private BounceRayTrajectory _trajectory;
     [SerializeField] private Bullet _bulletPrefab;
     private Bullet _bullet;
     [SerializeField] private ParticleSystem _hitPartical;
@@ -26,6 +27,7 @@ public class PillowGun : GunBase
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        _trajectory.GetComponent<BounceRayTrajectory>();
     }
 
     public override void Deactivate()
@@ -49,7 +51,7 @@ public class PillowGun : GunBase
         if (Input.GetKeyDown(KeyCode.P)) 
         {
             Vector3 direction = _character.transform.forward * _bulletSpeed;
-            _prediction.Predict(_spawn.position, direction);
+            //_prediction.Predict(_spawn.position, direction);
         }
     }
 
@@ -65,16 +67,18 @@ public class PillowGun : GunBase
             //_shotSound.Play();
             //_particleFlash.Play();
             shootingTimer = _shotPeriod;
-            Destroy(newBullet, _bulletLifeTime);
+            Destroy(newBullet.gameObject, _bulletLifeTime);
         }
-        _prediction.Clear();
+        _trajectory.Clear();
+        //_prediction.Clear();
         //_trajectorySimulator.HideTrajectory();
     }
 
     private void CalculateTrajectory()
     {
         Vector3 direction = _character.transform.forward * _bulletSpeed;
-        _prediction.Predict(_spawn.position, direction);
+        _trajectory.DrawTrajectory(direction);
+        //_prediction.Predict(_spawn.position, direction);
         //if (_isFirePressed && IsCanShoot())
         //{
         //    Vector3 direction = _character.transform.forward * _bulletSpeed;

@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public event Action<Rigidbody> OnDeath;
+    public event Action OnDeath;
     [SerializeField] private float _health = 2f;
     [SerializeField] private UnityEvent _eventOnTakeDamage;
     [SerializeField] private ParticleSystem _particleSystem;
@@ -31,9 +31,6 @@ public class EnemyHealth : MonoBehaviour
 
     void Die(float time)
     {
-        if (TryGetComponent(out Rigidbody rigidbody))
-        {
-            OnDeath?.Invoke(rigidbody);
-        }
+            OnDeath?.Invoke();
     }
 }

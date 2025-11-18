@@ -23,20 +23,12 @@ public class PhysicsObjectsRegistry : MonoBehaviour
         foreach (var rb in FindObjectsByType<Rigidbody>(0))
         {
             _bodiesData.Add(rb, new BodyData());
-            if(rb.TryGetComponent(out EnemyHealth enemyHealth))
-            {
-                enemyHealth.OnDeath += DeleateRigitbody;
-            }
         }
     }
 
     public void RegisterNewRigitbody(Rigidbody rb)
     {
         _bodiesData.Add(rb, new BodyData());
-        if (rb.TryGetComponent(out EnemyHealth enemyHealth))
-        {
-            enemyHealth.OnDeath += DeleateRigitbody;
-        }
     }
 
     public void DeleateRigitbody(Rigidbody rb)

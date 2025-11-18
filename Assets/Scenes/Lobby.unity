@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1b0ac5f9a52d24dab0f1016f2a9f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneToLoad: TestShowHowToPlay
+  _sceneToLoad: Level_11
 --- !u!65 &4391836
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -363,6 +363,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &221894062
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 00904f1f247a38a4094b60baa5cff56a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.4862108
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00904f1f247a38a4094b60baa5cff56a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00904f1f247a38a4094b60baa5cff56a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.5269294
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00904f1f247a38a4094b60baa5cff56a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00904f1f247a38a4094b60baa5cff56a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00904f1f247a38a4094b60baa5cff56a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00904f1f247a38a4094b60baa5cff56a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00904f1f247a38a4094b60baa5cff56a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00904f1f247a38a4094b60baa5cff56a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 00904f1f247a38a4094b60baa5cff56a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7697080521565152697, guid: 00904f1f247a38a4094b60baa5cff56a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 80c1436958dc287439f56ddeebe0f65f, type: 2}
+    - target: {fileID: 919132149155446097, guid: 00904f1f247a38a4094b60baa5cff56a, type: 3}
+      propertyPath: m_Name
+      value: tenka_03 (RIG)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 00904f1f247a38a4094b60baa5cff56a, type: 3}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -3298,14 +3359,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016602274}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.9250879, z: -0, w: 0.37975302}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.6, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1899574906}
   m_Father: {fileID: 881686589}
-  m_LocalEulerAnglesHint: {x: 0, y: -135.363, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2032531594 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 872635350006776882, guid: 174121f62c1ef014aba06ee9e19a5c10, type: 3}
@@ -3528,7 +3589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2910567664296643195, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: _guns.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2910567664296643195, guid: 75155ea04ae1a2b46b3bcfd7725b629e, type: 3}
       propertyPath: '_guns.Array.data[1]'
@@ -3780,3 +3841,4 @@ SceneRoots:
   - {fileID: 1753780257}
   - {fileID: 680205601}
   - {fileID: 479673748}
+  - {fileID: 221894062}

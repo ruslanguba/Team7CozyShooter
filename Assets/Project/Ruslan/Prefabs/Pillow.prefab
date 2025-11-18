@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5088383694316309064}
   - component: {fileID: 8558005986220551872}
   - component: {fileID: 8983114320202729988}
-  - component: {fileID: 7706269881772041747}
+  - component: {fileID: 2257726994800861291}
   m_Layer: 6
   m_Name: Pillow
   m_TagString: Bullet
@@ -83,7 +83,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5897323, y: 0.62365717, z: 0.620826}
   m_Center: {x: -0.0010352731, y: 0.0057189977, z: 0.00443244}
---- !u!114 &7706269881772041747
+--- !u!114 &2257726994800861291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,10 +92,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 528227266972043996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49a49a4e2198fa24b904a4236573ad9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1dac5c1780b82514db60e24baa32b003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effect: {fileID: 2047630968495063948, guid: 8bdfc58eaef1f7a4690c9936b4b14028, type: 3}
 --- !u!1 &1924953010146686801
 GameObject:
   m_ObjectHideFlags: 0

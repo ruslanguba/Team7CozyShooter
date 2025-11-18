@@ -11,13 +11,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackRange = 5f; // дистанция на которой начинает атаковать
     [SerializeField] private float throwForce = 5f;
     [SerializeField] private float chaseRange = 7f; // дистанция на которой начинает преследовать
-
+    [SerializeField] private EnemyRotationHandler rotationHandler;
     [SerializeField] private float attackCooldown = 2f; // время между атаками
     [SerializeField] private GameObject attackPrefab; // объект, который враг кидает
     [SerializeField] private Transform attackSpawn; // точка спауна атаки
 
     [SerializeField] private Transform[] patrolPoints;
     [SerializeField] private Transform target;
+
+    [SerializeField] private Animator animator;
 
     private EnemyHealth health;
     public Rigidbody Rb => rb;
@@ -28,6 +30,8 @@ public class Enemy : MonoBehaviour
     public float ChaseRange => chaseRange;
 
     public float AttackCooldown => attackCooldown;
+    public Animator Animator => animator;
+    public EnemyRotationHandler RotationHandler => rotationHandler;
     public GameObject AttackPrefab => attackPrefab;
     public Transform AttackSpawn => attackSpawn;
 
@@ -51,6 +55,8 @@ public class Enemy : MonoBehaviour
             rb = GetComponent<Rigidbody>();
 
         health = GetComponent<EnemyHealth>();
+        animator = GetComponentInChildren<Animator>();
+        rotationHandler = GetComponent<EnemyRotationHandler>();
         stateMachine = new EnemyStateMachine();
 
         patrolState = new EnemyPatrolState(this, stateMachine);
@@ -60,10 +66,10 @@ public class Enemy : MonoBehaviour
 
         stateMachine.Initialize(patrolState);
         if(health != null)
-            SubscribeToDeath(rb);
+            SubscribeToDeath();
     }
 
-    private void SubscribeToDeath(Rigidbody rb)
+    private void SubscribeToDeath()
     {
         health.OnDeath += HandleDeath;
     }
@@ -72,7 +78,7 @@ public class Enemy : MonoBehaviour
     {
         target = transform;
     }
-    private void HandleDeath(Rigidbody rb)
+    private void HandleDeath()
     {
         stateMachine.ChangeState(deathState);
     }

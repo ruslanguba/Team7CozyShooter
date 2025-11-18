@@ -8,7 +8,7 @@ public class BaseState
     protected BaseState(Enemy enemy, EnemyStateMachine stateMachine)
     {
         this.enemy = enemy;
-        this.stateMachine = stateMachine;
+        this.stateMachine = stateMachine;       
     }
 
     public virtual void Enter() { }

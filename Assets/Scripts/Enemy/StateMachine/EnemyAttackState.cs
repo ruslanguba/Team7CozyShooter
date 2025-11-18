@@ -8,12 +8,16 @@ public class EnemyAttackState : BaseState
 
     public override void Enter()
     {
-        //attackTimer = 0f; // сразу можно атаковать
+        enemy.RotationHandler.enabled = false;
         enemy.Rb.linearVelocity = Vector3.zero;
+        Vector3 dir = enemy.Target.position - enemy.transform.position;
+        dir.y = 0;
+        enemy.transform.rotation = Quaternion.LookRotation(dir);
     }
 
     public override void Update()
     {
+        RoteteToPlayer();
         float dist = Vector3.Distance(enemy.transform.position, enemy.Target.position);
 
         // Если игрок ушёл из зоны атаки — возвращаемся к преследованию
@@ -31,18 +35,30 @@ public class EnemyAttackState : BaseState
             attackTimer = enemy.AttackCooldown;
         }
     }
+    private void RoteteToPlayer()
+    {
+        Vector3 dir = enemy.Target.position - enemy.transform.position;
+        dir.y = 0;
 
+        Quaternion targetRot = Quaternion.LookRotation(dir);
+        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRot, 8f * Time.deltaTime);
+    }
     private void ThrowProjectile()
     {
         if (enemy.AttackPrefab != null && enemy.AttackSpawn != null)
         {
             GameObject projectile = Object.Instantiate(enemy.AttackPrefab, enemy.AttackSpawn.position, Quaternion.identity);
-            Object.Destroy(projectile, 5);
+            Object.Destroy(projectile.gameObject, 5);
             if (projectile.TryGetComponent(out Rigidbody rb))
             {
                 Vector3 dir = (enemy.Target.position - enemy.AttackSpawn.position).normalized;
                 rb.AddForce(dir * enemy.ThrowForce, ForceMode.Impulse);
             }
         }
+    }
+
+    public override void Exit()
+    {
+        enemy.RotationHandler.enabled = true;
     }
 }

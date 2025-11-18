@@ -7,6 +7,7 @@ public class EnemyBullet : MonoBehaviour
         if(other.TryGetComponent(out PlayerDamageReciver playerDamageReciver))
         {
             playerDamageReciver.TakeDamage();
+            Destroy(gameObject);
         }
     }
 }

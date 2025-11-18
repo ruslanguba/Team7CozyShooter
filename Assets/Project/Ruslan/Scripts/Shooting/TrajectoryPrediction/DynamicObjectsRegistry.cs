@@ -24,7 +24,8 @@ public class DynamicObjectsRegistry : MonoBehaviour
         foreach (var rb in bodies)
         {
             if (  !rb.gameObject.TryGetComponent(out PlayerContext player) 
-                ||!rb.gameObject.TryGetComponent(out Bullet bullet) 
+                ||!rb.gameObject.TryGetComponent(out Bullet bullet)
+                ||!rb.gameObject.TryGetComponent(out Pillow pillow)
                 ||!rb.gameObject.TryGetComponent(out EnemyBullet enemybullet)
                 ||!rb.gameObject.TryGetComponent(out PlayerSafePosition playerSafePosition))
             {
@@ -45,10 +46,6 @@ public class DynamicObjectsRegistry : MonoBehaviour
         if (!_dynamicBodies.Contains(rb))
         {
             _dynamicBodies.Add(rb);
-            if (rb.gameObject.TryGetComponent(out EnemyHealth enemyhealth))
-            {
-                enemyhealth.OnDeath += Unregister;
-            }
         }
         else
         {

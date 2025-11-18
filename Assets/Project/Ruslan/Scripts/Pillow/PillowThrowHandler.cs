@@ -9,7 +9,7 @@ public class PillowThrowHandler : GunBase
     [SerializeField] private Transform _spawnPoint; // точка броска
     [SerializeField] private Transform _character;
     [SerializeField] private List<GameObject> _pillows; // заранее созданные подушки
-    [SerializeField] private DynamicObjectsRegistry _dynamicObjectsRegistry;
+    //[SerializeField] private DynamicObjectsRegistry _dynamicObjectsRegistry;
     private Stack<GameObject> _thrownPillows = new Stack<GameObject>();
 
     [Header("Settings")]
@@ -24,7 +24,7 @@ public class PillowThrowHandler : GunBase
     private void Awake()
     {
         _input = GetComponent<InputReader>();
-        _dynamicObjectsRegistry = GetComponentInChildren<DynamicObjectsRegistry>();
+        //_dynamicObjectsRegistry = GetComponentInChildren<DynamicObjectsRegistry>();
         // делаем все подушки неактивными и кинематикой на старте
         foreach (var pillow in _pillows)
         {
@@ -33,7 +33,6 @@ public class PillowThrowHandler : GunBase
             pillow.transform.parent = null;
             if (rb != null)
             {
-                _dynamicObjectsRegistry.Register(rb);
                 rb.isKinematic = true;
                 rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
@@ -89,7 +88,6 @@ public class PillowThrowHandler : GunBase
         pillow.transform.position = _spawnPoint.position;
         pillow.transform.rotation = _character.rotation;
         pillow.SetActive(true);
-
         _currentRb = pillow.GetComponent<Rigidbody>();
         _currentRb.isKinematic = false;
         _currentRb.linearVelocity = Vector3.zero;
@@ -97,6 +95,7 @@ public class PillowThrowHandler : GunBase
         _currentRb.AddForce(_character.forward * _throwForce, ForceMode.Impulse);
         _currentRb.detectCollisions = true;
         _thrownPillows.Push(pillow); // кладём подушку в стек
+        //_dynamicObjectsRegistry.Register(_currentRb);
     }
 
     private void StopCurrentPillow()
@@ -116,6 +115,7 @@ public class PillowThrowHandler : GunBase
 
         GameObject pillowToRecall = _thrownPillows.Pop();
         Rigidbody rb = pillowToRecall.GetComponent<Rigidbody>();
+        //_dynamicObjectsRegistry.Unregister(rb);
         StartCoroutine(RecallPillow(rb));
         _currentRb = null;
     }

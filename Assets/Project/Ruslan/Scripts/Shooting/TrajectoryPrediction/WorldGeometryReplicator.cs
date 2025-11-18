@@ -42,7 +42,6 @@ public class WorldGeometryReplicator
 
         // Клонируем статичные Collider без Rigidbody
         CloneStatic();
-
     }
 
     private void CloneStatic()
