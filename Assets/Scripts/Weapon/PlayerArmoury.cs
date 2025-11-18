@@ -23,10 +23,10 @@ public class PlayerArmoury : MonoBehaviour
             TakeGun(0);
         }
 
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            TakeGun(1);
-        }
+        //else if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    TakeGun(1);
+        //}
     }
 
     private void OnDisable()

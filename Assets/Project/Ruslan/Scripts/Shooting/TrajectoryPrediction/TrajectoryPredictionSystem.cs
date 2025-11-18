@@ -8,7 +8,7 @@ public class TrajectoryPredictionSystem
     private readonly TrajectorySimulator _simulator;
     private readonly TrajectoryRenderer _renderer;
     private readonly PredictionSceneCleaner _cleaner;
-    private bool _geometrySynced = false;
+    //private bool _geometrySynced = false;
 
     public TrajectoryPredictionSystem(
         PredictionSceneProvider sceneProvider,
