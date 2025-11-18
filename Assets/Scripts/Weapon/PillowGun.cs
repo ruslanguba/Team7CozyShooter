@@ -8,12 +8,14 @@ public class PillowGun : GunBase
     private Bullet _bullet;
     [SerializeField] private ParticleSystem _hitPartical;
     [SerializeField] private float _damage;
+    [SerializeField] private float _timeToDie = 8;
     [SerializeField] private int _maxCollisionCount;
     //[SerializeField] private TrajectorySimulator _trajectorySimulator;
     [SerializeField] private Transform _character;
     private Rigidbody _bulletRigidbody;
     private bool _isFirePressed;
     private bool _isActive;
+
 
     public override void Activate()
     {
@@ -22,6 +24,14 @@ public class PillowGun : GunBase
         //input.OnFire += StartSimulation;
         input.OnFireRealesed += StartShot;
     }
+
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+
+
 
     public override void Deactivate()
     {
@@ -68,6 +78,7 @@ public class PillowGun : GunBase
             //_particleFlash.Play();
             _isFirePressed = false;
             shootingTimer = _shotPeriod;
+            Destroy(newBullet, _timeToDie);
         }
         _prediction.Clear();
         //_trajectorySimulator.HideTrajectory();
