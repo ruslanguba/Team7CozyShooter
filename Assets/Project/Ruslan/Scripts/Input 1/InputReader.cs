@@ -11,7 +11,7 @@ public class InputReader : MonoBehaviour
 
     [SerializeField] private InputActionReference _fireAction;
     [SerializeField] private InputActionReference _aimAction;
-    [SerializeField] private InputActionReference _reloadAction;
+    [SerializeField] private InputActionReference _recallAction;
     [SerializeField] private InputActionReference _throwAction;
     [SerializeField] private InputActionReference _interractAction;
     [SerializeField] private InputActionReference _scrollAction;
@@ -46,7 +46,7 @@ public class InputReader : MonoBehaviour
         _jumpAction?.action?.Enable();
         _fireAction?.action?.Enable();
         _aimAction?.action?.Enable();
-        _reloadAction?.action?.Enable();
+        _recallAction?.action?.Enable();
         _throwAction?.action?.Enable();
         _interractAction?.action?.Enable();
         _scrollAction?.action?.Enable();
@@ -60,7 +60,7 @@ public class InputReader : MonoBehaviour
         _jumpAction?.action?.Disable();
         _fireAction?.action?.Disable();
         _aimAction?.action?.Disable();
-        _reloadAction?.action?.Disable();
+        _recallAction?.action?.Disable();
         _throwAction?.action?.Disable();
         _interractAction?.action?.Disable();
         _scrollAction?.action?.Disable();
@@ -75,7 +75,7 @@ public class InputReader : MonoBehaviour
             _fireAction.action.canceled += ctx => OnFireRealesed?.Invoke();
         }
         if (_jumpAction?.action != null) _jumpAction.action.performed += ctx => OnJump?.Invoke();
-        if (_reloadAction?.action != null) _reloadAction.action.performed += ctx => OnReload?.Invoke();
+        if (_recallAction?.action != null) _recallAction.action.performed += ctx => OnReload?.Invoke();
         if (_throwAction?.action != null) _throwAction.action.performed += ctx => OnThrow?.Invoke();
         if (_interractAction?.action != null) _interractAction.action.performed += ctx => OnInteract?.Invoke();
         if (_pauseAction?.action != null) _pauseAction.action.performed += ctx => OnPause?.Invoke();
@@ -91,7 +91,7 @@ public class InputReader : MonoBehaviour
             _fireAction.action.canceled -= ctx => OnFireRealesed?.Invoke();
         }
         if (_jumpAction?.action != null) _jumpAction.action.performed -= ctx => OnJump?.Invoke();
-        if (_reloadAction?.action != null) _reloadAction.action.performed -= ctx => OnReload?.Invoke();
+        if (_recallAction?.action != null) _recallAction.action.performed -= ctx => OnReload?.Invoke();
         if (_throwAction?.action != null) _throwAction.action.performed -= ctx => OnThrow?.Invoke();
         if (_interractAction?.action != null) _interractAction.action.performed -= ctx => OnInteract?.Invoke();
         if (_pauseAction?.action != null) _pauseAction.action.performed -= ctx => OnPause?.Invoke();

@@ -156,7 +156,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Reload"",
+                    ""name"": ""Recall"",
                     ""type"": ""Button"",
                     ""id"": ""95a7643b-baeb-421d-8ca0-f74c23170c5c"",
                     ""expectedControlType"": """",
@@ -303,7 +303,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Reload"",
+                    ""action"": ""Recall"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -360,7 +360,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_GP_Interact = m_GP.FindAction("Interact", throwIfNotFound: true);
         m_GP_ThrowProjectile = m_GP.FindAction("ThrowProjectile", throwIfNotFound: true);
         m_GP_Look = m_GP.FindAction("Look", throwIfNotFound: true);
-        m_GP_Reload = m_GP.FindAction("Reload", throwIfNotFound: true);
+        m_GP_Recall = m_GP.FindAction("Recall", throwIfNotFound: true);
         m_GP_Scroll = m_GP.FindAction("Scroll", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
@@ -453,7 +453,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_GP_Interact;
     private readonly InputAction m_GP_ThrowProjectile;
     private readonly InputAction m_GP_Look;
-    private readonly InputAction m_GP_Reload;
+    private readonly InputAction m_GP_Recall;
     private readonly InputAction m_GP_Scroll;
     /// <summary>
     /// Provides access to input actions defined in input action map "GP".
@@ -495,9 +495,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Look => m_Wrapper.m_GP_Look;
         /// <summary>
-        /// Provides access to the underlying input action "GP/Reload".
+        /// Provides access to the underlying input action "GP/Recall".
         /// </summary>
-        public InputAction @Reload => m_Wrapper.m_GP_Reload;
+        public InputAction @Recall => m_Wrapper.m_GP_Recall;
         /// <summary>
         /// Provides access to the underlying input action "GP/Scroll".
         /// </summary>
@@ -549,9 +549,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @Reload.started += instance.OnReload;
-            @Reload.performed += instance.OnReload;
-            @Reload.canceled += instance.OnReload;
+            @Recall.started += instance.OnRecall;
+            @Recall.performed += instance.OnRecall;
+            @Recall.canceled += instance.OnRecall;
             @Scroll.started += instance.OnScroll;
             @Scroll.performed += instance.OnScroll;
             @Scroll.canceled += instance.OnScroll;
@@ -587,9 +587,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @Reload.started -= instance.OnReload;
-            @Reload.performed -= instance.OnReload;
-            @Reload.canceled -= instance.OnReload;
+            @Recall.started -= instance.OnRecall;
+            @Recall.performed -= instance.OnRecall;
+            @Recall.canceled -= instance.OnRecall;
             @Scroll.started -= instance.OnScroll;
             @Scroll.performed -= instance.OnScroll;
             @Scroll.canceled -= instance.OnScroll;
@@ -779,12 +779,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLook(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Reload" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Recall" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnReload(InputAction.CallbackContext context);
+        void OnRecall(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Scroll" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

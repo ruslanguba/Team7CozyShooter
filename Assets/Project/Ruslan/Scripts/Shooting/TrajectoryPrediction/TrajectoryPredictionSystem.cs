@@ -27,8 +27,8 @@ public class TrajectoryPredictionSystem
     public void Predict(Vector3 startPosition, Vector3 startVelocity)
     {
         _sceneProvider.EnsureSceneCreated();
-            _cleaner.ClearScene();
-            _replicator.SyncGeometry();
+        _cleaner.ClearScene();
+        _replicator.SyncGeometry();
 
         List<Vector3> points = _simulator.Simulate(startPosition, startVelocity);
         _renderer.Render(points);

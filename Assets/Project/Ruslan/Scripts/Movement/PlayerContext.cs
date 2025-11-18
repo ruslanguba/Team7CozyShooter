@@ -37,7 +37,7 @@ public class PlayerContext : MonoBehaviour
     }
     private void OnDisable()
     {
-        _inputReader.OnJump += _jump.Jump;
+        _inputReader.OnJump -= _jump.Jump;
     }
     private void Update()
     {

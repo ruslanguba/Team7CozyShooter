@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "PlayerInput",
     "maps": [
         {
@@ -69,7 +70,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Reload",
+                    "name": "Recall",
                     "type": "Button",
                     "id": "95a7643b-baeb-421d-8ca0-f74c23170c5c",
                     "expectedControlType": "",
@@ -216,7 +217,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Reload",
+                    "action": "Recall",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -496,6 +496,8 @@ GameObject:
   - component: {fileID: 464267879913750623}
   - component: {fileID: 3718601740686074402}
   - component: {fileID: 3235786453319587640}
+  - component: {fileID: 6271854933794497357}
+  - component: {fileID: 201301769726771104}
   m_Layer: 0
   m_Name: TrajectorySimulationSystem
   m_TagString: Untagged
@@ -639,6 +641,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineRenderer: {fileID: 3718601740686074402}
   _projectilePrefab: {fileID: 4070374934291767179, guid: e867588148b89414fb9358196ed0ce70, type: 3}
+  _staticObjectsRegistry: {fileID: 0}
+  _dynamicObjectsRegistry: {fileID: 0}
+--- !u!114 &6271854933794497357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3920803192030645377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3547d3a38c98545bb6479c5dad8233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _batchSize: 50
+--- !u!114 &201301769726771104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3920803192030645377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1853bd92aea5c42ae88c9f27ebfba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _batchSize: 50
 --- !u!1 &3994646952276786308
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,7 +869,7 @@ MonoBehaviour:
   _bulletSpeed: 15
   _shotPeriod: 2
   input: {fileID: 7863899753236708386}
-  _physicsObjectsRegistry: {fileID: 0}
+  _prediction: {fileID: 0}
   _bulletPrefab: {fileID: 6276465115899784245, guid: b6880e24fc26d4e4ebd6ce1f5a577844, type: 3}
   _hitPartical: {fileID: 768634248833732684}
   _damage: 10
