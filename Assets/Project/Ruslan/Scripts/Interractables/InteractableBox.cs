@@ -8,6 +8,7 @@ public class InteractableBox : InteractableBase
     {
         _animator = GetComponent<Animator>();
     }
+
     public override void OnInteract()
     {
         _animator.SetTrigger("open");

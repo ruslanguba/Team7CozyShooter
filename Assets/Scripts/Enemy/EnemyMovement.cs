@@ -6,7 +6,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Transform[] _points;
     [SerializeField] private float _speed = 2;
     [SerializeField] private float _rotationSpeed = 2;
-    private int currentPointIndex = 0;
+    private int currentPointIndex;
+    private bool isHidden = false;
 
     void Start()
     {
@@ -18,7 +19,11 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        MoveToNextPoint();
+        if (!isHidden)
+        {
+            MoveToNextPoint();
+        }
+        //MoveToNextPoint();
     }
 
     private void MoveToNextPoint()
@@ -28,14 +33,31 @@ public class EnemyMovement : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
         transform.Translate(Vector3.forward * _speed * Time.deltaTime);
 
-        if (direction.magnitude <= 0.5f)
+        if (direction.magnitude <= 0.2f)
         {
             currentPointIndex++;
 
-            if (currentPointIndex >= _points.Length)
+            if (currentPointIndex == 1)
             {
-                currentPointIndex = 0;
+                Invoke("HideCharacter", 1.3f);
             }
+
+            //if (currentPointIndex >= _points.Length)
+            //{
+            //    currentPointIndex = 0;
+            //}
         }
+    }
+
+    private void HideCharacter()
+    {
+        gameObject.SetActive(false);
+        isHidden = true;
+    }
+
+    public void ContinueMovement()
+    {
+        gameObject.SetActive(true);
+        isHidden = false;
     }
 }
