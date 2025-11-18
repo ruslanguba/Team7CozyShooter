@@ -19,7 +19,7 @@ public class PillowGun : GunBase
     {
         base.Activate();
         _isActive = true;
-        input.OnFire += StartSimulation;
+        //input.OnFire += StartSimulation;
         input.OnFireRealesed += StartShot;
     }
 
@@ -27,7 +27,7 @@ public class PillowGun : GunBase
     {
         base.Deactivate();
         _isActive = false;
-        input.OnFire -= StartSimulation;
+        //input.OnFire -= StartSimulation;
         input.OnFireRealesed -= StartShot;
     }
 
@@ -36,7 +36,11 @@ public class PillowGun : GunBase
         if (_isActive)
         {
             base.Update();
-            CalculateTrajectory();
+            if(input.IsFiringHeld() && IsCanShoot())
+            {
+                CalculateTrajectory();
+            }
+            //CalculateTrajectory();
         }
 
         if (Input.GetKeyDown(KeyCode.P)) 
@@ -45,10 +49,11 @@ public class PillowGun : GunBase
             _prediction.Predict(_spawn.position, direction);
         }
     }
-    private void StartSimulation()
-    {
-        _isFirePressed = true;
-    }
+    //private void StartSimulation()
+    //{
+    //    if (_isFirePressed && !IsCanShoot())
+    //        _isFirePressed = true;
+    //}
 
     private void StartShot()
     {
@@ -70,11 +75,13 @@ public class PillowGun : GunBase
 
     private void CalculateTrajectory()
     {
-        if (_isFirePressed && IsCanShoot())
-        {
-            Vector3 direction = _character.transform.forward * _bulletSpeed;
-            _prediction.Predict(_spawn.position, direction);
-            //_trajectorySimulator.ShowTrajectory(_spawn.position, direction);
-        }
+        Vector3 direction = _character.transform.forward * _bulletSpeed;
+        _prediction.Predict(_spawn.position, direction);
+        //if (_isFirePressed && IsCanShoot())
+        //{
+        //    Vector3 direction = _character.transform.forward * _bulletSpeed;
+        //    _prediction.Predict(_spawn.position, direction);
+        //    //_trajectorySimulator.ShowTrajectory(_spawn.position, direction);
+        //}
     }
 }

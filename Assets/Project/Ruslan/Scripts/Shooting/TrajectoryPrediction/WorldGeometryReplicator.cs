@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 public class WorldGeometryReplicator
 {
     private readonly PredictionSceneProvider _sceneProvider;
-
-    public WorldGeometryReplicator(PredictionSceneProvider provider)
+    private readonly StaticObjectsRegistry _staticObjectsRegistry;
+    private readonly DynamicObjectsRegistry _dynamicObjectsRegistry;
+    public WorldGeometryReplicator(PredictionSceneProvider provider, StaticObjectsRegistry staticObjectsRegistry, DynamicObjectsRegistry dynamicObjectsRegistry)
     {
         _sceneProvider = provider;
+        _staticObjectsRegistry = staticObjectsRegistry;
+        _dynamicObjectsRegistry = dynamicObjectsRegistry;
     }
 
     public void SyncGeometry()
@@ -16,7 +19,7 @@ public class WorldGeometryReplicator
         Scene predictionScene = _sceneProvider.Scene;
 
         // Клонируем динамические объекты с Rigidbody
-        foreach (Rigidbody rbOriginal in Object.FindObjectsByType<Rigidbody>(0))
+        foreach (Rigidbody rbOriginal in _dynamicObjectsRegistry.DynamicBodies)
         {
             GameObject clone = Object.Instantiate(rbOriginal.gameObject);
             SceneManager.MoveGameObjectToScene(clone, predictionScene);
@@ -38,12 +41,18 @@ public class WorldGeometryReplicator
         }
 
         // Клонируем статичные Collider без Rigidbody
-        foreach (Collider col in Object.FindObjectsByType<Collider>(0))
+        CloneStatic();
+
+    }
+
+    private void CloneStatic()
+    {
+        foreach (Collider col in _staticObjectsRegistry.StaticColliders)
         {
             if (col.attachedRigidbody == null)
             {
                 GameObject clone = Object.Instantiate(col.gameObject);
-                SceneManager.MoveGameObjectToScene(clone, predictionScene);
+                SceneManager.MoveGameObjectToScene(clone, _sceneProvider.Scene);
 
                 foreach (var renderer in clone.GetComponentsInChildren<Renderer>())
                     renderer.enabled = false;
