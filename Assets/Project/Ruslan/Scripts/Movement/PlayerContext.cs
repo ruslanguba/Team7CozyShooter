@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class PlayerContext : MonoBehaviour
 {
+    public PlayerSettings Settings => _settings;
+    public InputReader Input => _inputReader;
+    public CharacterController Controller => _controller;
+    public Transform CameraPivot => _cameraPivot;
+    public AnimatorHandler AnimatorHandler => _animatorHandler;
+
     [SerializeField] private PlayerSettings _settings;
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private Transform _cameraPivot;
     [SerializeField] private Animator _animator;
-    public PlayerGravity PlayerGravity => _gravity;
-    public PlayerMovement PlayerMovement => _movement;
+    [SerializeField] private AnimatorHandler _animatorHandler;
 
     private CharacterController _controller;
     private PlayerMovement _movement;
@@ -24,11 +29,16 @@ public class PlayerContext : MonoBehaviour
     {
         _controller = GetComponent<CharacterController>();
         _inputReader = GetComponent<InputReader>();
-        _animator = GetComponent<Animator>();
-        _movement = new PlayerMovement(_settings, _controller, _cameraPivot, _inputReader, _animator);
-        _gravity = new PlayerGravity(_settings, _controller);
-        _jump = new PlayerJump(_settings, _controller, _gravity, _inputReader);
-        _look = new PlayerLook(_settings, _cameraPivot, transform, _inputReader);
+        _animator = GetComponentInChildren<Animator>();
+        _animatorHandler = new AnimatorHandler(_animator);
+        _movement = new PlayerMovement(this);
+        _gravity = new PlayerGravity(this);
+        _jump = new PlayerJump(this, _gravity);
+        _look = new PlayerLook(this);
+        //_movement = new PlayerMovement(_settings, _controller, _cameraPivot, _inputReader, _animator);
+        //_gravity = new PlayerGravity(_settings, _controller);
+        //_jump = new PlayerJump(_settings, _controller, _gravity, _inputReader);
+        //_look = new PlayerLook(_settings, _cameraPivot, transform, _inputReader);
     }
 
     private void OnEnable()

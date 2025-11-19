@@ -4,35 +4,36 @@ using UnityEngine;
 
 public class LevelProgressSystem : MonoBehaviour
 {
-    public event Action OnEnemeyKilled;
+    public event Action<int> OnEnemeyKilled;
     public event Action OnLevelCompleat;
-    [SerializeField] private List<Enemy> enemiesToKill;
+
+    [SerializeField] private List<EnemyHealth> enemiesToKill;
+    [SerializeField] private ScoreUI _scoreUI;
     int enemiesCount;
 
     private void OnEnable()
     {
-        foreach (Enemy e in enemiesToKill)
+        foreach (EnemyHealth health in enemiesToKill)
         {
-            if (e.gameObject.TryGetComponent(out EnemyHealth health))
-            {
-                health.OnDeath += DetectKill;
-            }
+            health.OnDeath += DetectKill;
         }
         enemiesCount = enemiesToKill.Count;
     }
 
+    private void Start()
+    {
+        if (_scoreUI == null)
+        {
+            _scoreUI = FindFirstObjectByType<ScoreUI>();
+        }
+        _scoreUI.UpdateEnemiesToKillText(enemiesCount.ToString());
+    }
     private void DetectKill()
     {
         enemiesCount--;
+        OnEnemeyKilled?.Invoke(enemiesCount);
         CheckIfCompleat();
-        //if (gameObject.TryGetComponent(out Enemy enemy))
-        //{   enemy.GetComponent<EnemyHealth>().OnDeath -= DetectKill;
-        //    if (enemiesToKill.Contains(enemy))
-        //    {
-        //        enemiesToKill.Remove(enemy);
-        //        CheckIfCompleat();
-        //    }
-        //}
+        _scoreUI.UpdateEnemiesToKillText(enemiesCount.ToString());
     }
 
     private void CheckIfCompleat()
@@ -42,9 +43,5 @@ public class LevelProgressSystem : MonoBehaviour
             Debug.Log("LevelCompleat");
             OnLevelCompleat?.Invoke();
         }
-        //if(enemiesToKill.Count <= 0)
-        //{
-        //    Debug.Log("LevelCompleat");
-        //}
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerLook
 {
+    PlayerContext _context;
     private PlayerSettings _settings;
     private Transform _cameraPivot;
     private Transform _playerBody;
@@ -14,17 +15,30 @@ public class PlayerLook
     private float _pitch;
     private float _yaw;
 
-    public PlayerLook(PlayerSettings settings, Transform cameraPivot, Transform playerBody, InputReader inputReader)
+    public PlayerLook(PlayerContext context)
     {
-        _settings = settings;
-        _cameraPivot = cameraPivot;
-        _playerBody = playerBody;
-        _inputReader = inputReader;
+        _context = context;
+        _settings = _context.Settings;
+        _cameraPivot = _context.CameraPivot;
+        _playerBody = _context.transform;
+        _inputReader = _context.Input;
 
         _yaw = _playerBody.eulerAngles.y;
         _pitch = _cameraPivot.localEulerAngles.x;
         if (_pitch > 180f) _pitch -= 360f;
+        _context = context;
     }
+    //public PlayerLook(PlayerSettings settings, Transform cameraPivot, Transform playerBody, InputReader inputReader)
+    //{
+    //    _settings = settings;
+    //    _cameraPivot = cameraPivot;
+    //    _playerBody = playerBody;
+    //    _inputReader = inputReader;
+
+    //    _yaw = _playerBody.eulerAngles.y;
+    //    _pitch = _cameraPivot.localEulerAngles.x;
+    //    if (_pitch > 180f) _pitch -= 360f;
+    //}
 
     public void UpdateLook()
     {

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerGravity
 {
+    PlayerContext _context;
     private PlayerSettings _settings;
     private CharacterController _controller;
     private Vector3 _velocity;
@@ -9,10 +10,11 @@ public class PlayerGravity
 
     public Vector3 VerticalVelocity => _velocity;
 
-    public PlayerGravity(PlayerSettings settings, CharacterController controller)
+    public PlayerGravity(PlayerContext context)
     {
-        _settings = settings;
-        _controller = controller;
+        _context = context;
+        _settings = _context.Settings;
+        _controller = _context.Controller;
     }
 
     public void UpdateGravity()

@@ -18,9 +18,9 @@ public class EnemyHealth : MonoBehaviour
         if (_health <= 0)
         {
             ScoreManager.Instance.AddNightmare(1);
-            PlayParticle(_particleSystem, transform.position);            
+            PlayParticle(_particleSystem, transform.position);
             Die(0.1f);
-        }       
+        }
     }
 
     private void PlayParticle(ParticleSystem _particle, Vector3 point)
@@ -31,6 +31,11 @@ public class EnemyHealth : MonoBehaviour
 
     void Die(float time)
     {
-         OnDeath?.Invoke();
+        OnDeath?.Invoke();
+    }
+
+    private void OnDestroy()
+    {
+        OnDeath = null;
     }
 }

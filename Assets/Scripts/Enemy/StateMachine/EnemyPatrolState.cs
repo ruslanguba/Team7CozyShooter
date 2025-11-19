@@ -26,7 +26,7 @@ public class EnemyPatrolState: BaseState
     {
         Vector3 target;
         Vector3 direction;
-        if (enemy.PatrolPoints.Length == 0)
+        if (enemy.PatrolPoints.Length == 0 || enemy.PatrolPoints[index] == null)
         {
             target = enemy.Target.position;
         }
