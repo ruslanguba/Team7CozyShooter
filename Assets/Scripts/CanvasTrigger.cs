@@ -6,11 +6,12 @@ public class CanvasTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out PlayerContext playerContext))
+        if (other.gameObject.TryGetComponent(out InputReader inputReader))
         {
+            inputReader.enabled = false;
             _text.SetActive(true);
-            Time.timeScale = 0;
-        }
-        
+            //Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.Confined;
+        }       
     }
 }

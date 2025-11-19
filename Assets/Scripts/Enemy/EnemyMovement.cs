@@ -23,32 +23,35 @@ public class EnemyMovement : MonoBehaviour
         {
             MoveToNextPoint();
         }
-        //MoveToNextPoint();
     }
 
     private void MoveToNextPoint()
     {
         Vector3 direction = _points[currentPointIndex].position - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
-        transform.Translate(Vector3.forward * _speed * Time.deltaTime);
 
         if (direction.magnitude <= 0.5f)
         {
-            //currentPointIndex++;
+            if (currentPointIndex + 1 < _points.Length)
+            {
+                currentPointIndex++;
+            }
 
-            transform.Translate(Vector3.zero * _speed * Time.deltaTime);
-
-            //if (currentPointIndex == 1)
-            //{
-            //    Invoke("HideCharacter", 1.3f);
-            //}
-
-            //if (currentPointIndex >= _points.Length)
-            //{
-            //    currentPointIndex = 0;
-            //}
+            else
+            {
+                StopMoving();
+                return;
+            }
         }
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+        transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+    }
+
+    private void StopMoving()
+    {
+        transform.Translate(Vector3.zero);
+        enabled = false;
     }
 
     private void HideCharacter()
