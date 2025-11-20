@@ -6,20 +6,17 @@ public class EnemyHealth : MonoBehaviour
 {
     public event Action OnDeath;
     [SerializeField] private float _health = 2f;
-    [SerializeField] private UnityEvent _eventOnTakeDamage;
-    [SerializeField] private ParticleSystem _particleSystem;
-    [SerializeField] private LayerMask _deadLayerMask;
+    //[SerializeField] private ParticleSystem _particleSystem;
 
-    public void TakeDamage(float damageValue)
+    public virtual void TakeDamage(float damageValue)
     {
         _health -= damageValue;
-        _eventOnTakeDamage.Invoke();
 
         if (_health <= 0)
         {
             ScoreManager.Instance.AddNightmare(1);
-            PlayParticle(_particleSystem, transform.position);
-            Die(0.1f);
+            //PlayParticle(_particleSystem, transform.position);
+            Die();
         }
     }
 
@@ -29,8 +26,9 @@ public class EnemyHealth : MonoBehaviour
         _particle.Play();
     }
 
-    void Die(float time)
+    protected virtual void Die()
     {
+        Debug.Log("die");
         OnDeath?.Invoke();
     }
 

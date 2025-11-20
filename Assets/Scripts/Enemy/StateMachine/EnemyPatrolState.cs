@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyPatrolState: BaseState
 {
     private int index;
+    private Vector3 _target;
 
     public EnemyPatrolState(Enemy enemy, EnemyStateMachine stateMachine)
         : base(enemy, stateMachine) { }
@@ -15,7 +16,7 @@ public class EnemyPatrolState: BaseState
 
     public override void Update()
     {
-        if (Vector3.Distance(enemy.transform.position, enemy.Target.position) < enemy.ChaseRange)
+        if (Vector3.Distance(enemy.transform.position, enemy.PlayerTransform.position) < enemy.ChaseRange)
         {
             stateMachine.ChangeState(enemy.ChaseState);
             return;
@@ -24,20 +25,20 @@ public class EnemyPatrolState: BaseState
 
     public override void FixedUpdate()
     {
-        Vector3 target;
         Vector3 direction;
-        if (enemy.PatrolPoints.Length == 0 || enemy.PatrolPoints[index] == null)
+        if (enemy.PatrolPoints.Length > 0 && enemy.PatrolPoints[index] != null)
         {
-            target = enemy.Target.position;
+            _target = enemy.PatrolPoints[index].position;
+            direction = (_target - enemy.transform.position).normalized;
+
+            MoveTowards(direction);
         }
         else
         {
-            target = enemy.PatrolPoints[index].position;
+            enemy.RotationHandler.RoteteToPlayer(enemy.PlayerTransform.position);       
         }
-        direction = (target - enemy.transform.position).normalized;
-        MoveTowards(direction);
 
-        if (Vector3.Distance(enemy.transform.position, target) < 0.5f)
+        if (Vector3.Distance(enemy.transform.position, _target) < 0.5f)
         {
             index = (index + 1) % enemy.PatrolPoints.Length;
         }

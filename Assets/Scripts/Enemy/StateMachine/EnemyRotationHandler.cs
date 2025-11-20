@@ -24,4 +24,13 @@ public class EnemyRotationHandler : MonoBehaviour
         Quaternion targetRot = Quaternion.LookRotation(vel);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
     }
+
+    public void RoteteToPlayer(Vector3 target)
+    {
+        Vector3 dir = target - transform.position;
+        dir.y = 0;
+
+        Quaternion targetRot = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+    }
 }

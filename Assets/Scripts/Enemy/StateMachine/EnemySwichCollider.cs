@@ -4,14 +4,18 @@ public class EnemySwichCollider : MonoBehaviour
 {
     [SerializeField] private Collider _aliveCollider;
     [SerializeField] private Collider _deadCollider;
-    private EnemyHealth enemyHealth;
+    [SerializeField] private EnemyHealth enemyHealth;
 
     private void Awake()
     {
         enemyHealth = GetComponent<EnemyHealth>();
-        enemyHealth.OnDeath += SwitchCollider;
         _aliveCollider.enabled = true;
         _deadCollider.enabled = false;
+    }
+
+    private void OnEnable()
+    {
+        enemyHealth.OnDeath += SwitchCollider;
     }
 
     private void OnDisable()
@@ -21,6 +25,7 @@ public class EnemySwichCollider : MonoBehaviour
 
     private void SwitchCollider()
     {
+        Debug.Log("SwitchCollider");
         _aliveCollider.enabled = false;
         _deadCollider.enabled = true;
     }

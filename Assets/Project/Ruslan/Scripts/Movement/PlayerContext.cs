@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerContext : MonoBehaviour
@@ -20,11 +21,6 @@ public class PlayerContext : MonoBehaviour
     private PlayerJump _jump;
     private PlayerLook _look;
 
-    void Start()
-    {
-        PlayerManager.CurrentPlayer = transform;
-    }
-
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
@@ -35,14 +31,11 @@ public class PlayerContext : MonoBehaviour
         _gravity = new PlayerGravity(this);
         _jump = new PlayerJump(this, _gravity);
         _look = new PlayerLook(this);
-        //_movement = new PlayerMovement(_settings, _controller, _cameraPivot, _inputReader, _animator);
-        //_gravity = new PlayerGravity(_settings, _controller);
-        //_jump = new PlayerJump(_settings, _controller, _gravity, _inputReader);
-        //_look = new PlayerLook(_settings, _cameraPivot, transform, _inputReader);
     }
 
     private void OnEnable()
     {
+        PlayerManager.Instance.SetPlayerTransform(transform);
         _inputReader.OnJump += _jump.Jump;
     }
     private void OnDisable()

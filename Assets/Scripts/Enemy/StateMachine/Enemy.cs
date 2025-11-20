@@ -17,9 +17,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform attackSpawn; // точка спауна атаки
 
     [SerializeField] private Transform[] patrolPoints;
-    [SerializeField] private Transform target;
+    [SerializeField] private Transform playerTransform;
 
     [SerializeField] private Animator animator;
+    [SerializeField] private ActorAudio actorAudio;
 
     private EnemyHealth health;
     public Rigidbody Rb => rb;
@@ -34,8 +35,9 @@ public class Enemy : MonoBehaviour
     public EnemyRotationHandler RotationHandler => rotationHandler;
     public GameObject AttackPrefab => attackPrefab;
     public Transform AttackSpawn => attackSpawn;
+    public ActorAudio ActorAudio => actorAudio;
 
-    public Transform Target => target;
+    public Transform PlayerTransform => playerTransform;
     public Transform[] PatrolPoints => patrolPoints;
     public EnemyPatrolState PatrolState => patrolState;
     public EnemyAttackState AttackState => attackState;
@@ -49,7 +51,7 @@ public class Enemy : MonoBehaviour
     private EnemyChaseState chaseState;
     private EnemyDeathState deathState;
 
-    private void Awake()
+    private void Start()
     {
         if (rb == null)
             rb = GetComponent<Rigidbody>();
@@ -57,6 +59,8 @@ public class Enemy : MonoBehaviour
         health = GetComponent<EnemyHealth>();
         animator = GetComponentInChildren<Animator>();
         rotationHandler = GetComponent<EnemyRotationHandler>();
+        actorAudio = GetComponent<ActorAudio>();
+        playerTransform = PlayerManager.Instance.GetPlayerTransform;
         stateMachine = new EnemyStateMachine();
 
         patrolState = new EnemyPatrolState(this, stateMachine);
@@ -65,8 +69,10 @@ public class Enemy : MonoBehaviour
         deathState = new EnemyDeathState(this, stateMachine);
 
         stateMachine.Initialize(patrolState);
-        if(health != null)
+        if (health != null)
             SubscribeToDeath();
+        float randomOffset = Random.Range(0f, 0.5f);
+        animator.Play("Jump", 0, randomOffset);
     }
 
     private void SubscribeToDeath()
@@ -76,7 +82,7 @@ public class Enemy : MonoBehaviour
 
     public void SetPlayerTransform(Transform transform)
     {
-        target = transform;
+        playerTransform = transform;
     }
     private void HandleDeath()
     {

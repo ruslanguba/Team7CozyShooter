@@ -7,7 +7,7 @@ public class EnemyChaseState: BaseState
 
     public override void Update()
     {
-        float dist = Vector3.Distance(enemy.transform.position, enemy.Target.position);
+        float dist = Vector3.Distance(enemy.transform.position, enemy.PlayerTransform.position);
 
         if (dist < enemy.AttackRange)
         {
@@ -24,7 +24,7 @@ public class EnemyChaseState: BaseState
 
     public override void FixedUpdate()
     {
-        Vector3 dir = (enemy.Target.position - enemy.transform.position).normalized;
+        Vector3 dir = (enemy.PlayerTransform.position - enemy.transform.position).normalized;
 
         MoveTowards(dir);
     }
