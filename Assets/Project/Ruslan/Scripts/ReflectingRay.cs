@@ -18,7 +18,7 @@ public class ReflectingRay : MonoBehaviour
         Gizmos.color = rayColor;
 
         Vector3 currentPos = transform.position;
-        Vector3 currentDir = direction.normalized;
+        Vector3 currentDir = transform.forward.normalized;
 
         for (int i = 0; i < maxReflections; i++)
         {
