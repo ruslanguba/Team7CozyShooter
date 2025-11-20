@@ -22,8 +22,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Clouds
   m_Shader: {fileID: -6465566751694194690, guid: bb70956e3107dc04cb6f2e8e8bcd4a77, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
+  m_Parent: {fileID: -876546973899608171, guid: bb70956e3107dc04cb6f2e8e8bcd4a77, type: 3}
+  m_ModifiedSerializedProperties: 2
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _ALPHATEST_ON
@@ -37,33 +37,19 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0.5
-    - _Clouds_Alpha: 2.8
-    - _Clouds_Power: 0.6
-    - _Clouds_Scale: 180
-    - _DistortScale: 60
-    - _DistortSpeed: 0.02
+    - _Clouds_Alpha: 1.8
+    - _Clouds_Power: 0.35
+    - _Clouds_Scale: 500
+    - _DistortScale: 70
     - _QueueControl: 0
-    - _QueueOffset: 0
-    - _VertexOffSet: 0.08
+    - _VertexOffSet: 0.05
     m_Colors:
-    - _CloudsSpeed: {r: 0.002, g: 0.002, b: 0, a: 0}
-    - _Clouds_Color: {r: 0.6132076, g: 0.4811275, b: 0.373131, a: 1}
+    - _CloudsSpeed: {r: 0.001, g: 0.001, b: 0, a: 0}
+    - _Clouds_Color: {r: 0.990566, g: 0.88309896, b: 0.9616714, a: 1}
     - _DistortSpeed: {r: 0.01, g: 0.01, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
