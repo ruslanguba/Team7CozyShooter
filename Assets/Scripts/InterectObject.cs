@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class InterectObject : MonoBehaviour
+public class InterectObject : MonoBehaviour, IInteractablePlace
 {
     [SerializeField] Animator _animator;
-    //[SerializeField] GameObject _enemy;
-    //[SerializeField] private bool isEnemy;
+    [SerializeField] GameObject _enemy;
+    [SerializeField] private bool _isEnemyVisible;
     [SerializeField] private bool _isOpen;
+    [SerializeField] private InterectObject _partnerCabinet;
 
     void Awake()
     {
@@ -19,33 +20,49 @@ public class InterectObject : MonoBehaviour
         {
             if (!_isOpen)
             {
-                _animator.SetTrigger("open");
-                _isOpen = true;
+                OpenDoor();
 
-                //if (isEnemy)
-                //{
-                //    Invoke("EnemyCreate", 1.3f);
-                //    isEnemy = false;
-                //}
+                if (_isEnemyVisible)
+                {
+                    _partnerCabinet.ReleaseEnemy();
+                    CloseDoor();
+                }
             }
 
             else
             {
-                _animator.SetTrigger("close");
-                _isOpen = false;
+                CloseDoor();
             }                       
         }
     }
 
-    
+    public void OpenDoor()
+    {
+        _animator.SetTrigger("open");
+        _isOpen = true;
+    }
 
-    //private void EnemyCreate()
-    //{
-    //    _enemy.SetActive(true);
-    //}
+    public void CloseDoor()
+    {
+        _animator.SetTrigger("close");
+        _isOpen = false;
+    }
 
-    //private void EnemyHide()
-    //{
-    //    _enemy.SetActive(false);
-    //}
+    public void SetEnemyVisibility(bool visible)
+    {
+        _enemy.SetActive(visible);
+        _isEnemyVisible = visible;
+    }
+
+    public void ReleaseEnemy()
+    {
+        SetEnemyVisibility(true);
+        _enemy.GetComponent<RunningEnemy>().TargetCabinet = this;
+    }
+
+    public void AcceptEnemy()
+    {
+        SetEnemyVisibility(false);
+        CloseDoor();
+    }
 }

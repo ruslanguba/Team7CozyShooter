@@ -25,7 +25,8 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _ALPHATEST_ON
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -51,13 +52,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Clouds_Alpha: 1.1
-    - _Clouds_Power: 0.7
+    - _AlphaClip: 0.5
+    - _Clouds_Alpha: 2.8
+    - _Clouds_Power: 0.6
     - _Clouds_Scale: 180
+    - _DistortScale: 60
+    - _DistortSpeed: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _VertexOffSet: 0.08
     m_Colors:
-    - _CloudsSpeed: {r: 0.004, g: 0.002, b: 0, a: 0}
-    - _Clouds_Color: {r: 0.31764704, g: 0.554434, b: 0.7372549, a: 1}
+    - _CloudsSpeed: {r: 0.002, g: 0.002, b: 0, a: 0}
+    - _Clouds_Color: {r: 0.6132076, g: 0.4811275, b: 0.373131, a: 1}
+    - _DistortSpeed: {r: 0.01, g: 0.01, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
