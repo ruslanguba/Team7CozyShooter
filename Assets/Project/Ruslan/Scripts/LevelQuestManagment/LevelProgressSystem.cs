@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelProgressSystem : MonoBehaviour
@@ -7,41 +8,63 @@ public class LevelProgressSystem : MonoBehaviour
     public event Action<int> OnEnemeyKilled;
     public event Action OnLevelCompleat;
 
+    [SerializeField] private Canvas _scoreCanvas;
     [SerializeField] private List<EnemyHealth> enemiesToKill;
-    [SerializeField] private ScoreUI _scoreUI;
+    [SerializeField] private float _distance = 8;
+    private SceneTransitionTrigger _portal;
+    private ScoreUI _scoreUI;
     int enemiesCount;
 
-    private void OnEnable()
+    private void Awake()
     {
-        foreach (EnemyHealth health in enemiesToKill)
-        {
-            health.OnDeath += DetectKill;
-        }
-        enemiesCount = enemiesToKill.Count;
+        var canvas = Instantiate(_scoreCanvas);
+        _scoreUI = canvas.GetComponent<ScoreUI>();
     }
 
     private void Start()
     {
+        FindAllEnemies();
+        enemiesCount = enemiesToKill.Count;
         if (_scoreUI == null)
         {
             _scoreUI = FindFirstObjectByType<ScoreUI>();
         }
         _scoreUI.UpdateEnemiesToKillText(enemiesCount.ToString());
+        _portal = GetComponentInChildren<SceneTransitionTrigger>();
+        _portal.gameObject.SetActive(false);
     }
-    private void DetectKill()
+    private void DetectKill(EnemyHealth enemy)
     {
-        enemiesCount--;
-        OnEnemeyKilled?.Invoke(enemiesCount);
+        enemy.OnDeath -= DetectKill;
+        enemiesToKill.Remove(enemy);
         CheckIfCompleat();
-        _scoreUI.UpdateEnemiesToKillText(enemiesCount.ToString());
+        _scoreUI.UpdateEnemiesToKillText(enemiesToKill.Count.ToString());
     }
 
     private void CheckIfCompleat()
     {
-        if (enemiesCount == 0)
+        if (enemiesToKill.Count <= 0)
         {
             Debug.Log("LevelCompleat");
+            CompleatLevel();
             OnLevelCompleat?.Invoke();
         }
+    }
+
+    private void FindAllEnemies()
+    {
+        foreach(EnemyHealth health in FindObjectsByType<EnemyHealth>(0))
+        {
+            enemiesToKill.Add(health);
+            health.OnDeath += DetectKill;
+        }
+    }
+
+    private void CompleatLevel()
+    {
+        _portal.gameObject.SetActive(true);
+        Vector3 portalPosition = PlayerManager.Instance.GetPlayerTransform.position
+                        + PlayerManager.Instance.GetPlayerTransform.forward * _distance;
+        _portal.transform.position = portalPosition;
     }
 }

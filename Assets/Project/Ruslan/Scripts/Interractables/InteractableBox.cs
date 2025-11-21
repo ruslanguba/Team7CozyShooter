@@ -6,8 +6,9 @@ public class InteractableBox : InteractableBase
 {
     [SerializeField] Animator _animator;
     [SerializeField] private List<SimpleRunEnemy> _enemies;
-    [SerializeField] private Transform _nextBoxTransform;
+    [SerializeField] private List<Transform> _nextPointsTransform;
 
+    [SerializeField] private bool _isRandomNextPoin;
     [SerializeField] private float _hideDuration;
     [SerializeField] private float _openDuration;
     [SerializeField] private float _closeDuration;
@@ -22,6 +23,16 @@ public class InteractableBox : InteractableBase
         }
     }
 
+    public void AddEnemy(SimpleRunEnemy simpleRunEnemy)
+    {
+
+    }
+
+    public void AddNextPoint(Transform nextPoint)
+    {
+
+    }
+    
     public override void OnInteract()
     {
         StartEnemyRun();
@@ -41,10 +52,11 @@ public class InteractableBox : InteractableBase
     private void StartEnemyRun()
     {
         _animator.SetTrigger("isOpen");
-        for (int i = 0; i < _enemies.Count; i++)
+        for (int i = _enemies.Count -1; i >= 0; i--)
         {
+            int rndIndex = Random.Range(0, _nextPointsTransform.Count);
             _enemies[i].transform.position = transform.position + transform.forward;
-            _enemies[i].SetRunTarget(_nextBoxTransform);
+            _enemies[i].SetRunTarget(_nextPointsTransform[rndIndex]);
             _enemies[i].gameObject.SetActive(true);
             _enemies[i].transform.localScale = Vector3.one;
             _enemies.Remove(_enemies[i]);

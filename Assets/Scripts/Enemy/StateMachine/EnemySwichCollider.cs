@@ -23,7 +23,7 @@ public class EnemySwichCollider : MonoBehaviour
         enemyHealth.OnDeath -= SwitchCollider;
     }
 
-    private void SwitchCollider()
+    private void SwitchCollider(EnemyHealth enemy)
     {
         Debug.Log("SwitchCollider");
         _aliveCollider.enabled = false;

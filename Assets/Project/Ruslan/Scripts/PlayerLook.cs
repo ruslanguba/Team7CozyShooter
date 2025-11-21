@@ -28,17 +28,6 @@ public class PlayerLook
         if (_pitch > 180f) _pitch -= 360f;
         _context = context;
     }
-    //public PlayerLook(PlayerSettings settings, Transform cameraPivot, Transform playerBody, InputReader inputReader)
-    //{
-    //    _settings = settings;
-    //    _cameraPivot = cameraPivot;
-    //    _playerBody = playerBody;
-    //    _inputReader = inputReader;
-
-    //    _yaw = _playerBody.eulerAngles.y;
-    //    _pitch = _cameraPivot.localEulerAngles.x;
-    //    if (_pitch > 180f) _pitch -= 360f;
-    //}
 
     public void UpdateLook()
     {

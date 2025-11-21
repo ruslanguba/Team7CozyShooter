@@ -35,7 +35,7 @@ public class PlayerContext : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerManager.Instance.SetPlayerTransform(transform);
+        //PlayerManager.Instance.GetPlayerTransform(transform);
         _inputReader.OnJump += _jump.Jump;
     }
     private void OnDisable()

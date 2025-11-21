@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
         if (health != null)
             SubscribeToDeath();
         float randomOffset = Random.Range(0f, 0.5f);
-        animator.Play("Jump", 0, randomOffset);
+        animator.Play("Walk", 0, randomOffset);
     }
 
     private void SubscribeToDeath()
@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
     {
         playerTransform = transform;
     }
-    private void HandleDeath()
+    private void HandleDeath(EnemyHealth enemy)
     {
         stateMachine.ChangeState(deathState);
     }

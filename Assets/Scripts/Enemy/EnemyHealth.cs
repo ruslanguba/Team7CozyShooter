@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public event Action OnDeath;
+    public event Action<EnemyHealth> OnDeath;
     [SerializeField] private float _health = 2f;
     //[SerializeField] private ParticleSystem _particleSystem;
 
@@ -29,7 +29,7 @@ public class EnemyHealth : MonoBehaviour
     protected virtual void Die()
     {
         Debug.Log("die");
-        OnDeath?.Invoke();
+        OnDeath?.Invoke(this);
     }
 
     private void OnDestroy()
