@@ -6,7 +6,6 @@ public class EnemyInFridge : MonoBehaviour
     [SerializeField] GameObject _enemy1;
     [SerializeField] GameObject _enemy2;
     [SerializeField] private bool isEnemy;
-
     [SerializeField] private bool _isOpen;
 
     void Awake()

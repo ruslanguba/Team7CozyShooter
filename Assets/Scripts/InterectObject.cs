@@ -1,12 +1,9 @@
 using UnityEngine;
 
-public class InterectObject : MonoBehaviour, IInteractablePlace
+public class InterectObject : MonoBehaviour
 {
     [SerializeField] Animator _animator;
-    [SerializeField] GameObject _enemy;
-    [SerializeField] private bool _isEnemyVisible;
     [SerializeField] private bool _isOpen;
-    [SerializeField] private InterectObject _partnerCabinet;
 
     void Awake()
     {
@@ -21,12 +18,6 @@ public class InterectObject : MonoBehaviour, IInteractablePlace
             if (!_isOpen)
             {
                 OpenDoor();
-
-                if (_isEnemyVisible)
-                {
-                    _partnerCabinet.ReleaseEnemy();
-                    CloseDoor();
-                }
             }
 
             else
@@ -46,23 +37,5 @@ public class InterectObject : MonoBehaviour, IInteractablePlace
     {
         _animator.SetTrigger("close");
         _isOpen = false;
-    }
-
-    public void SetEnemyVisibility(bool visible)
-    {
-        _enemy.SetActive(visible);
-        _isEnemyVisible = visible;
-    }
-
-    public void ReleaseEnemy()
-    {
-        SetEnemyVisibility(true);
-        _enemy.GetComponent<RunningEnemy>().TargetCabinet = this;
-    }
-
-    public void AcceptEnemy()
-    {
-        SetEnemyVisibility(false);
-        CloseDoor();
     }
 }
