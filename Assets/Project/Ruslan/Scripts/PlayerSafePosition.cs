@@ -4,8 +4,10 @@ public class PlayerSafePosition : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private float saveInterval = 0.3f;
-    [SerializeField] private PlayerContext playerContext;
+
     [SerializeField] private Transform _checkSurfacePivot;
+    [SerializeField] private float radius = 0.3f;
+
     private CharacterController characterController;
 
     [SerializeField] private Vector3 lastSafePos;
@@ -40,10 +42,14 @@ public class PlayerSafePosition : MonoBehaviour
 
     bool IsStandingOnPillow(float distance = 1f)
     {
-        if (Physics.Raycast(_checkSurfacePivot.position, Vector3.down, out RaycastHit hit, distance))
+        Collider[] hits = Physics.OverlapSphere(_checkSurfacePivot.position, radius);
+
+        foreach (var hit in hits)
         {
-            return hit.collider.GetComponent<Pillow>() != null;
+            if (hit.GetComponent<Pillow>() != null)
+                return true;   // Нашли Pillow
         }
-        return false;
+
+        return false; // Ничего подходящего нет
     }
 }
