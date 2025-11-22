@@ -2013,7 +2013,6 @@ GameObject:
   - component: {fileID: 7242828079405565743}
   - component: {fileID: 8905065340469344553}
   - component: {fileID: 7824988229157329687}
-  - component: {fileID: 7838128595707733647}
   m_Layer: 5
   m_Name: CanvasPause
   m_TagString: Untagged
@@ -2136,21 +2135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputReader: {fileID: 0}
---- !u!114 &7838128595707733647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8051589519757930821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c4dac263a5316e4cb754b728e1cce86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _totalScoreText: {fileID: 8379000573814198368}
-  _totalNightmareText: {fileID: 4930998692653491979}
-  _bestScoreText: {fileID: 1744324425614527981}
 --- !u!1 &8322615010366716887
 GameObject:
   m_ObjectHideFlags: 0

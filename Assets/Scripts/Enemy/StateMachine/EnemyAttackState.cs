@@ -35,27 +35,19 @@ public class EnemyAttackState : BaseState
             attackTimer = enemy.AttackCooldown;
         }
     }
-    private void RoteteToPlayer()
-    {
-        Vector3 dir = enemy.PlayerTransform.position - enemy.transform.position;
-        dir.y = 0;
-
-        Quaternion targetRot = Quaternion.LookRotation(dir);
-        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRot, 8f * Time.deltaTime);
-    }
 
     private void ThrowProjectile()
     {
         if (enemy.AttackPrefab != null && enemy.AttackSpawn != null)
         {
             GameObject projectile = Object.Instantiate(enemy.AttackPrefab, enemy.AttackSpawn.position, Quaternion.identity);
-            Object.Destroy(projectile.gameObject, 5);
+            enemy.ActorAudio.PlayAttack();
             if (projectile.TryGetComponent(out Rigidbody rb))
             {
                 Vector3 dir = (enemy.PlayerTransform.position - enemy.AttackSpawn.position).normalized;
                 rb.AddForce(dir * enemy.ThrowForce, ForceMode.Impulse);
-                //enemy.ActorAudio.PlayAttack();
             }
+            Object.Destroy(projectile.gameObject, 5);
         }
     }
 

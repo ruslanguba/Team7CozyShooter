@@ -5,13 +5,14 @@ public class Bullet : MonoBehaviour
 {
     public event Action<int> OnEnemyHit;
     public event Action<Bullet> OnBulletDestroyed;
+    public event Action<int, Vector3> OnCollision;
+
+    [SerializeField] private AudioClip _collisionSound;
+
     private ParticleSystem _effect;
-    private Rigidbody _rb;
     private float _damage;
     private int _maxCollisionCount;
     private int _collisionCount;
-    //[SerializeField] private float _speed;
-    //[SerializeField] private Transform _shootPoint;
 
     public void InitBullet(ParticleSystem hitEffect, float damage, int maxCollisionCount)
     {
@@ -19,19 +20,18 @@ public class Bullet : MonoBehaviour
         _damage = damage;
         _maxCollisionCount = maxCollisionCount;
         _collisionCount = 0;
-        _rb = GetComponent<Rigidbody>();
-        //_speed = _rb.linearVelocity.magnitude;
     }
-    
+
     private void OnCollisionEnter(Collision collision)
     {
         _collisionCount++;
+        //OnCollision?.Invoke(_collisionCount, transform.position);
+
         if (collision.gameObject.TryGetComponent(out EnemyHealth enemyHealth))
         {
-            enemyHealth.TakeDamage(_damage);
+            enemyHealth.TakeDamage(_damage, _collisionCount);
             OnEnemyHit?.Invoke(_collisionCount);
             Debug.Log(_collisionCount);
-            //ScoreManager.Instance.HandleHit(_collisionCount);
         }
 
         if (collision.gameObject.TryGetComponent(out IInteractable interactable))

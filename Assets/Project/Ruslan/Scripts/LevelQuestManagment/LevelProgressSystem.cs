@@ -8,21 +8,28 @@ public class LevelProgressSystem : MonoBehaviour
     public event Action<int> OnEnemeyKilled;
     public event Action OnLevelCompleat;
 
-    [SerializeField] private Canvas _scoreCanvas;
+    [SerializeField] private Canvas _scoreCanvasPrefab;
     [SerializeField] private List<EnemyHealth> enemiesToKill;
     [SerializeField] private float _distance = 8;
     private SceneTransitionTrigger _portal;
+
     private ScoreUI _scoreUI;
+    private EnemiesHandler _enemyHandler;
+    private ScoreManager _scoreManager;
+
     int enemiesCount;
 
     private void Awake()
     {
-        var canvas = Instantiate(_scoreCanvas);
+        var canvas = Instantiate(_scoreCanvasPrefab);
         _scoreUI = canvas.GetComponent<ScoreUI>();
+        _scoreManager = GetComponent<ScoreManager>();
+        _enemyHandler = GetComponent<EnemiesHandler>();
     }
 
     private void Start()
     {
+
         FindAllEnemies();
         enemiesCount = enemiesToKill.Count;
         if (_scoreUI == null)
@@ -33,11 +40,13 @@ public class LevelProgressSystem : MonoBehaviour
         _portal = GetComponentInChildren<SceneTransitionTrigger>();
         _portal.gameObject.SetActive(false);
     }
-    private void DetectKill(EnemyHealth enemy)
+
+    private void DetectKill(EnemyHealth enemy, int collisionsCount)
     {
         enemy.OnDeath -= DetectKill;
         enemiesToKill.Remove(enemy);
         CheckIfCompleat();
+        _scoreManager.HandleHit(collisionsCount);
         _scoreUI.UpdateEnemiesToKillText(enemiesToKill.Count.ToString());
     }
 

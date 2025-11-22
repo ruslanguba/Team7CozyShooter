@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,11 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] private Text _totalScoreText;
-    [SerializeField] private Text _totalNightmareText;
-    [SerializeField] private Text _bestScoreText;
+    public event Action<int> OnScoreChanged;
+
+    //[SerializeField] private Text _totalScoreText;
+    //[SerializeField] private Text _totalNightmareText;
+    //[SerializeField] private Text _bestScoreText;
 
     public static ScoreManager Instance;
     public static int TotalScore;
@@ -26,14 +29,14 @@ public class ScoreManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        BestScore = PlayerPrefs.GetInt("BestScore", 0);
-        _bestScoreText.text = BestScore.ToString();
+        //BestScore = PlayerPrefs.GetInt("BestScore", 0);
+        //_bestScoreText.text = BestScore.ToString();
 
-        PlayerPrefs.SetInt("TotalScore", TotalScore);
-        _totalScoreText.text = PlayerPrefs.GetInt("TotalScore", 0).ToString();
+        //PlayerPrefs.SetInt("TotalScore", TotalScore);
+        //_totalScoreText.text = PlayerPrefs.GetInt("TotalScore", 0).ToString();
 
-        PlayerPrefs.SetInt("TotalNightmare", TotalNightmare);
-        _totalNightmareText.text = PlayerPrefs.GetInt("TotalNightmare", 0).ToString();
+        //PlayerPrefs.SetInt("TotalNightmare", TotalNightmare);
+        //_totalNightmareText.text = PlayerPrefs.GetInt("TotalNightmare", 0).ToString();
     }
 
     public void HandleHit(int hits)
@@ -60,18 +63,18 @@ public class ScoreManager : MonoBehaviour
         {
             BestScore = TotalScore;
         }
-
-        //PlayerPrefs.SetInt("TotalScore", TotalScore);
-        _totalScoreText.text = TotalScore.ToString();
-        //PlayerPrefs.SetInt("BestScore", BestScore);
-        _bestScoreText.text = BestScore.ToString();
+        OnScoreChanged?.Invoke(TotalScore);
+        ////PlayerPrefs.SetInt("TotalScore", TotalScore);
+        //_totalScoreText.text = TotalScore.ToString();
+        ////PlayerPrefs.SetInt("BestScore", BestScore);
+        //_bestScoreText.text = BestScore.ToString();
     }
 
-    public void AddNightmare(int score)
-    {
-        TotalNightmare += score;
+    //public void AddNightmare(int score)
+    //{
+    //    TotalNightmare += score;
 
-        //PlayerPrefs.SetInt("TotalNightmare", TotalNightmare);
-        _totalNightmareText.text = TotalNightmare.ToString();
-    }
+    //    //PlayerPrefs.SetInt("TotalNightmare", TotalNightmare);
+    //    _totalNightmareText.text = TotalNightmare.ToString();
+    //}
 }

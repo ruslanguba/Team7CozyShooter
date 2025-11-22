@@ -6,6 +6,7 @@ public class ActorAudio : MonoBehaviour
     [SerializeField] private AudioClip _deathClip;
     [SerializeField] private AudioClip _attackClip;
     [SerializeField] private AudioClip _footstepClip;
+    [SerializeField] private AudioClip _jumpClip;
 
     [SerializeField] private float _stepInterval = 0.5f;      // раз в секунду
     [SerializeField] private float _pitchRandom = 0.1f;
@@ -60,6 +61,11 @@ public class ActorAudio : MonoBehaviour
             audioSource.PlayOneShot(_attackClip);
     }
 
+    public void PlayJump()
+    {
+        if (_jumpClip != null)
+            audioSource.PlayOneShot(_jumpClip);
+    }
     public void TickFootsteps(bool isMoving)
     {
         if (!isMoving)

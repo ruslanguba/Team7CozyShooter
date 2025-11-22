@@ -33,6 +33,7 @@ public class PlayerMovement
         _currentSpeed = Mathf.MoveTowards(_currentSpeed, targetSpeed, _settings.acceleration * Time.deltaTime);
 
         SetAnimatorParams(moveInput);
+        PlayFootstepsSound(_currentSpeed > 0);
 
         Vector3 forward = _cameraTransform.forward;
         Vector3 right = _cameraTransform.right;
@@ -90,5 +91,11 @@ public class PlayerMovement
         _animator.SetMoving(isMoving);
         _animator.SetMoveDirection(moveDir);
         _animator.SetAnimSpeedMultiplier(multiplier);
+    }
+
+    private void PlayFootstepsSound(bool isMoving)
+    {
+        bool isFoottSoundPlay = isMoving && _context.Controller.isGrounded;
+        _context.Audio.TickFootsteps(isFoottSoundPlay);
     }
 }

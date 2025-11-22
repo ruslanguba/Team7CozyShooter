@@ -26,6 +26,7 @@ public class PlayerJump
             float jumpVelocity = Mathf.Sqrt(_settings.jumpHeight * -2f * _settings.gravity);
             _gravity.SetYVelocity(jumpVelocity);
             _animator.SetJump();  // включаем анимацию прыжка
+            _context.Audio.PlayJump();
         }
     }
 }

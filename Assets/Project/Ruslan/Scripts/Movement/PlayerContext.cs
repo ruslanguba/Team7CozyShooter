@@ -8,12 +8,14 @@ public class PlayerContext : MonoBehaviour
     public CharacterController Controller => _controller;
     public Transform CameraPivot => _cameraPivot;
     public AnimatorHandler AnimatorHandler => _animatorHandler;
+    public ActorAudio Audio => _audio;
 
     [SerializeField] private PlayerSettings _settings;
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private Transform _cameraPivot;
-    [SerializeField] private Animator _animator;
-    [SerializeField] private AnimatorHandler _animatorHandler;
+    private Animator _animator;
+    private AnimatorHandler _animatorHandler;
+    private ActorAudio _audio;
 
     private CharacterController _controller;
     private PlayerMovement _movement;
@@ -26,6 +28,7 @@ public class PlayerContext : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         _inputReader = GetComponent<InputReader>();
         _animator = GetComponentInChildren<Animator>();
+        _audio = GetComponent<ActorAudio>();
         _animatorHandler = new AnimatorHandler(_animator);
         _movement = new PlayerMovement(this);
         _gravity = new PlayerGravity(this);

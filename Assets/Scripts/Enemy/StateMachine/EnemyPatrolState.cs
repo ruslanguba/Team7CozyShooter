@@ -50,5 +50,7 @@ public class EnemyPatrolState: BaseState
         Vector3 velocityDiff = targetVelocity - enemy.Rb.linearVelocity;
 
         enemy.Rb.AddForce(velocityDiff * enemy.Acceleration, ForceMode.Acceleration);
+
+        enemy.ActorAudio.TickFootsteps(true);
     }
 }

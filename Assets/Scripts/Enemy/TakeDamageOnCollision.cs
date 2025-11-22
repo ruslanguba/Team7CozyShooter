@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class TakeDamageOnCollision : MonoBehaviour
 {
-    [SerializeField] private EnemyHealth _enemyHealth;
+    //[SerializeField] private EnemyHealth _enemyHealth;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            _enemyHealth.TakeDamage(1);          
-        }            
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Bullet"))
+    //    {
+    //        _enemyHealth.TakeDamage(1);          
+    //    }            
+    //}
 }

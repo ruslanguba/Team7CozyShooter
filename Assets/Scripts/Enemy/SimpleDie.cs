@@ -16,11 +16,11 @@ public class SimpleDie : EnemyHealth
         _isCanTakeHit = false;
     }
 
-    public override void TakeDamage(float damageValue)
+    public override void TakeDamage(float damageValue, int collisions)
     {
         if (_isCanTakeHit)
         {
-            base.TakeDamage(damageValue);
+            base.TakeDamage(damageValue, collisions);
         }
     }
 

@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
     {
         playerTransform = transform;
     }
-    private void HandleDeath(EnemyHealth enemy)
+    private void HandleDeath(EnemyHealth enemy, int collisionsCount)
     {
         stateMachine.ChangeState(deathState);
     }
