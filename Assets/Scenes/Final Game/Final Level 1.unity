@@ -906,6 +906,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelProgressSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 3127267302323658984, guid: 2cb29353ae990934096c7e001e02409b, type: 3}
+      propertyPath: _sceneToLoad
+      value: Lobby 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7969951425661181974, guid: 2cb29353ae990934096c7e001e02409b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5996,12 +6000,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2695034290023861826, guid: 1b0b203977d2001468b19820c84ea2d5, type: 3}
       propertyPath: m_Volume
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2695034290023861826, guid: 1b0b203977d2001468b19820c84ea2d5, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: 41398c30eda5acf4e96af3d53b01f7a5, type: 3}
+      objectReference: {fileID: 8300000, guid: 70934f2ea4853fb4d9e68c29b329009b, type: 3}
     - target: {fileID: 3873943439839788325, guid: 1b0b203977d2001468b19820c84ea2d5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6317,6 +6321,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6200642706012111765, guid: 4e84d8563f79ed44ba13cff5533494b0, type: 3}
+    - {fileID: 6233910072876116191, guid: 4e84d8563f79ed44ba13cff5533494b0, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 597874878743833888, guid: 4e84d8563f79ed44ba13cff5533494b0, type: 3}
       insertIndex: -1

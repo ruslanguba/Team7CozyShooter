@@ -402,7 +402,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 10
-  _particleSystem: {fileID: 948302565235246589}
 --- !u!114 &3312061001314859064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,8 +469,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f053d87c723fef42b611ce319eba9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathClip: {fileID: 0}
-  _attackClip: {fileID: 0}
+  _deathClip: {fileID: 8300000, guid: d21c2223e7db1524584da9b5befa3587, type: 3}
+  _attackClip: {fileID: 8300000, guid: f4fffbfbee271d549b8981c0e5c91609, type: 3}
   _footstepClip: {fileID: 0}
   _jumpClip: {fileID: 0}
   _stepInterval: 0.5
@@ -598,7 +597,7 @@ CapsuleCollider:
   m_Radius: 1
   m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_Center: {x: 0, y: 1.6, z: 0}
 --- !u!1 &4304732215424618217
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,11 +1024,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eba31c84730d384f9bdb64dd8933687, type: 3}
---- !u!198 &948302565235246589 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4860980658314039696, guid: 5eba31c84730d384f9bdb64dd8933687, type: 3}
-  m_PrefabInstance: {fileID: 5646564022635074669}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1749198326679511376 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6204489773832910141, guid: 5eba31c84730d384f9bdb64dd8933687, type: 3}

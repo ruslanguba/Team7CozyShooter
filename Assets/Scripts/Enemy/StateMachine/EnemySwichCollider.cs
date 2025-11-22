@@ -8,8 +8,8 @@ public class EnemySwichCollider : MonoBehaviour
 
     private void Start()
     {
-        _aliveCollider = GetComponent<Collider>();
-        _deadCollider = GetComponentInChildren<Collider>();
+        _aliveCollider = GetComponent<CapsuleCollider>();
+        _deadCollider = GetComponentInChildren<BoxCollider>();
         _aliveCollider.enabled = true;
         _deadCollider.enabled = false;
     }

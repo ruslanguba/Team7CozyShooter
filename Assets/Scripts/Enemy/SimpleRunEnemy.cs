@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using Unity.Cinemachine;
 using UnityEngine;
 
 public class SimpleRunEnemy : MonoBehaviour
@@ -8,6 +6,7 @@ public class SimpleRunEnemy : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _acceleration;
     [SerializeField] private float _stoppingDistannce;
+    [SerializeField] private Animator _animator;
     private EnemyHealth _health;
 
     private Rigidbody _rb;
@@ -18,6 +17,7 @@ public class SimpleRunEnemy : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _health = GetComponent<EnemyHealth>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     public void StopMoving()
@@ -38,6 +38,8 @@ public class SimpleRunEnemy : MonoBehaviour
     {
         _target = target;
         _isMoving = true;
+        float randomOffset = UnityEngine.Random.Range(0f, 0.5f);
+        _animator.SetBool("isMoving", _isMoving);
     }
 
     private void MoveTowards()
@@ -63,6 +65,7 @@ public class SimpleRunEnemy : MonoBehaviour
     private void ReachTarget()
     {
         _isMoving = false;
+        _animator.SetBool("isMoving", _isMoving);
         if (_target.TryGetComponent(out InteractableBox interactableBox))
         {
             interactableBox.ReciveEnemy(this);

@@ -6,7 +6,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public event Action<EnemyHealth, int> OnDeath;
     [SerializeField] private float _health = 2f;
-    [SerializeField] private ParticleSystem _particleSystem;
+    //[SerializeField] private ParticleSystem _particleSystem;
     protected int _collisionsCount;
 
     public virtual void TakeDamage(float damageValue, int collisionsCount)
@@ -15,7 +15,7 @@ public class EnemyHealth : MonoBehaviour
         _collisionsCount = collisionsCount;
         if (_health <= 0)
         {
-            _particleSystem.Play();
+            //_particleSystem.Play();
             Die();
         }
     }

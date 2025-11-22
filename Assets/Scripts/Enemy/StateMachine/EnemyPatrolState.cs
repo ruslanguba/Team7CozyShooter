@@ -21,6 +21,12 @@ public class EnemyPatrolState: BaseState
             stateMachine.ChangeState(enemy.ChaseState);
             return;
         }
+
+        if (Vector3.Distance(enemy.transform.position, enemy.PlayerTransform.position) < enemy.AttackRange)
+        {
+            stateMachine.ChangeState(enemy.AttackState);
+            return;
+        }
     }
 
     public override void FixedUpdate()
