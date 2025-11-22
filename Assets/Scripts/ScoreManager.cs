@@ -31,6 +31,7 @@ public class ScoreManager : MonoBehaviour
 
         PlayerPrefs.SetInt("TotalScore", TotalScore);
         _totalScoreText.text = PlayerPrefs.GetInt("TotalScore", 0).ToString();
+
         PlayerPrefs.SetInt("TotalNightmare", TotalNightmare);
         _totalNightmareText.text = PlayerPrefs.GetInt("TotalNightmare", 0).ToString();
     }
@@ -60,9 +61,9 @@ public class ScoreManager : MonoBehaviour
             BestScore = TotalScore;
         }
 
-        PlayerPrefs.SetInt("TotalScore", TotalScore);
+        //PlayerPrefs.SetInt("TotalScore", TotalScore);
         _totalScoreText.text = TotalScore.ToString();
-        PlayerPrefs.SetInt("BestScore", BestScore);
+        //PlayerPrefs.SetInt("BestScore", BestScore);
         _bestScoreText.text = BestScore.ToString();
     }
 
@@ -70,7 +71,7 @@ public class ScoreManager : MonoBehaviour
     {
         TotalNightmare += score;
 
-        PlayerPrefs.SetInt("TotalNightmare", TotalNightmare);
+        //PlayerPrefs.SetInt("TotalNightmare", TotalNightmare);
         _totalNightmareText.text = TotalNightmare.ToString();
     }
 }

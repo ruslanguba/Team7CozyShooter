@@ -14,8 +14,6 @@ public class EnemyHealth : MonoBehaviour
 
         if (_health <= 0)
         {
-            ScoreManager.Instance.AddNightmare(1);
-            //PlayParticle(_particleSystem, transform.position);
             Die();
         }
     }
@@ -28,7 +26,6 @@ public class EnemyHealth : MonoBehaviour
 
     protected virtual void Die()
     {
-        Debug.Log("die");
         OnDeath?.Invoke(this);
     }
 

@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PillowGun : GunBase
 {
-    //[SerializeField] private PredictionBootstrap _prediction;
-    //[SerializeField] private PhysicsObjectsRegistry _physicsObjectsRegistry;
     [SerializeField] private BounceRayTrajectory _trajectory;
     [SerializeField] private Bullet _bulletPrefab;
     private Bullet _bullet;
@@ -11,7 +9,6 @@ public class PillowGun : GunBase
     [SerializeField] private float _damage;
     [SerializeField] private float _bulletLifeTime = 8;
     [SerializeField] private int _maxCollisionCount;
-    //[SerializeField] private TrajectorySimulator _trajectorySimulator;
     [SerializeField] private Transform _character;
     private bool _isActive;
 
@@ -70,20 +67,11 @@ public class PillowGun : GunBase
             Destroy(newBullet.gameObject, _bulletLifeTime);
         }
         _trajectory.Clear();
-        //_prediction.Clear();
-        //_trajectorySimulator.HideTrajectory();
     }
 
     private void CalculateTrajectory()
     {
         Vector3 direction = _character.transform.forward * _bulletSpeed;
         _trajectory.DrawTrajectory(direction);
-        //_prediction.Predict(_spawn.position, direction);
-        //if (_isFirePressed && IsCanShoot())
-        //{
-        //    Vector3 direction = _character.transform.forward * _bulletSpeed;
-        //    _prediction.Predict(_spawn.position, direction);
-        //    //_trajectorySimulator.ShowTrajectory(_spawn.position, direction);
-        //}
     }
 }
