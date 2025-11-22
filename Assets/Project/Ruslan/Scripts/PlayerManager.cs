@@ -14,9 +14,11 @@ public class PlayerManager: MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            _playerTransform = transform;
         }
         else
         {
+            _playerTransform = null;
             Destroy(gameObject);
             return;
         }
