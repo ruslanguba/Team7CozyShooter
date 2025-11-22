@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 0}
-  _enemies:
-  - {fileID: 0}
-  _nextBoxTransform: {fileID: 0}
+  _enemies: []
+  _nextPointsTransform: []
+  _isRandomNextPoin: 0
   _hideDuration: 1
   _openDuration: 0.5
   _closeDuration: 0.3
