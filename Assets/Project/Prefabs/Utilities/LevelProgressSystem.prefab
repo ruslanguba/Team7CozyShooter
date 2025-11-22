@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 7969951425661181974}
   - component: {fileID: 4398140863521126373}
   - component: {fileID: 3577984015724085081}
+  - component: {fileID: 719793317702484639}
   m_Layer: 0
   m_Name: LevelProgressSystem
   m_TagString: Untagged
@@ -104,6 +105,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94c040a65e6bf0d42bcab0bc0ddcfd6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &719793317702484639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935719085804823929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4dac263a5316e4cb754b728e1cce86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2002264554293452287
