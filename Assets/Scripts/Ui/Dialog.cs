@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dialog : MonoBehaviour
 {
-    [SerializeField] private GameObject _text;    
+    [SerializeField] private GameObject _text;     
 
     private void OnTriggerStay(Collider other)
     {
