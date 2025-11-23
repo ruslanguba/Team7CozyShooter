@@ -3,43 +3,44 @@ using UnityEngine;
 [ExecuteAlways] // Работает в Edit Mode
 public class ReflectingRay : MonoBehaviour
 {
-    [Header("Ray Settings")]
-    public Vector3 direction = Vector3.forward;
-    public float maxDistance = 100f;
-    public int maxReflections = 50;
+    public Transform origin;          // откуда летит сфера
+    public float radius = 0.25f;      // радиус сферы
+    public float maxDistance = 30f;   // максимальная длина луча
+    public int maxBounces = 5;        // сколько раз может отскочить
 
-    [Header("Gizmo Settings")]
-    public Color rayColor = Color.yellow;
-    public Color hitColor = Color.red;
-    public float hitSphereRadius = 0.1f;
+    public Color lineColor = Color.yellow;
+    public float hitSphereSize = 0.15f;
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = rayColor;
+        if (origin == null) return;
 
-        Vector3 currentPos = transform.position;
-        Vector3 currentDir = transform.forward.normalized;
+        Gizmos.color = lineColor;
 
-        for (int i = 0; i < maxReflections; i++)
+        Vector3 pos = origin.position;
+        Vector3 dir = origin.forward;
+
+        for (int i = 0; i < maxBounces; i++)
         {
-            if (Physics.Raycast(currentPos, currentDir, out RaycastHit hit, maxDistance))
+            if (Physics.SphereCast(pos, radius, dir, out RaycastHit hit, maxDistance))
             {
-                // Рисуем линию
-                Gizmos.DrawLine(currentPos, hit.point);
+                // рисуем линию до касания
+                Vector3 sphereCenterAtHit = hit.point - dir * radius;
+                Gizmos.DrawLine(pos, sphereCenterAtHit);
 
-                // Показываем точку удара
-                Gizmos.color = hitColor;
-                Gizmos.DrawSphere(hit.point, hitSphereRadius);
-                Gizmos.color = rayColor;
+                // показываем точку касания
+                Gizmos.DrawWireSphere(sphereCenterAtHit, radius);
 
-                // Отражение
-                currentDir = Vector3.Reflect(currentDir, hit.normal);
-                currentPos = hit.point;
+                // рассчитываем отражение
+                dir = Vector3.Reflect(dir, hit.normal);
+
+                // новая стартовая позиция
+                pos = sphereCenterAtHit;
             }
             else
             {
-                // Если ничего не задел — рисуем луч в пустоту
-                Gizmos.DrawLine(currentPos, currentPos + currentDir * maxDistance);
+                // пустота — просто рисуем прямую
+                Gizmos.DrawLine(pos, pos + dir * maxDistance);
                 break;
             }
         }

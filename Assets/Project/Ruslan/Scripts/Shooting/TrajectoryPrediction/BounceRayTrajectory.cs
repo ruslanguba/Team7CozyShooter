@@ -8,8 +8,13 @@ public class BounceRayTrajectory : MonoBehaviour
     [SerializeField] private int maxBounces = 5;
     [SerializeField] private float maxDistance = 100f;
 
+    [Header("Sphere settings")]
+    [SerializeField] private float sphereRadius = 0.25f;
+
     public void DrawTrajectory(Vector3 direction)
     {
+        if (origin == null) return;
+
         Vector3 currentPos = origin.position;
         Vector3 currentDir = direction.normalized;
 
@@ -18,18 +23,23 @@ public class BounceRayTrajectory : MonoBehaviour
 
         for (int i = 0; i < maxBounces; i++)
         {
-            if (Physics.Raycast(currentPos, currentDir, out RaycastHit hit, maxDistance))
+            // SphereCast вместо Raycast
+            if (Physics.SphereCast(currentPos, sphereRadius, currentDir, out RaycastHit hit, maxDistance))
             {
-                points.Add(hit.point);
+                // ÷ентр сферы при касании должен быть смещЄн назад от точки касани€
+                Vector3 sphereCenterHit = hit.point - currentDir * sphereRadius;
 
-                // отражение как у сферы
+                points.Add(sphereCenterHit);
+
+                // отражение от нормали
                 currentDir = Vector3.Reflect(currentDir, hit.normal);
 
-                currentPos = hit.point;
+                // нова€ стартова€ точка Ч центр сферы после касани€
+                currentPos = sphereCenterHit;
             }
             else
             {
-                // дальше пустота
+                // пустота Ч рисуем пр€мую
                 points.Add(currentPos + currentDir * maxDistance);
                 break;
             }
@@ -41,6 +51,7 @@ public class BounceRayTrajectory : MonoBehaviour
 
     public void Clear()
     {
-        line.positionCount = 0;
+        if (line != null)
+            line.positionCount = 0;
     }
 }

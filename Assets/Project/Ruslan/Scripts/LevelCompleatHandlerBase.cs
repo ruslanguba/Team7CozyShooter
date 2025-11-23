@@ -7,7 +7,7 @@ public class LevelCompleatHandlerBase : MonoBehaviour
 
     void Start()
     {
-        if(_progressSystem = null)
+        if(_progressSystem == null)
             _progressSystem = FindFirstObjectByType<LevelProgressSystem>();
 
         _progressSystem.OnLevelCompleat += LevelCompleat;
