@@ -8,9 +8,6 @@ public class ScoreManager : MonoBehaviour
 {
     public event Action<int> OnScoreChanged;
 
-    //[SerializeField] private Text _totalScoreText;
-    //[SerializeField] private Text _totalNightmareText;
-    //[SerializeField] private Text _bestScoreText;
 
     public static ScoreManager Instance;
     public static int TotalScore;
@@ -22,7 +19,6 @@ public class ScoreManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            //DontDestroyOnLoad(gameObject);
         }
         else
         {

@@ -21,6 +21,7 @@ public class InteractableBox : InteractableBase
             enemy.transform.position = transform.position;
             enemy.gameObject.SetActive(false);
         }
+        CloseDoor();
     }
 
     public void AddEnemy(SimpleRunEnemy simpleRunEnemy)
@@ -47,6 +48,8 @@ public class InteractableBox : InteractableBase
     public void CloseDoor()
     {
         _animator.SetBool("isOpen", false);
+        if(_enemies.Count > 0)
+            _animator.SetBool("isEnemy", true);
     }
 
     private void StartEnemyRun()
