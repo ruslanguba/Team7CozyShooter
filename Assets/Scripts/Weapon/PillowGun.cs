@@ -9,6 +9,7 @@ public class PillowGun : GunBase
     [SerializeField] private float _bulletLifeTime = 8;
     [SerializeField] private int _maxCollisionCount;
     [SerializeField] private Transform _character;
+    [SerializeField] private CollisionListener _collisionListener;
     private BulletsHandler _bulletsHandler;
     private ActorAudio _audio;
     private bool _isShowTrajectory;
@@ -24,6 +25,8 @@ public class PillowGun : GunBase
         _audio = GetComponentInParent<ActorAudio>();
         _bulletsHandler = GetComponent<BulletsHandler>();
         input.OnFireRealesed += StartShot;
+        if(_collisionListener == null)
+            _collisionListener = FindFirstObjectByType<CollisionListener>();
     }
 
     private void Awake()
@@ -46,28 +49,28 @@ public class PillowGun : GunBase
 
         base.Update();
 
+        HandleIming();
+    }
+
+    private void HandleIming()
+    {
         _isAiming = input.IsAimingHeld();
 
-        // --- Перешли в Aim (нажали) ---
         if (_isAiming && !_wasAiming)
         {
             _isShowTrajectory = true;
         }
 
-        // --- Удерживаем Aim ---
         if (_isAiming)
         {
             CalculateTrajectory();
         }
 
-        // --- Вышли из Aim (отпустили) ---
         if (!_isAiming && _wasAiming)
         {
             _isShowTrajectory = false;
             _trajectory.Clear();
         }
-
-        // запоминаем состояние
         _wasAiming = _isAiming;
     }
 
@@ -77,6 +80,7 @@ public class PillowGun : GunBase
         {
             Bullet newBullet = Instantiate(_bulletPrefab, _spawn.position, _spawn.rotation);
             LounchBullet(newBullet);
+            _collisionListener.Bind(newBullet);
             //_bulletsHandler.RegisterBullet(newBullet);
             _audio.PlayAttack();
             shootingTimer = _shotPeriod;

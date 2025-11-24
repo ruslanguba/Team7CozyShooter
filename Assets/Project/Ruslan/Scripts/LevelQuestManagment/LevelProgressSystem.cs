@@ -12,8 +12,10 @@ public class LevelProgressSystem : MonoBehaviour
     [SerializeField] private float _distance = 8;
 
     private ScoreUI _scoreUI;
+    private RicochetUI _ricochetUI;
     private EnemiesHandler _enemyHandler;
     private ScoreManager _scoreManager;
+    private CollisionListener _collisionListener;
 
     int enemiesCount;
 
@@ -21,9 +23,13 @@ public class LevelProgressSystem : MonoBehaviour
     {
         var canvas = Instantiate(_scoreCanvasPrefab);
         _scoreUI = canvas.GetComponent<ScoreUI>();
+        _ricochetUI = canvas.GetComponent<RicochetUI>();
         _scoreManager = GetComponent<ScoreManager>();
         _enemyHandler = GetComponent<EnemiesHandler>();
+        _collisionListener = GetComponent<CollisionListener>();
+
         _scoreUI.SetScoreManager(_scoreManager);
+        _collisionListener.SetUI(_ricochetUI);
         FindAllEnemies();
     }
 

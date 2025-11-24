@@ -25,7 +25,10 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         _collisionCount++;
-        //OnCollision?.Invoke(_collisionCount, transform.position);
+        Vector3 hitPoint = collision.contacts[0].point;
+
+        // Передаём точку попадания
+        OnCollision?.Invoke(_collisionCount, hitPoint);
 
         if (collision.gameObject.TryGetComponent(out EnemyHealth enemyHealth))
         {

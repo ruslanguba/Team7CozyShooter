@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7414545215611351089}
   - component: {fileID: 4326330049758431131}
   - component: {fileID: 7805472499923630561}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 3326822388779047967}
   - component: {fileID: 5936168638715359862}
   - component: {fileID: 6276465115899784245}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -198,6 +198,10 @@ PrefabInstance:
       value: Pilow VFX
       objectReference: {fileID: 0}
     - target: {fileID: 2910417849756200007, guid: 710cab6a17e55cc48b6a9f79b6c69921, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910417849756200007, guid: 710cab6a17e55cc48b6a9f79b6c69921, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -266,6 +270,10 @@ PrefabInstance:
     - target: {fileID: 1869088549393686757, guid: 9367017fc7fae3640a7022ba55dbc65c, type: 3}
       propertyPath: m_Name
       value: Trail Bullet Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869088549393686757, guid: 9367017fc7fae3640a7022ba55dbc65c, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1869088549393686757, guid: 9367017fc7fae3640a7022ba55dbc65c, type: 3}
       propertyPath: m_IsActive
@@ -377,9 +385,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5574659646624143360, guid: bdda54a977e541240a7a9c015d2653a8, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882874581782376797, guid: bdda54a977e541240a7a9c015d2653a8, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8640930478080117878, guid: bdda54a977e541240a7a9c015d2653a8, type: 3}
       propertyPath: m_Name
       value: Trail Shader
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640930478080117878, guid: bdda54a977e541240a7a9c015d2653a8, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

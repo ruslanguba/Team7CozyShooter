@@ -57,9 +57,4 @@ public class PlayerLook
         // Применяем
         _bodyTransform.rotation = Quaternion.Euler(0f, newYaw, 0f);
     }
-
-    //public void Zoom(float zoom)
-    //{
-    //    _orbitalFollow.Radius += zoom * _settings.ZoomSensitivity;
-    //}
 }

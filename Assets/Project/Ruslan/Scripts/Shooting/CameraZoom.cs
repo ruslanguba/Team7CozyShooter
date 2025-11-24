@@ -30,5 +30,6 @@ public class CameraZoom : MonoBehaviour
 
         _currentZoom = newZoom;
         _orbitalFollow.Radius = _currentZoom;
+        Debug.Log(newZoom);
     }
 }
