@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelProgressSystem : MonoBehaviour
@@ -11,7 +10,6 @@ public class LevelProgressSystem : MonoBehaviour
     [SerializeField] private Canvas _scoreCanvasPrefab;
     [SerializeField] private List<EnemyHealth> enemiesToKill;
     [SerializeField] private float _distance = 8;
-    private SceneTransitionTrigger _portal;
 
     private ScoreUI _scoreUI;
     private EnemiesHandler _enemyHandler;
@@ -25,20 +23,18 @@ public class LevelProgressSystem : MonoBehaviour
         _scoreUI = canvas.GetComponent<ScoreUI>();
         _scoreManager = GetComponent<ScoreManager>();
         _enemyHandler = GetComponent<EnemiesHandler>();
+        _scoreUI.SetScoreManager(_scoreManager);
+        FindAllEnemies();
     }
 
     private void Start()
     {
-
-        FindAllEnemies();
         enemiesCount = enemiesToKill.Count;
         if (_scoreUI == null)
         {
             _scoreUI = FindFirstObjectByType<ScoreUI>();
         }
         _scoreUI.UpdateEnemiesToKillText(enemiesCount.ToString());
-        _portal = GetComponentInChildren<SceneTransitionTrigger>();
-        _portal.gameObject.SetActive(false);
     }
 
     private void DetectKill(EnemyHealth enemy, int collisionsCount)
@@ -55,7 +51,7 @@ public class LevelProgressSystem : MonoBehaviour
         if (enemiesToKill.Count <= 0)
         {
             Debug.Log("LevelCompleat");
-            CompleatLevel();
+            //CompleatLevel();
             OnLevelCompleat?.Invoke();
         }
     }
@@ -69,11 +65,11 @@ public class LevelProgressSystem : MonoBehaviour
         }
     }
 
-    private void CompleatLevel()
-    {
-        _portal.gameObject.SetActive(true);
-        Vector3 portalPosition = PlayerManager.Instance.GetPlayerTransform.position
-                        + PlayerManager.Instance.GetPlayerTransform.forward * _distance;
-        _portal.transform.position = portalPosition;
-    }
+    //private void CompleatLevel()
+    //{
+    //    _portal.gameObject.SetActive(true);
+    //    Vector3 portalPosition = PlayerManager.Instance.GetPlayerTransform.position
+    //                    + PlayerManager.Instance.GetPlayerTransform.forward * _distance;
+    //    _portal.transform.position = portalPosition;
+    //}
 }

@@ -26,7 +26,7 @@ using UnityEngine.InputSystem.Utilities;
 /// using namespace UnityEngine;
 /// using UnityEngine.InputSystem;
 ///
-/// // Example of using an InputActionMap named "PlayerTransform" from a UnityEngine.MonoBehaviour implementing callback interface.
+/// // Example of using an InputActionMap named "Player" from a UnityEngine.MonoBehaviour implementing callback interface.
 /// public class Example : MonoBehaviour, MyActions.IPlayerActions
 /// {
 ///     private MyActions_Actions m_Actions;                  // Source code representation of asset.
@@ -35,7 +35,7 @@ using UnityEngine.InputSystem.Utilities;
 ///     void Awake()
 ///     {
 ///         m_Actions = new MyActions_Actions();              // Create asset object.
-///         m_Player = m_Actions.PlayerTransform;                      // Extract action map object.
+///         m_Player = m_Actions.Player;                      // Extract action map object.
 ///         m_Player.AddCallbacks(this);                      // Register callback interface IPlayerActions.
 ///     }
 ///
@@ -277,7 +277,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b4517e40-4e72-43fe-bd2c-3cdf3b93edb6"",
-                    ""path"": ""<Keyboard>/g"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

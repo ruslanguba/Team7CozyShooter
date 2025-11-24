@@ -15,9 +15,11 @@ MonoBehaviour:
   walkSpeed: 6
   acceleration: 20
   airSpeedMultiplier: 4
+  rotationSpeed: 12
   jumpHeight: 5
   gravity: -20
-  lookSensitivity: 0.1
+  lookSensitivity: 0.05
+  aimSensitivity: 0.02
   minPitch: -80
   maxPitch: 80
   lookSmoothTime: 0.05

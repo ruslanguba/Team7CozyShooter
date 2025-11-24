@@ -6,14 +6,20 @@ public class ScoreUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _enemiesToKill;
     [SerializeField] private TextMeshProUGUI _score;
+    [SerializeField] private ScoreManager _scoreManager;
 
+    public void SetScoreManager(ScoreManager scoreManager)
+    {
+        _scoreManager = scoreManager;
+        _scoreManager.OnScoreChanged += UpdateScoreText;
+    }
     private void Start()
     {
-        ScoreManager.Instance.OnScoreChanged += UpdateScoreText;
+        _scoreManager.OnScoreChanged += UpdateScoreText;
     }
     private void OnDisable()
     {
-        ScoreManager.Instance.OnScoreChanged -= UpdateScoreText;
+        _scoreManager.OnScoreChanged -= UpdateScoreText;
     }
     public void UpdateEnemiesToKillText(string text)
     {
@@ -22,7 +28,6 @@ public class ScoreUI : MonoBehaviour
 
     public void UpdateScoreText(int score)
     {
-
         _score.text = score.ToString();
     }
 }

@@ -11,7 +11,10 @@ public class PillowGun : GunBase
     [SerializeField] private Transform _character;
     private BulletsHandler _bulletsHandler;
     private ActorAudio _audio;
+    private bool _isShowTrajectory;
     private bool _isActive;
+    private bool _isAiming;   // текущее состояние
+    private bool _wasAiming;  // состояние в прошлом кадре
 
 
     public override void Activate()
@@ -20,7 +23,6 @@ public class PillowGun : GunBase
         _isActive = true;
         _audio = GetComponentInParent<ActorAudio>();
         _bulletsHandler = GetComponent<BulletsHandler>();
-        //input.OnFire += StartSimulation;
         input.OnFireRealesed += StartShot;
     }
 
@@ -40,20 +42,33 @@ public class PillowGun : GunBase
 
     override protected void Update()
     {
-        if (_isActive)
+        if (!_isActive) return;
+
+        base.Update();
+
+        _isAiming = input.IsAimingHeld();
+
+        // --- Перешли в Aim (нажали) ---
+        if (_isAiming && !_wasAiming)
         {
-            base.Update();
-            if (input.IsFiringHeld() && IsCanShoot())
-            {
-                CalculateTrajectory();
-            }
+            _isShowTrajectory = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        // --- Удерживаем Aim ---
+        if (_isAiming)
         {
-            Vector3 direction = _character.transform.forward * _bulletSpeed;
-            //_prediction.Predict(_spawn.position, direction);
+            CalculateTrajectory();
         }
+
+        // --- Вышли из Aim (отпустили) ---
+        if (!_isAiming && _wasAiming)
+        {
+            _isShowTrajectory = false;
+            _trajectory.Clear();
+        }
+
+        // запоминаем состояние
+        _wasAiming = _isAiming;
     }
 
     private void StartShot()
@@ -68,12 +83,14 @@ public class PillowGun : GunBase
             Destroy(newBullet.gameObject, _bulletLifeTime);
 
         }
-        _trajectory.Clear();
     }
 
     private void CalculateTrajectory()
     {
-        Vector3 direction = _character.transform.forward * _bulletSpeed;
+        if (!_isShowTrajectory)
+            return;
+
+        Vector3 direction = _character.forward * _bulletSpeed;
         _trajectory.DrawTrajectory(direction);
     }
 

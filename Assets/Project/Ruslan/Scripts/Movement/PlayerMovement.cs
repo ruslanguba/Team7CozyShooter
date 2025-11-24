@@ -5,9 +5,11 @@ public class PlayerMovement
     PlayerContext _context;
     private PlayerSettings _settings;
     private CharacterController _controller;
+    private Transform _bodyTransform;
     private Transform _cameraTransform;
     private InputReader _inputReader;
     private AnimatorHandler _animator;
+    private PlayerRotationHandler _playerRotationHandler;
 
     private Vector3 _horizontalVelocity;
     private float _currentSpeed;
@@ -15,14 +17,16 @@ public class PlayerMovement
 
     public Vector3 HorizontalVelocity => _horizontalVelocity;
 
-    public PlayerMovement(PlayerContext context)
+    public PlayerMovement(PlayerContext context, Camera camera, PlayerRotationHandler rotationHandler)
     {
         _context = context;
         _settings = _context.Settings;
         _controller = _context.Controller;
-        _cameraTransform = _context.CameraPivot;
+        _bodyTransform = _context.BodyTransform;
+        _cameraTransform = camera.transform;
         _inputReader = _context.Input;
         _animator = _context.AnimatorHandler;
+        _playerRotationHandler = rotationHandler;
     }
 
     public void UpdateMovement()
@@ -36,12 +40,23 @@ public class PlayerMovement
         PlayFootstepsSound(_currentSpeed > 0);
 
         Vector3 forward = _cameraTransform.forward;
-        Vector3 right = _cameraTransform.right;
+        Vector3 right = _bodyTransform.right;
         forward.y = 0f;
         right.y = 0f;
         forward.Normalize();
         right.Normalize();
 
+        Vector3 camToPlayer = _bodyTransform.position - _cameraTransform.position;
+        camToPlayer.y = 0f;
+        Vector3 moveDir = camToPlayer.normalized;
+
+        if (moveDir.sqrMagnitude > 0.01f && Mathf.Abs(moveInput.y) > 0.05f)
+        {
+            _playerRotationHandler.UpdateRotation(moveDir.normalized, _context.Settings.rotationSpeed);
+        }
+
+        SetAnimatorParams(moveInput);
+        PlayFootstepsSound(_currentSpeed > 0);
         _horizontalVelocity = (forward * moveInput.y + right * moveInput.x).normalized * _currentSpeed * _speedMultiplier;
     }
 

@@ -42,14 +42,14 @@ public class PillowThrowHandler : GunBase
 
     private void OnEnable()
     {
-        _input.OnSecondaryFire += HandleThrowOrStop;
-        _input.OnRecall += HandleRecall;
+        _input.OnRecall += HandleThrowOrStop;
+        _input.OnThrow += HandleRecall;
     }
 
     private void OnDisable()
     {
-        _input.OnSecondaryFire -= HandleThrowOrStop;
-        _input.OnRecall -= HandleRecall;
+        _input.OnRecall -= HandleThrowOrStop;
+        _input.OnThrow -= HandleRecall;
     }
 
     private void HandleThrowOrStop()

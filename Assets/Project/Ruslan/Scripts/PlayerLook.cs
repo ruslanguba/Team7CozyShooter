@@ -1,44 +1,65 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerLook
 {
-    PlayerContext _context;
+    private PlayerContext _context;
     private PlayerSettings _settings;
-    private Transform _cameraPivot;
-    private Transform _playerBody;
+    private Transform _bodyTransform;
+    private CinemachineOrbitalFollow _orbitalFollow;
+    private CinemachineCamera _cineCam;
     private InputReader _inputReader;
 
     private Vector2 _currentLookDelta;
-    private Vector2 _targetLookDelta;
     private Vector2 _lookVelocity;
 
-    private float _pitch;
-    private float _yaw;
-
-    public PlayerLook(PlayerContext context)
+    public PlayerLook(PlayerContext context, CinemachineCamera cineCam, CinemachineOrbitalFollow orbitalFollow)
     {
         _context = context;
         _settings = _context.Settings;
-        _cameraPivot = _context.CameraPivot;
-        _playerBody = _context.transform;
+        _bodyTransform = _context.BodyTransform;
         _inputReader = _context.Input;
 
-        _yaw = _playerBody.eulerAngles.y;
-        _pitch = _cameraPivot.localEulerAngles.x;
-        if (_pitch > 180f) _pitch -= 360f;
-        _context = context;
+        _cineCam = cineCam;
+        _orbitalFollow = orbitalFollow;
     }
 
     public void UpdateLook()
     {
-        _targetLookDelta = _inputReader.GetLook() * _settings.lookSensitivity;
-        _currentLookDelta = Vector2.SmoothDamp(_currentLookDelta, _targetLookDelta, ref _lookVelocity, _settings.lookSmoothTime);
+        Vector2 lookDelta = _inputReader.GetLook();
 
-        _yaw += _currentLookDelta.x;
-        _pitch -= _currentLookDelta.y;
-        _pitch = Mathf.Clamp(_pitch, _settings.minPitch, _settings.maxPitch);
+        _currentLookDelta = Vector2.SmoothDamp(
+            _currentLookDelta,
+            lookDelta,
+            ref _lookVelocity,
+            _settings.lookSmoothTime
+        );
 
-        _playerBody.rotation = Quaternion.Euler(0f, _yaw, 0f);
-        _cameraPivot.localRotation = Quaternion.Euler(_pitch, 0f, 0f);
+        if (_inputReader.IsAimingHeld())
+            AimMode();
     }
+
+    private void AimMode()
+    {
+        // Берём yaw камеры
+        float cameraYaw = _cineCam.State.RawOrientation.eulerAngles.y;
+
+        // Текущий yaw персонажа
+        float currentYaw = _bodyTransform.eulerAngles.y;
+
+        // Плавно приближаем персонажа к yaw камеры
+        float newYaw = Mathf.LerpAngle(
+            currentYaw,
+            cameraYaw,
+            _settings.rotationSpeed * Time.deltaTime
+        );
+
+        // Применяем
+        _bodyTransform.rotation = Quaternion.Euler(0f, newYaw, 0f);
+    }
+
+    //public void Zoom(float zoom)
+    //{
+    //    _orbitalFollow.Radius += zoom * _settings.ZoomSensitivity;
+    //}
 }

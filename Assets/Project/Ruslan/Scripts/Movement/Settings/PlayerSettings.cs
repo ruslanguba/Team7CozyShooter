@@ -7,6 +7,7 @@ public class PlayerSettings : ScriptableObject
     public float walkSpeed = 5f;
     public float acceleration = 20f;
     public float airSpeedMultiplier;
+    public float rotationSpeed = 12;
 
     [Header("Jump")]
     public float jumpHeight = 2f;
@@ -16,6 +17,8 @@ public class PlayerSettings : ScriptableObject
 
     [Header("Look")]
     public float lookSensitivity = 1f;
+    public float aimSensitivity = 1f;
+    public float ZoomSensitivity = 0.5f;
     public float minPitch = -80f;
     public float maxPitch = 80f;
     public float lookSmoothTime = 0.05f;
