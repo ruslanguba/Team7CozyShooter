@@ -22,19 +22,27 @@ public class StartRocket : MonoBehaviour
             LaunchRocket();
         }
     }
+    private void Update()
+    {
+        if (hasLaunched)
+        {
+            transform.Rotate(0, 0, 1000);
+        }
+    }
 
     void FixedUpdate()
     {
         if (hasLaunched)
         {
-            rocketRigidBody.AddForce(transform.forward * continuousThrust * Time.fixedDeltaTime, ForceMode.Force);
-            transform.Rotate(0, 0, 600);
+            rocketRigidBody.AddForce(transform.forward * continuousThrust * Time.fixedDeltaTime, ForceMode.Acceleration);
+            transform.Rotate(0, 0, 1000);
         }
     }
 
     void LaunchRocket()
     {
-        rocketRigidBody.AddForce(transform.forward * thrustPower, ForceMode.Acceleration);        
+        rocketRigidBody.AddForce(transform.forward * thrustPower, ForceMode.Force);        
         _particle.Play();
+        Destroy(gameObject, 20f);
     }
 }
