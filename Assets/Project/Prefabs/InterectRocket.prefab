@@ -9766,7 +9766,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4067889834081514883}
   serializedVersion: 4
-  m_Mass: 0.5
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -9797,9 +9797,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8d55cf691c27c45be996ea80127cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustPower: 500
+  thrustPower: 200
   _particle: {fileID: 5593990552750119844}
-  continuousThrust: 1000
+  continuousThrust: 500
 --- !u!65 &8115802718256257723
 BoxCollider:
   m_ObjectHideFlags: 0

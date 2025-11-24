@@ -3,9 +3,11 @@ using UnityEngine;
 public class StartRocket : MonoBehaviour
 {
 
-    [SerializeField] private float thrustPower = 1000f;
+    [SerializeField] private float _thrustPower = 200f;
+    [SerializeField] private float _continuousThrust = 500f;
     [SerializeField] private ParticleSystem _particle;
-    public float continuousThrust = 500f;
+    
+
     private Rigidbody rocketRigidBody;
     private bool hasLaunched = false;
 
@@ -26,7 +28,7 @@ public class StartRocket : MonoBehaviour
     {
         if (hasLaunched)
         {
-            transform.Rotate(0, 0, 1000);
+            transform.Rotate(0, 0, 10);
         }
     }
 
@@ -34,15 +36,15 @@ public class StartRocket : MonoBehaviour
     {
         if (hasLaunched)
         {
-            rocketRigidBody.AddForce(transform.forward * continuousThrust * Time.fixedDeltaTime, ForceMode.Acceleration);
-            transform.Rotate(0, 0, 1000);
+            rocketRigidBody.AddForce(transform.forward * _continuousThrust * Time.fixedDeltaTime, ForceMode.Acceleration);
         }
     }
 
     void LaunchRocket()
     {
-        rocketRigidBody.AddForce(transform.forward * thrustPower, ForceMode.Force);        
+        rocketRigidBody.AddForce(transform.forward * _thrustPower, ForceMode.Force);        
         _particle.Play();
+        hasLaunched = true;
         Destroy(gameObject, 20f);
     }
 }
