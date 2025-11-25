@@ -10,7 +10,6 @@ public class OnText : MonoBehaviour
 
     private TMP_Text text;
     private Color startColor;
-    bool isFading = false;
 
     private void Awake()
     {
@@ -27,20 +26,12 @@ public class OnText : MonoBehaviour
         if (other.gameObject.TryGetComponent(out PlayerContext playerContext))
         {
             _object.SetActive(true);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.TryGetComponent(out PlayerContext playerContext) && !isFading)
-        {
             StartCoroutine(FadeOut());
         }
     }
 
     private IEnumerator FadeOut()
     {
-        isFading = true;
         float elapsedTime = 0;
 
         while (elapsedTime < _fadeDuration)
@@ -54,6 +45,5 @@ public class OnText : MonoBehaviour
         }
 
         _object.SetActive(false);
-        isFading = false;
     }
 }
