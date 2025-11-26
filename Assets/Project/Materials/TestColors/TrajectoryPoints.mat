@@ -23,7 +23,7 @@ Material:
   m_Name: TrajectoryPoints
   m_Shader: {fileID: -6465566751694194690, guid: 8a59c6ea52fae0f4e8792260ee01dc36, type: 3}
   m_Parent: {fileID: 2100000, guid: 3a18663fac39224489aeadeea3f85659, type: 2}
-  m_ModifiedSerializedProperties: 2
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 0
@@ -36,26 +36,11 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - _BaseMap:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Main_Texture:
-        m_Texture: {fileID: 2800000, guid: 67a11ceed83aaa04d9ab57dbbe137852, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
-    m_Floats:
-    - _AlphaClip: 1
-    - _AlphaToMask: 1
-    - _Emission: 5
-    - _Saturation: 5
+    m_Floats: []
     m_Colors:
-    - _TintColor: {r: 1, g: 0.6308285, b: 0, a: 1}
+    - _Color_1: {r: 2.4566174, g: 0.10351499, b: 0.057939082, a: 1}
+    - _Main_Texture_Speed: {r: -0.3, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

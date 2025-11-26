@@ -32,7 +32,7 @@ public class OnText : MonoBehaviour
     private IEnumerator FadeOut()
     {
         float elapsedTime = 0;
-
+        yield return new WaitForSeconds(elapsedTime);
         while (elapsedTime < _fadeDuration)
         {
             elapsedTime += Time.deltaTime;

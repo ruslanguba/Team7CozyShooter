@@ -6,7 +6,7 @@ public class NPCAnimationHandler : MonoBehaviour
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     public void SetIdleAnim()
