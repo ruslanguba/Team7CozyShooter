@@ -13,9 +13,12 @@ public class LevelProgressSystem : MonoBehaviour
 
     private ScoreUI _scoreUI;
     private RicochetUI _ricochetUI;
+    private PillowUI _pilllowUI;
+
     private EnemiesHandler _enemyHandler;
     private ScoreManager _scoreManager;
     private CollisionListener _collisionListener;
+    private PillowUiBinder _pilllowUIbinder;
 
     int enemiesCount;
 
@@ -24,12 +27,16 @@ public class LevelProgressSystem : MonoBehaviour
         var canvas = Instantiate(_scoreCanvasPrefab);
         _scoreUI = canvas.GetComponent<ScoreUI>();
         _ricochetUI = canvas.GetComponent<RicochetUI>();
+        _pilllowUI = canvas.GetComponent<PillowUI>();
+
         _scoreManager = GetComponent<ScoreManager>();
         _enemyHandler = GetComponent<EnemiesHandler>();
         _collisionListener = GetComponent<CollisionListener>();
+        _pilllowUIbinder = GetComponent<PillowUiBinder>();
 
         _scoreUI.SetScoreManager(_scoreManager);
         _collisionListener.SetUI(_ricochetUI);
+        _pilllowUIbinder.SetUI(_pilllowUI);
         FindAllEnemies();
     }
 
@@ -70,12 +77,4 @@ public class LevelProgressSystem : MonoBehaviour
             health.OnDeath += DetectKill;
         }
     }
-
-    //private void CompleatLevel()
-    //{
-    //    _portal.gameObject.SetActive(true);
-    //    Vector3 portalPosition = PlayerManager.Instance.GetPlayerTransform.position
-    //                    + PlayerManager.Instance.GetPlayerTransform.forward * _distance;
-    //    _portal.transform.position = portalPosition;
-    //}
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,15 @@ using UnityEngine.Windows;
 
 public class PillowThrowHandler : GunBase
 {
+    public event Action OnThrow;
+    public event Action OnRecall;
+    public event Action<int> OnPillowAdded;
+
     [Header("References")]
     [SerializeField] private Transform _spawnPoint; // точка броска
     [SerializeField] private Transform _character;
     [SerializeField] private List<GameObject> _pillows; // заранее созданные подушки
+    [SerializeField] private PillowUiBinder _uiBinder;
     //[SerializeField] private DynamicObjectsRegistry _dynamicObjectsRegistry;
     private Stack<GameObject> _thrownPillows = new Stack<GameObject>();
 
@@ -38,6 +44,9 @@ public class PillowThrowHandler : GunBase
                 rb.angularVelocity = Vector3.zero;
             }
         }
+        if (_uiBinder == null)
+            _uiBinder = FindFirstObjectByType<PillowUiBinder>();
+        _uiBinder.SetHandler(this);
     }
 
     private void OnEnable()
@@ -50,6 +59,13 @@ public class PillowThrowHandler : GunBase
     {
         _input.OnRecall -= HandleThrowOrStop;
         _input.OnThrow -= HandleRecall;
+        _uiBinder.Unbind();
+    }
+
+    private void Start()
+    {
+        _uiBinder.Bind();
+        OnPillowAdded?.Invoke(_pillows.Count);
     }
 
     private void HandleThrowOrStop()
@@ -96,6 +112,7 @@ public class PillowThrowHandler : GunBase
         _currentRb.detectCollisions = true;
         _thrownPillows.Push(pillow); // кладём подушку в стек
         //_dynamicObjectsRegistry.Register(_currentRb);
+        OnThrow?.Invoke();
     }
 
     private void StopCurrentPillow()
@@ -132,6 +149,7 @@ public class PillowThrowHandler : GunBase
 
         pillowRb.position = _spawnPoint.position;
         pillowRb.gameObject.SetActive(false);
+        OnRecall?.Invoke();
     }
 }
     //[SerializeField] private float _throwForse;

@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Hint : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI m_TextMeshPro;
-    [SerializeField] private List<string> HintText;
-
-    private void Start()
-    {
-        m_TextMeshPro.text = HintText[0];
-    }
+    public string HintText => _hintText;
+    [TextArea(3,9)]
+    [SerializeField] private string _hintText;
 }

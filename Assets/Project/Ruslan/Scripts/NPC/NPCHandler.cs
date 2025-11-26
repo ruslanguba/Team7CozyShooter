@@ -10,8 +10,9 @@ public class NPCHandler : MonoBehaviour
 
     private Coroutine _lookCoroutine;
     private bool _isTurning;
+    [SerializeField] private bool _isTalking;
 
-    private void Start()
+    private void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
         _dialogCanvas.SetActive(false);
@@ -38,12 +39,20 @@ public class NPCHandler : MonoBehaviour
             StopCoroutine(_lookCoroutine);
         _lookCoroutine = StartCoroutine(SmoothLookAt(direction));
         _dialogCanvas.SetActive(isShowing);
-        SwitchTalking(isShowing);
+        SwitchTalking();
     }
 
-    public void SwitchTalking(bool isTalking)
+    public void SetTalking(bool isTalking)
     {
+        _isTalking = isTalking;
         _animator.SetBool("isTalk", isTalking);
+        _dialogCanvas.SetActive(isTalking);
+    }
+    public void SwitchTalking()
+    {
+        _isTalking = !_isTalking;
+        SetTalking(_isTalking);
+        Debug.Log(_isTalking);
     }
 
     private IEnumerator SmoothLookAt(Vector3 targetPos)

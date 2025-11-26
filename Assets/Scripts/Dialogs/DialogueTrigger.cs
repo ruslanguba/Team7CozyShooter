@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    public event Action OnDialogueStarted;
     public event Action OnDialogueEnded;
+
     [SerializeField] private bool deleteOnEnd;
     private PlayerDetectorTrigger _actionSender;
     [SerializeField] private List<Dialogue> sentence;
@@ -22,6 +24,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialog()
     {
+        OnDialogueStarted?.Invoke();
         DialogueManager.Instance.StartDialog(sentence, this);
     }
 
@@ -38,7 +41,7 @@ public class DialogueTrigger : MonoBehaviour
         OnDialogueEnded?.Invoke();  // ≈сли событи€ нет - ничего не произойдет
         if (deleteOnEnd)
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
     }
 }
