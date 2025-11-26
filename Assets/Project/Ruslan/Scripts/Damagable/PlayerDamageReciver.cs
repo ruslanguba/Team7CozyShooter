@@ -11,64 +11,90 @@ public class PlayerDamageReciver : MonoBehaviour
     [SerializeField] private float intensityTarget = 1f;
     [SerializeField] private float smoothChangeDuration = 2f;
     [SerializeField] private float smoothRestoreDuration = 5f;
-    [SerializeField] private float _maxHits;
-    [SerializeField] private float _minHits;
-    [SerializeField] private float hits = 1;
-    [SerializeField] private float currentHealth;
-    [SerializeField] private float restoreTimer = 5;
+    [SerializeField] private float _maxHits = 5f;
+    [SerializeField] private float _minHits = 1f;
+
+    private float hits;
+    private float currentHealth;
+    private float restoreTimer = 5f;
     private float currentRestoreTimer;
+
     private Vignette vignetteSettings;
     private Coroutine changeCoroutine;
 
-    void Start()
+    private void Start()
     {
-        if (_globalVolume.profile.TryGet(out vignetteSettings))
+        if (_globalVolume == null)
         {
-            hits = _minHits;
-            currentHealth = hits / _maxHits;
-            Debug.Log("Vignette found");
+            Debug.LogWarning("PlayerDamageReciver: Global Volume is not assigned!");
+            enabled = false;
+            return;
         }
-        else
+
+        if (!_globalVolume.profile.TryGet(out vignetteSettings))
         {
-            Debug.LogError("Vignette override not found in Volume!");
+            Debug.LogWarning("PlayerDamageReciver: Vignette override not found in Volume profile!");
+            enabled = false;
+            return;
         }
+
+        hits = _minHits;
+        currentHealth = hits / Mathf.Max(_maxHits, 0.0001f);
+        vignetteSettings.intensity.value = 0f;
     }
 
     private void Update()
     {
-        if( hits > _minHits && currentRestoreTimer < restoreTimer)
+        if (hits > _minHits)
         {
             currentRestoreTimer += Time.deltaTime;
             if (currentRestoreTimer >= restoreTimer)
             {
                 currentRestoreTimer = restoreTimer;
-                changeCoroutine = StartCoroutine(SmoothlyChangeVignette(0, smoothRestoreDuration));
                 hits = _minHits;
-                currentHealth = hits / _maxHits;
+                currentHealth = hits / Mathf.Max(_maxHits, 0.0001f);
+
+                if (vignetteSettings != null)
+                {
+                    if (changeCoroutine != null)
+                        StopCoroutine(changeCoroutine);
+
+                    changeCoroutine = StartCoroutine(SmoothlyChangeVignette(0f, smoothRestoreDuration));
+                }
             }
         }
     }
 
     public void TakeDamage()
     {
+        if (vignetteSettings == null) return;
+
         if (hits < _maxHits)
         {
             hits++;
-            currentHealth = hits / _maxHits;
+            currentHealth = hits / Mathf.Max(_maxHits, 0.0001f);
+
+            if (changeCoroutine != null)
+                StopCoroutine(changeCoroutine);
+
             changeCoroutine = StartCoroutine(SmoothlyChangeVignette(currentHealth, smoothChangeDuration));
         }
-        currentRestoreTimer = 0;
+
+        currentRestoreTimer = 0f;
     }
 
-    IEnumerator SmoothlyChangeVignette(float targetValue, float changeDuration)
+    private IEnumerator SmoothlyChangeVignette(float targetValue, float duration)
     {
+        if (vignetteSettings == null) yield break;
+
+        float startValue = vignetteSettings.intensity.value;
         float elapsedTime = 0f;
-        while (elapsedTime < changeDuration)
+
+        while (elapsedTime < duration)
         {
-            float newIntensity = Mathf.Lerp(vignetteSettings.intensity.value, targetValue, elapsedTime / smoothChangeDuration);
-            vignetteSettings.intensity.value = newIntensity;
-            yield return null;
+            vignetteSettings.intensity.value = Mathf.Lerp(startValue, targetValue, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
+            yield return null;
         }
 
         vignetteSettings.intensity.value = targetValue;

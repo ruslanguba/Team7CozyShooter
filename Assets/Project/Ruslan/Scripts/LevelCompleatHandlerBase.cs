@@ -3,7 +3,8 @@ using UnityEngine;
 public class LevelCompleatHandlerBase : MonoBehaviour
 {
     [SerializeField] private LevelProgressSystem _progressSystem;
-    [SerializeField] private FinalTriggerActionSender _actionSender;
+    [SerializeField] private PlayerDetectorTrigger _actionSender;
+    [SerializeField] private DialogueTrigger _trigger;
     [SerializeField] private bool _isCompleat;
     private Animator _animator;
 
@@ -13,14 +14,17 @@ public class LevelCompleatHandlerBase : MonoBehaviour
         if(_progressSystem == null)
             _progressSystem = FindFirstObjectByType<LevelProgressSystem>();
 
-        _actionSender = GetComponentInChildren<FinalTriggerActionSender>();
+        _actionSender = GetComponentInChildren<PlayerDetectorTrigger>();
         _animator = GetComponent<Animator>();
-        _actionSender.gameObject.SetActive(false);
+
         _progressSystem.OnLevelCompleat += LevelCompleat;
-        _actionSender.OnTriggerEnterAction += FinalAction;
+
+        //_actionSender.OnTriggerEnterAction += FinalAction;
+        _trigger.OnDialogueEnded += FinalAction;
+        _actionSender.gameObject.SetActive(false);
     }
 
-    private void FinalAction(bool obj)
+    private void FinalAction()
     {
         _animator.SetTrigger("start");
     }
@@ -28,6 +32,7 @@ public class LevelCompleatHandlerBase : MonoBehaviour
     private void OnDisable()
     {
         _progressSystem.OnLevelCompleat -= LevelCompleat;
+        _trigger.OnDialogueEnded -= FinalAction;
     }
 
     protected virtual void LevelCompleat()

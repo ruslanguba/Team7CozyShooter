@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7623606825624988756}
   - component: {fileID: 4803758147964271168}
   - component: {fileID: 502724839092369748}
+  - component: {fileID: 4222001605948369635}
   m_Layer: 0
   m_Name: FinalLevel
   m_TagString: Untagged
@@ -127,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _progressSystem: {fileID: 0}
   _actionSender: {fileID: 2321154022400521250}
+  _trigger: {fileID: 4222001605948369635}
   _isCompleat: 0
 --- !u!95 &502724839092369748
 Animator:
@@ -150,6 +152,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4222001605948369635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640247778038931866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e7fa8df4ad90d42b9b3e07295fdc1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deleteOnEnd: 1
+  sentence:
+  - IsPluh: 0
+    Sentence: "\u041F\u0440\u0438\u0432\u0435\u0442 \u041F\u043B\u044E\u0445."
+  - IsPluh: 1
+    Sentence: "\u041F\u0440\u0438\u0432\u0435\u0442 \u041D\u0435\u043F\u0438\u0441\u044C"
+  - IsPluh: 0
+    Sentence: "\u0414\u0443\u0439 \u0432 \u043F\u043E\u0440\u0442\u0430\u043B"
 --- !u!1 &870841670975984222
 GameObject:
   m_ObjectHideFlags: 0

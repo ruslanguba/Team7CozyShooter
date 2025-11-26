@@ -1,16 +1,20 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerManager: MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
 
+    private InputReader _input;
     public Transform GetPlayerTransform => _playerTransform;
-    private Transform _playerTransform;
+
+    [SerializeField] private Transform _playerTransform;
+    [SerializeField] private CinemachineInputAxisController _axisController;
 
     private void Awake()
     {
-        // Singleton, но не переносим между сценами
+        // Singleton
         if (Instance == null)
         {
             Instance = this;
@@ -18,44 +22,25 @@ public class PlayerManager: MonoBehaviour
         }
         else
         {
-            _playerTransform = null;
             Destroy(gameObject);
-            return;
         }
     }
 
     private void Start()
     {
-        FindPlayerInScene();
+        _input = GetComponent<InputReader>();
+        _axisController = GetComponentInChildren<CinemachineInputAxisController>();
     }
 
-    private void OnEnable()
+    public void EnableInput()
     {
-        // Подписываемся на смену сцены, чтобы искать игрока заново
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        _input.enabled = true;
+        _axisController.enabled = true;
     }
 
-    private void OnDisable()
+    public void DisableInput()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        FindPlayerInScene();
-    }
-
-    private void FindPlayerInScene()
-    {
-        GameObject player = FindFirstObjectByType<PlayerContext>().gameObject;
-
-        if (player != null)
-        {
-            _playerTransform = player.transform;
-        }
-        else
-        {
-            Debug.LogWarning("PlayerManager: игрок не найден в сцене. Убедись, что у игрока установлен тег 'Player'.");
-        }
+        _input.enabled = false;
+        _axisController.enabled = false;
     }
 }

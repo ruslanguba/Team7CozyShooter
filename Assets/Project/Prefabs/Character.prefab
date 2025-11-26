@@ -92,8 +92,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2768503894197212870}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15199016, y: -0.04135728, z: 0.006365494, w: 0.98749584}
-  m_LocalPosition: {x: 0.3987265, y: 1.5035293, z: -4.751886}
+  m_LocalRotation: {x: 0.15212338, y: 0.0000000014653565, z: -1.3625208e-10, w: 0.98836154}
+  m_LocalPosition: {x: 0, y: 1.5035291, z: -4.7685847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -176,7 +176,7 @@ MonoBehaviour:
     SplineCurvature: 0.5
   RecenteringTarget: 3
   HorizontalAxis:
-    Value: -4.796402
+    Value: 0
     Center: 0
     Range: {x: -180, y: 180}
     Wrap: 1
@@ -286,7 +286,7 @@ MonoBehaviour:
       Enabled: 1
       Input:
         InputAction: {fileID: -1377444166432921221, guid: 4c92c3c2f526f174e9016441e4b60b91, type: 3}
-        Gain: -1
+        Gain: 2
         LegacyInput: 
         LegacyGain: 1
         CancelDeltaTime: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
       Enabled: 1
       Input:
         InputAction: {fileID: -3965661978932412175, guid: 4c92c3c2f526f174e9016441e4b60b91, type: 3}
-        Gain: -1
+        Gain: 1
         LegacyInput: 
         LegacyGain: 1
         CancelDeltaTime: 0
