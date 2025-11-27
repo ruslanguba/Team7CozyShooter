@@ -286,7 +286,7 @@ MonoBehaviour:
       Enabled: 1
       Input:
         InputAction: {fileID: -1377444166432921221, guid: 4c92c3c2f526f174e9016441e4b60b91, type: 3}
-        Gain: 2
+        Gain: -2
         LegacyInput: 
         LegacyGain: 1
         CancelDeltaTime: 0
@@ -394,6 +394,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6622392f73f62d4aa72e221107c0dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerTransform: {fileID: 0}
+  _axisController: {fileID: 0}
 --- !u!114 &4075486940518562214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,9 +470,6 @@ MonoBehaviour:
   smoothRestoreDuration: 5
   _maxHits: 3
   _minHits: 0
-  hits: 1
-  currentHealth: 0
-  restoreTimer: 5
 --- !u!114 &3699286833143479731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +491,7 @@ MonoBehaviour:
   _pillows:
   - {fileID: 861708476874599261}
   - {fileID: 2141287380153946342}
+  _uiBinder: {fileID: 0}
   _throwForce: 10
   _recallSpeed: 12
   _input: {fileID: 7863899753236708386}
