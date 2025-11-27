@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Lobby1Progress : MonoBehaviour
 {
-    [SerializeField] private EnemyHealth[] first_Enemy;
-    [SerializeField] private EnemyHealth[] second_Enemies;
+    [SerializeField] private EnemyHealth[] first_Enemies;
 
     [SerializeField] private PillowGun pillowGun;
 
@@ -18,13 +17,15 @@ public class Lobby1Progress : MonoBehaviour
     private void Start()
     {
         _counter = 0;
-        foreach (EnemyHealth enemy in first_Enemy)
+        foreach (EnemyHealth enemy in first_Enemies)
         {
             enemy.OnDeath += CalculateFirstQuestProgress;
         }
+
         first_Dilogue.OnDialogueEnded += OpenFirstDoor;
         second_Dilogue.OnDialogueEnded += OpenSecondDoor;
 
+        pillowGun.enabled = false;
         second_Dilogue.gameObject.SetActive(false);
     }
 
@@ -36,9 +37,9 @@ public class Lobby1Progress : MonoBehaviour
             second_Dilogue.gameObject.SetActive(true);
         }
     }
-
     private void OpenFirstDoor()
     {
+        pillowGun.enabled = true;
         first_door.SetTrigger("open");
     }
 

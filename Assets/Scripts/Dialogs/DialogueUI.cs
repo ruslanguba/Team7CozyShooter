@@ -15,11 +15,10 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI leftText;
     [SerializeField] private TextMeshProUGUI rightText;
 
-    [SerializeField] private float positionOffset = 50;
+    private float positionOffset;
     [SerializeField] private float sizeOffset;
 
-    private Vector2 leftOriginalSize;
-    private Vector2 rightOriginalSize;
+    private Vector2 originalSize;
 
     private Vector3 leftOriginalPos;
     private Vector3 rightOriginalPos;
@@ -27,8 +26,7 @@ public class DialogueUI : MonoBehaviour
 
     private void Awake()
     {
-        leftOriginalSize = leftImage.rectTransform.sizeDelta;
-        rightOriginalSize = rightImage.rectTransform.sizeDelta;
+        originalSize = leftImage.rectTransform.sizeDelta;
 
         leftOriginalPos = leftImage.rectTransform.localPosition;
         rightOriginalPos = rightImage.rectTransform.localPosition;
@@ -60,20 +58,26 @@ public class DialogueUI : MonoBehaviour
 
     private void ChangeIconsSize(bool isRight)
     {
+
         // Определяем выбранный и другой элементы
         RectTransform selected = isRight ? rightImage.rectTransform : leftImage.rectTransform;
         RectTransform other = isRight ? leftImage.rectTransform : rightImage.rectTransform;
 
+        other.sizeDelta = originalSize;
+        selected.sizeDelta = originalSize;
+
+        leftImage.rectTransform.localPosition = leftOriginalPos;
+        rightImage.rectTransform.localPosition= rightOriginalPos;
+
         // Восстанавливаем размер и позицию невыбранного
-        other.sizeDelta = isRight ? leftOriginalSize : rightOriginalSize;
-        other.localPosition = isRight ? leftOriginalPos : rightOriginalPos;
+        other.sizeDelta = originalSize;
 
         // Увеличиваем выбранный элемент и смещаем его
-        selected.sizeDelta += new Vector2(100, 100);
-
+        selected.sizeDelta += Vector2.one * sizeOffset;
+        positionOffset = sizeOffset / 2;
         Vector3 newPos = selected.localPosition;
-        newPos.y += 50;
-        newPos.x += isRight ? -50 : 50;
+        newPos.y += positionOffset;
+        newPos.x += isRight ? -positionOffset : positionOffset;
         selected.localPosition = newPos;
     }
 
