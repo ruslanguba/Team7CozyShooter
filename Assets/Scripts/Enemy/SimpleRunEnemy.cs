@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SimpleRunEnemy : MonoBehaviour
 {
+    public event Action<SimpleRunEnemy> OnDestroyed;
     [SerializeField] private float _speed;
     [SerializeField] private float _acceleration;
     [SerializeField] private float _stoppingDistannce;
@@ -32,6 +33,11 @@ public class SimpleRunEnemy : MonoBehaviour
             MoveTowards();
             CheckDistanceToTarget();
         }
+    }
+
+    private void OnDestroy()
+    {
+        OnDestroyed?.Invoke(this);
     }
 
     public void SetRunTarget(Transform target)

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -86,5 +87,10 @@ public class GameManager : MonoBehaviour
     {
         var request = new SceneTransitionRequest("Main menu");
         SceneTransitionManager.Instance.Transition(request);
+    }
+
+    public void Restart()
+    {
+        SceneTransitionManager.Instance.RestartScene();
     }
 }

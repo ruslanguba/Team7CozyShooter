@@ -23,16 +23,6 @@ public class InteractableBox : InteractableBase
         }
         CloseDoor();
     }
-
-    public void AddEnemy(SimpleRunEnemy simpleRunEnemy)
-    {
-
-    }
-
-    public void AddNextPoint(Transform nextPoint)
-    {
-
-    }
     
     public override void OnInteract()
     {
@@ -41,9 +31,9 @@ public class InteractableBox : InteractableBase
 
     public void ReciveEnemy(SimpleRunEnemy enemy)
     {
-        _enemies.Add(enemy);
         StartCoroutine(MoveAndShrink(enemy));
     }
+
 
     public void CloseDoor()
     {
@@ -90,10 +80,21 @@ public class InteractableBox : InteractableBase
             yield return null;
         }
         yield return new WaitForSeconds(_closeDuration);
+
         CloseDoor();
         // Финальная фиксация
         enemy.transform.position = endPos;
         enemy.transform.localScale = endScale;
         enemy.gameObject.SetActive(false);
+        if(enemy != null)
+        {
+            _enemies.Add(enemy);
+            enemy.OnDestroyed += RemoveEnemy;
+        }
+    }
+
+    private void RemoveEnemy(SimpleRunEnemy enemy)
+    {
+        _enemies.Remove(enemy);
     }
 }

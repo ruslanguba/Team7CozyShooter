@@ -22,6 +22,11 @@ public class SceneTransitionManager : MonoBehaviour
         StartCoroutine(LoadSceneRoutine(request));
     }
 
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     private IEnumerator LoadSceneRoutine(SceneTransitionRequest request)
     {
         // TODO: fade-out

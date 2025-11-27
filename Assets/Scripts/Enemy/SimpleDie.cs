@@ -40,12 +40,11 @@ public class SimpleDie : EnemyHealth
     {
         GetComponent<EnemyRotationHandler>().enabled = false;
         GetComponent<SimpleRunEnemy>().StopMoving();
-        GetComponent<SimpleRunEnemy>().enabled = false;
+
         _animator.SetTrigger("dead");
         _rigidbody.freezeRotation = false;
         _rigidbody.useGravity = true;
 
-        //_animator.SetTrigger("dead");
         base.Die();
         Destroy(gameObject, 7f);
     }
