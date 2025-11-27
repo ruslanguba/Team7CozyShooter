@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     private void OnEnable()
@@ -91,6 +90,7 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneTransitionManager.Instance.RestartScene();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        ContinueGame();
     }
 }
