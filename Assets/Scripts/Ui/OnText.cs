@@ -1,18 +1,19 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OnText : MonoBehaviour
 {
     [SerializeField] private GameObject _object;
     [SerializeField] private float _fadeDuration = 4f;
 
-    private TMP_Text text;
+    private Image text;
     private Color startColor;
 
     private void Awake()
     {
-        text = _object.GetComponent<TMP_Text>();
+        text = _object.GetComponent<Image>();
 
         if (text != null)
         {
