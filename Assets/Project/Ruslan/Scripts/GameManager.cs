@@ -84,6 +84,9 @@ public class GameManager : MonoBehaviour
 
     public void ExitToMenu()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        Time.timeScale = 1;
         var request = new SceneTransitionRequest("Main menu");
         SceneTransitionManager.Instance.Transition(request);
     }

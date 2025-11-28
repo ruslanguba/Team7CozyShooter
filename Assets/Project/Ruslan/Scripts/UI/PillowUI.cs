@@ -8,9 +8,9 @@ public class PillowUI : MonoBehaviour
     [SerializeField] private RectTransform _firstPosition;
     [SerializeField] private RectTransform _pillowsPanel;
     [SerializeField] private float _posOffset = 160f;
-    [SerializeField] private float _alphaVisible = 255f;
+    [SerializeField] private float _alphaVisible;
     [SerializeField] private float _alphaHidden = 0f;
-
+    private int _usedPillows;
     private List<Image> _pillowIcons = new List<Image>();
 
     // Создаём иконки
@@ -24,6 +24,7 @@ public class PillowUI : MonoBehaviour
         {
             Image icon = Instantiate(_iconPrefab, _pillowsPanel);
             icon.transform.localPosition = startPos + new Vector3(i * _posOffset, 0f, 0f);
+            _alphaVisible = icon.color.a;
             //SetAlpha(icon, _alphaVisible); // изначально скрыты
             
             _pillowIcons.Add(icon);
@@ -33,19 +34,14 @@ public class PillowUI : MonoBehaviour
     // Показываем иконку с начала списка
     public void ShowPillow()
     {
-        foreach (var icon in _pillowIcons)
-        {
-            if (icon.color.a < 0.1f)
-            {
-                SetAlpha(icon, _alphaVisible);
-                break;
-            }
-        }
+        SetAlpha(_pillowIcons[_pillowIcons.Count - _usedPillows], _alphaVisible);
+        _usedPillows--;
     }
 
     // Скрываем иконку с конца списка
     public void HidePillow()
     {
+        _usedPillows++;
         for (int i = _pillowIcons.Count - 1; i >= 0; i--)
         {
             if (_pillowIcons[i].color.a > 0.9f)

@@ -12,7 +12,7 @@ public class PlayerArmoury : MonoBehaviour
     //public GunBase CurrentGun => _currentGun;
 
     void Start()
-    {       
+    {
         TakeGun(_currentGunIndex);
     }
 
