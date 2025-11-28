@@ -8,7 +8,7 @@ public class SimpleRunEnemy : MonoBehaviour
     [SerializeField] private float _acceleration;
     [SerializeField] private float _stoppingDistannce;
     [SerializeField] private Animator _animator;
-    private EnemyHealth _health;
+    [SerializeField] private SimpleDie _health;
 
     private Rigidbody _rb;
     private bool _isMoving;
@@ -17,7 +17,7 @@ public class SimpleRunEnemy : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _health = GetComponent<EnemyHealth>();
+        _health = GetComponent<SimpleDie>();
         _animator = GetComponentInChildren<Animator>();
     }
 
@@ -50,7 +50,7 @@ public class SimpleRunEnemy : MonoBehaviour
 
     private void MoveTowards()
     {
-        if (_isMoving)
+        if (_isMoving && _health.IsAlive)
         {
             Vector3 direction = (_target.position - transform.position).normalized;
             Vector3 targetVelocity = direction * _speed;
@@ -70,16 +70,20 @@ public class SimpleRunEnemy : MonoBehaviour
 
     private void ReachTarget()
     {
-        _isMoving = false;
-        _animator.SetBool("isMoving", _isMoving);
-        if (_target.TryGetComponent(out InteractableBox interactableBox))
+        if (_health.IsAlive)
         {
-            interactableBox.ReciveEnemy(this);
-        }
-        else
-        {
-            _rb.linearVelocity = Vector3.zero;
-            GetComponent<EnemyRotationHandler>().RoteteToPlayer(PlayerManager.Instance.GetPlayerTransform.position);
+            _health.SetImmortal(true);
+            _isMoving = false;
+            _animator.SetBool("isMoving", _isMoving);
+            if (_target.TryGetComponent(out InteractableBox interactableBox))
+            {
+                interactableBox.ReciveEnemy(this);
+            }
+            else
+            {
+                _rb.linearVelocity = Vector3.zero;
+                GetComponent<EnemyRotationHandler>().RoteteToPlayer(PlayerManager.Instance.GetPlayerTransform.position);
+            }
         }
     }
 }

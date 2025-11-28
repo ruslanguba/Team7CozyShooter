@@ -7,10 +7,15 @@ public class NPCAnimationHandler : MonoBehaviour
     [SerializeField] bool _isGreeting;
     [SerializeField] bool _isApplause;
     [SerializeField] bool _isSwim;
+    [SerializeField] bool _isIdle;
 
-    private void Start()
+    private void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
+    }
+    private void Start()
+    {
+
         SetStartAnim();
     }
 

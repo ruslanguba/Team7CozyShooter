@@ -76,21 +76,22 @@ public class InteractableBox : InteractableBase
 
             // Уменьшение масштаба
             enemy.transform.localScale = Vector3.Lerp(startScale, endScale, normalized);
-
+            if (enemy == null)
+                break;
             yield return null;
         }
         yield return new WaitForSeconds(_closeDuration);
 
-        CloseDoor();
+        if (enemy != null)
+        {
+            _enemies.Add(enemy);
+            enemy.OnDestroyed += RemoveEnemy;
+            CloseDoor();
+        }
         // Финальная фиксация
         enemy.transform.position = endPos;
         enemy.transform.localScale = endScale;
         enemy.gameObject.SetActive(false);
-        if(enemy != null)
-        {
-            _enemies.Add(enemy);
-            enemy.OnDestroyed += RemoveEnemy;
-        }
     }
 
     private void RemoveEnemy(SimpleRunEnemy enemy)

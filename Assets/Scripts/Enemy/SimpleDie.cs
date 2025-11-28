@@ -6,7 +6,9 @@ public class SimpleDie : EnemyHealth
     private Animator _animator;
     [SerializeField] private float _timeToEnableHit = 1;
     private float _timer;
-    private bool _isCanTakeHit;
+    [SerializeField] private bool _isCanTakeHit;
+    [SerializeField] private SimpleRunEnemy _simpleRunEnemy;
+    public bool IsAlive { get; private set; }
 
     private void OnEnable()
     {
@@ -15,7 +17,11 @@ public class SimpleDie : EnemyHealth
         _timer = _timeToEnableHit;
         _isCanTakeHit = false;
     }
-
+    private void Start()
+    {
+        _simpleRunEnemy.GetComponent<SimpleRunEnemy>();
+        IsAlive = true;
+    }
     public override void TakeDamage(float damageValue, int collisions)
     {
         if (_isCanTakeHit)
@@ -36,10 +42,17 @@ public class SimpleDie : EnemyHealth
         }
     }
 
+    public void SetImmortal(bool isImmortal)
+    {
+        _isCanTakeHit = isImmortal;
+        _timer = _timeToEnableHit;
+    }
+
     protected override void Die()
     {
+        IsAlive = false;
         GetComponent<EnemyRotationHandler>().enabled = false;
-        GetComponent<SimpleRunEnemy>().StopMoving();
+        _simpleRunEnemy.StopMoving();
 
         _animator.SetTrigger("dead");
         _rigidbody.freezeRotation = false;
