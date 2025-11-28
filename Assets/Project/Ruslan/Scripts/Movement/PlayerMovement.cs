@@ -36,8 +36,8 @@ public class PlayerMovement
         float targetSpeed = moveInput.sqrMagnitude > 0.0001f ? _settings.walkSpeed : 0f;
         _currentSpeed = Mathf.MoveTowards(_currentSpeed, targetSpeed, _settings.acceleration * Time.deltaTime);
 
-        SetAnimatorParams(moveInput);
-        PlayFootstepsSound(_currentSpeed > 0);
+        //SetAnimatorParams(moveInput);
+        //PlayFootstepsSound(_currentSpeed > 0);
 
         Vector3 forward = _cameraTransform.forward;
         Vector3 right = _bodyTransform.right;
@@ -50,7 +50,8 @@ public class PlayerMovement
         camToPlayer.y = 0f;
         Vector3 moveDir = camToPlayer.normalized;
 
-        if (moveDir.sqrMagnitude > 0.01f && Mathf.Abs(moveInput.y) > 0.05f)
+        //if (moveDir.sqrMagnitude > 0.01f && Mathf.Abs(moveInput.y) > 0.05f)
+        if (moveDir.sqrMagnitude > 0.01f && _currentSpeed > 0.1f)
         {
             _playerRotationHandler.UpdateRotation(moveDir.normalized, _context.Settings.rotationSpeed);
         }

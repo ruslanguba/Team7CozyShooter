@@ -11,7 +11,7 @@ public class NPCAnimationHandler : MonoBehaviour
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();
-        SetAnim();
+        SetStartAnim();
     }
 
     public void SetIdleAnim()
@@ -20,7 +20,7 @@ public class NPCAnimationHandler : MonoBehaviour
         _animator.SetBool("isGreeting", false);
         _animator.SetBool("isApplause", false);
     }
-    public void SetAnim()
+    public void SetStartAnim()
     {
         _animator.SetBool("isTalk", _isTalk);
         _animator.SetBool("isGreeting", _isGreeting);
@@ -30,15 +30,21 @@ public class NPCAnimationHandler : MonoBehaviour
     public void SetisApplauseAnim()
     {
         _animator.SetBool("isApplause", true);
+        _animator.SetBool("isTalk", false);
+        _animator.SetBool("isGreeting", false);
     }
 
-    public void SetisGreetingAnim()
+    public void SetGreetingAnim()
     {
         _animator.SetBool("isGreeting", true);
+        _animator.SetBool("isTalk", false);
+        _animator.SetBool("isApplause", false);
     }
 
     public void SetTalkAnim()
     {
         _animator.SetBool("isTalk", true);
+        _animator.SetBool("isGreeting", false);
+        _animator.SetBool("isApplause", false);
     }
 }

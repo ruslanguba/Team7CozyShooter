@@ -1487,6 +1487,17 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!114 &363103951 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 896022870346021145, guid: bcb605e1352c3d94688462a2adf7e303, type: 3}
+  m_PrefabInstance: {fileID: 385441919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa65c8b5352493408dc8c313da2ea2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &385441919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4064,6 +4075,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1077586389}
+  - component: {fileID: 1077586390}
   m_Layer: 0
   m_Name: PluchNpc
   m_TagString: Untagged
@@ -4087,6 +4099,22 @@ Transform:
   - {fileID: 1025024154}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1077586390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077586388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 199fc9b06ddbd6f4f93e82b401a75531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isTalk: 0
+  _isGreeting: 1
+  _isApplause: 0
+  _isSwim: 0
 --- !u!1 &1091109422
 GameObject:
   m_ObjectHideFlags: 0
@@ -4350,6 +4378,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.012866072, y: 0.01286607, z: 0.040033963}
   m_Center: {x: 0, y: 0, z: 0.020016981}
+--- !u!114 &1183242863 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4222001605948369635, guid: 0c57df96f6e90b149a41c9367b29a7eb, type: 3}
+  m_PrefabInstance: {fileID: 1332714733}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e7fa8df4ad90d42b9b3e07295fdc1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1199158661
 GameObject:
   m_ObjectHideFlags: 0
@@ -4862,23 +4901,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5216802604314555757, guid: 0c57df96f6e90b149a41c9367b29a7eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.37
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5216802604314555757, guid: 0c57df96f6e90b149a41c9367b29a7eb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.85
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5474914630696181077, guid: 0c57df96f6e90b149a41c9367b29a7eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5674953
+      value: -1.78
       objectReference: {fileID: 0}
     - target: {fileID: 5474914630696181077, guid: 0c57df96f6e90b149a41c9367b29a7eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.563508
+      value: -5.36
       objectReference: {fileID: 0}
     - target: {fileID: 5474914630696181077, guid: 0c57df96f6e90b149a41c9367b29a7eb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.2607727
+      value: -5.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015930197676083749, guid: 0c57df96f6e90b149a41c9367b29a7eb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015930197676083749, guid: 0c57df96f6e90b149a41c9367b29a7eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015930197676083749, guid: 0c57df96f6e90b149a41c9367b29a7eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6877,11 +6928,15 @@ MonoBehaviour:
   first_Enemies:
   - {fileID: 641643097}
   - {fileID: 1900431161}
+  second_Enemies:
+  - {fileID: 363103951}
   pillowGun: {fileID: 1479415855}
   first_Dilogue: {fileID: 805980331}
   second_Dilogue: {fileID: 284107335}
+  third_Dilogue: {fileID: 1183242863}
   first_door: {fileID: 957982559}
   second_door: {fileID: 168402573}
+  npcAnimationHandler: {fileID: 1077586390}
   _counter: 0
 --- !u!4 &2119120890
 Transform:
