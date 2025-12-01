@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization;
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private bool deleteOnEnd;
     private PlayerDetectorTrigger _actionSender;
     [SerializeField] private List<Dialogue> sentence;
+    [SerializeField] private List<Dialogue> sentenceEn;
 
     private void OnEnable()
     {
@@ -25,7 +28,20 @@ public class DialogueTrigger : MonoBehaviour
     public void TriggerDialog()
     {
         OnDialogueStarted?.Invoke();
-        DialogueManager.Instance.StartDialog(sentence, this);
+
+        var selectedLocale = LocalizationSettings.SelectedLocale.Identifier;
+
+        if (selectedLocale == "en")
+        {
+            Debug.Log("Selected English locale");
+            DialogueManager.Instance.StartDialog(sentenceEn, this);
+        }
+
+        else
+        {
+            Debug.Log("Selected Russian or another locale");
+            DialogueManager.Instance.StartDialog(sentence, this);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,6 +55,7 @@ public class DialogueTrigger : MonoBehaviour
     public void DialogueCompleted()
     {
         OnDialogueEnded?.Invoke();  // ≈сли событи€ нет - ничего не произойдет
+
         if (deleteOnEnd)
         {
             Destroy(this);
