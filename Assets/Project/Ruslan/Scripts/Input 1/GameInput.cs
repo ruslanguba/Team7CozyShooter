@@ -6,11 +6,9 @@ public class GameInput : MonoBehaviour
 {
     [SerializeField] private InputActionReference _pauseAction;
     [SerializeField] private InputActionReference _tubAction;
-    [SerializeField] private InputActionReference _spaceAction;
 
     public event Action OnPause;
     public event Action OnTub;
-    public event Action OnSpace;
 
     private void OnEnable()
     {
@@ -40,13 +38,11 @@ public class GameInput : MonoBehaviour
     {
         if (_pauseAction?.action != null) _pauseAction.action.performed += ctx => OnPause?.Invoke();
         if (_tubAction?.action != null) _tubAction.action.performed += ctx => OnTub?.Invoke();
-        if (_spaceAction?.action != null) _spaceAction.action.performed += ctx => OnSpace?.Invoke();
     }
 
     private void UnsubscribeEvents()
     {
         if (_pauseAction?.action != null) _pauseAction.action.performed -= ctx => OnPause?.Invoke();
         if (_tubAction?.action != null) _tubAction.action.performed -= ctx => OnTub?.Invoke();
-        if (_spaceAction?.action != null) _spaceAction.action.performed -= ctx => OnSpace?.Invoke();
     }
 }

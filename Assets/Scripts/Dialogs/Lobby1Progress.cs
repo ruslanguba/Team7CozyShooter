@@ -14,7 +14,6 @@ public class Lobby1Progress : MonoBehaviour
 
     [SerializeField] private Animator first_door;
     [SerializeField] private Animator second_door;
-
     [SerializeField] private NPCAnimationHandler npcAnimationHandler;
 
     [SerializeField] private int _counter;
@@ -36,10 +35,11 @@ public class Lobby1Progress : MonoBehaviour
         first_Dilogue.OnDialogueEnded += OpenFirstDoor;
 
         second_Dilogue.OnDialogueStarted += SetApplauseAnim;
+        second_Dilogue.OnDialogueEnded += OpenSecondDoor;
 
         third_Dilogue.OnDialogueStarted += SetApplauseAnim;
 
-        pillowGun.Deactivate();
+        pillowGun.enabled = false;
         second_Dilogue.gameObject.SetActive(false);
     }
 
@@ -49,6 +49,7 @@ public class Lobby1Progress : MonoBehaviour
         first_Dilogue.OnDialogueEnded -= OpenFirstDoor;
 
         second_Dilogue.OnDialogueStarted -= SetApplauseAnim;
+        second_Dilogue.OnDialogueEnded -= OpenSecondDoor;
 
         third_Dilogue.OnDialogueStarted -= SetApplauseAnim;
     }
@@ -68,13 +69,12 @@ public class Lobby1Progress : MonoBehaviour
         if (_counter >= second_Enemies.Length)
         {
             npcAnimationHandler.SetGreetingAnim();
-            OpenSecondDoor();
         }
     }
 
     private void OpenFirstDoor()
     {
-        pillowGun.Activate();
+        pillowGun.enabled = true;
         first_door.SetTrigger("open");
         npcAnimationHandler.SetIdleAnim();
     }
