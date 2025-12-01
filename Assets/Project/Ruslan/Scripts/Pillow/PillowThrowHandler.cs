@@ -141,6 +141,17 @@ public class PillowThrowHandler : GunBase
     {
         pillowRb.isKinematic = true;
         pillowRb.detectCollisions = false;
+        float distance = Vector3.Distance(pillowRb.position, _spawnPoint.position);
+
+        if (distance > 10f)
+        {
+            // ѕолучаем направление от подушки к игроку
+            Vector3 dir = (_spawnPoint.position - pillowRb.position).normalized;
+
+            // Ќова€ позици€ на рассто€нии 10 м от игрока (в сторону подушки)
+            pillowRb.position = _spawnPoint.position - dir * 10f;
+        }
+
         while (Vector3.Distance(pillowRb.position, _spawnPoint.position) > 0.1f)
         {
             pillowRb.position = Vector3.MoveTowards(pillowRb.position, _spawnPoint.position, _recallSpeed * Time.deltaTime);
