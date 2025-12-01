@@ -6,13 +6,13 @@ public class GameManager : MonoBehaviour
 {
     public event Action OnOpenMenu;
     public event Action OnCloseMenu;
+    public event Action OnSpace;
 
     public event Action OnOpenComics;
 
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private GameInput gameInput;
-    private GameObject _curentActivePanel;
     private bool _isPaused;
 
     private void Awake()

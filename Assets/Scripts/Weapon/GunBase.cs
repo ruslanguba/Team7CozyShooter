@@ -43,12 +43,12 @@ public abstract class GunBase : MonoBehaviour
 
     public virtual void Activate() 
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
     }
 
     public virtual void Deactivate()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     public virtual void AddBullets(int numberOfBullets)

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Mixer")]
     [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private AudioSettingsData musicDatabase;
 
     [Header("Audio Sources")]
     public AudioSource musicSource;
@@ -22,6 +24,33 @@ public class AudioManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        PlayMusicForScene(scene.name);
+    }
+    public void PlayMusicForScene(string sceneName)
+    {
+        foreach (var entry in musicDatabase.entries)
+        {
+            if (entry.sceneName == sceneName)
+            {
+                PlayMusic(entry.musicClip);
+                return;
+            }
+        }
+
+        Debug.LogWarning($"AudioManager: Нет музыки для сцены {sceneName}");
     }
 
     public void PlayMusic(AudioClip clip, bool loop = true)
