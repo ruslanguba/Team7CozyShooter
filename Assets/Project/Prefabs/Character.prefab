@@ -465,11 +465,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _globalVolume: {fileID: 0}
-  intensityTarget: 1
   smoothChangeDuration: 2
   smoothRestoreDuration: 5
   _maxHits: 3
   _minHits: 0
+  restoreDelay: 5
 --- !u!114 &3699286833143479731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -932,6 +932,7 @@ GameObject:
   - component: {fileID: 3563871859149093678}
   - component: {fileID: 7807409684653071343}
   - component: {fileID: 4578758056256833061}
+  - component: {fileID: 3573853684807072523}
   m_Layer: 6
   m_Name: PlayerFallHandler
   m_TagString: Untagged
@@ -1020,6 +1021,18 @@ MonoBehaviour:
   _checkSurfacePivot: {fileID: 299796826007817516}
   radius: 0.5
   lastSafePos: {x: 0, y: 0, z: 0}
+--- !u!114 &3573853684807072523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5064669198609846747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b124e8222775541823b1b4be6df0e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6809727490614996737
 GameObject:
   m_ObjectHideFlags: 0

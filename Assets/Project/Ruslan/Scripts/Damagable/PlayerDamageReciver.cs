@@ -1,66 +1,57 @@
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 public class PlayerDamageReciver : MonoBehaviour
 {
+    [Header("Volume & Vignette")]
     [SerializeField] private Volume _globalVolume;
-    [SerializeField] private float intensityTarget = 1f;
-    [SerializeField] private float smoothChangeDuration = 2f;
-    [SerializeField] private float smoothRestoreDuration = 5f;
+    [SerializeField] private float smoothChangeDuration = 0.5f;
+    [SerializeField] private float smoothRestoreDuration = 2f;
+
+    [Header("Damage Settings")]
     [SerializeField] private float _maxHits = 5f;
-    [SerializeField] private float _minHits = 1f;
+    [SerializeField] private float _minHits = 0f;
+    [SerializeField] private float restoreDelay = 5f;
 
     private float hits;
-    private float currentHealth;
-    private float restoreTimer = 5f;
-    private float currentRestoreTimer;
-
     private Vignette vignetteSettings;
-    private Coroutine changeCoroutine;
+    private Coroutine vignetteCoroutine;
+    private float restoreTimer;
 
-    private void Start()
+    private void Awake()
     {
         if (_globalVolume == null)
         {
-            Debug.LogWarning("PlayerDamageReciver: Global Volume is not assigned!");
+            Debug.LogWarning("PlayerDamageReceiver: Global Volume is not assigned!");
             enabled = false;
             return;
         }
 
         if (!_globalVolume.profile.TryGet(out vignetteSettings))
         {
-            Debug.LogWarning("PlayerDamageReciver: Vignette override not found in Volume profile!");
+            Debug.LogWarning("PlayerDamageReceiver: Vignette override not found!");
             enabled = false;
             return;
         }
 
         hits = _minHits;
-        currentHealth = hits / Mathf.Max(_maxHits, 0.0001f);
         vignetteSettings.intensity.value = 0f;
+        restoreTimer = restoreDelay;
     }
 
     private void Update()
     {
+        // Автоматическое восстановление после таймера
         if (hits > _minHits)
         {
-            currentRestoreTimer += Time.deltaTime;
-            if (currentRestoreTimer >= restoreTimer)
+            restoreTimer -= Time.deltaTime;
+            if (restoreTimer <= 0f)
             {
-                currentRestoreTimer = restoreTimer;
+                restoreTimer = restoreDelay;
                 hits = _minHits;
-                currentHealth = hits / Mathf.Max(_maxHits, 0.0001f);
-
-                if (vignetteSettings != null)
-                {
-                    if (changeCoroutine != null)
-                        StopCoroutine(changeCoroutine);
-
-                    changeCoroutine = StartCoroutine(SmoothlyChangeVignette(0f, smoothRestoreDuration));
-                }
+                ChangeVignetteSmoothly(0f, smoothRestoreDuration);
             }
         }
     }
@@ -69,18 +60,20 @@ public class PlayerDamageReciver : MonoBehaviour
     {
         if (vignetteSettings == null) return;
 
-        if (hits < _maxHits)
-        {
-            hits++;
-            currentHealth = hits / Mathf.Max(_maxHits, 0.0001f);
+        hits = Mathf.Min(hits + 1f, _maxHits);
+        float targetIntensity = hits / Mathf.Max(_maxHits, 0.0001f);
 
-            if (changeCoroutine != null)
-                StopCoroutine(changeCoroutine);
+        ChangeVignetteSmoothly(targetIntensity, smoothChangeDuration);
 
-            changeCoroutine = StartCoroutine(SmoothlyChangeVignette(currentHealth, smoothChangeDuration));
-        }
+        restoreTimer = restoreDelay;
+    }
 
-        currentRestoreTimer = 0f;
+    private void ChangeVignetteSmoothly(float targetValue, float duration)
+    {
+        if (vignetteCoroutine != null)
+            StopCoroutine(vignetteCoroutine);
+
+        vignetteCoroutine = StartCoroutine(SmoothlyChangeVignette(targetValue, duration));
     }
 
     private IEnumerator SmoothlyChangeVignette(float targetValue, float duration)
@@ -88,12 +81,12 @@ public class PlayerDamageReciver : MonoBehaviour
         if (vignetteSettings == null) yield break;
 
         float startValue = vignetteSettings.intensity.value;
-        float elapsedTime = 0f;
+        float elapsed = 0f;
 
-        while (elapsedTime < duration)
+        while (elapsed < duration)
         {
-            vignetteSettings.intensity.value = Mathf.Lerp(startValue, targetValue, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
+            elapsed += Time.deltaTime;
+            vignetteSettings.intensity.value = Mathf.Lerp(startValue, targetValue, elapsed / duration);
             yield return null;
         }
 

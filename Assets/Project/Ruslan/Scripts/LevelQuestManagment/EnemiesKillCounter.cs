@@ -11,10 +11,12 @@ public class EnemiesKillCounter : MonoBehaviour
             _levelProgressSystem = FindAnyObjectByType<LevelProgressSystem>();
         _levelProgressSystem.OnEnemeyKilled += UpdateUI;
     }
+
     private void OnDisable()
     {
         _levelProgressSystem.OnEnemeyKilled -= UpdateUI;
     }
+
     private void UpdateUI(int enemiesLeft)
     { 
         _scoreUI.UpdateEnemiesToKillText(enemiesLeft.ToString());

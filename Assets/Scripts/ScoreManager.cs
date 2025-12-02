@@ -2,34 +2,37 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public event Action<int> OnScoreChanged;
-    [SerializeField] private int _screPerKill = 10;
+    public event Action<float> OnScoreChanged;
+    public event Action<float> OnScoreAdded;
+    [SerializeField] private float _screPerKill = 10;
 
-    private int _totalScore;
+    private float _totalScore;
 
-    public void HandleHit(int hits)
+    public void HandleHit(float hits)
     {
-        int score = 0;
+        float score = 0;
         score = hits * _screPerKill;
         AddScore(score);
     }
 
-    public void AddScore(int digit)
+    public void AddScore(float Score)
     {
-        _totalScore += digit;
+        _totalScore += Score;
+        OnScoreAdded?.Invoke(Score);
         OnScoreChanged?.Invoke(_totalScore);
     }
 
     private void CheckHighScore()
     {
-        int bestScore = PlayerPrefs.GetInt("BestScore", 0);
+        float bestScore = PlayerPrefs.GetFloat("BestScore", 0);
         if (_totalScore > bestScore)
         {
-            PlayerPrefs.SetInt("BestScore", _totalScore);
+            PlayerPrefs.SetFloat("BestScore", _totalScore);
         }
     }
 }
