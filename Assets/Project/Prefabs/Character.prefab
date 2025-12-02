@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 6129635068301384898}
   - component: {fileID: 1002936613353828547}
   - component: {fileID: 3433583366485189658}
+  - component: {fileID: 5906617841058648181}
   m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
@@ -467,6 +468,7 @@ MonoBehaviour:
   _globalVolume: {fileID: 0}
   smoothChangeDuration: 2
   smoothRestoreDuration: 5
+  firstHitIntensity: 0.6
   _maxHits: 3
   _minHits: 0
   restoreDelay: 5
@@ -643,6 +645,18 @@ MonoBehaviour:
   _currentZoom: 0
   _orbitalFollow: {fileID: 5047119252384295686}
   _inputReader: {fileID: 7863899753236708386}
+--- !u!114 &5906617841058648181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2837625493992388818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd7143e70b3c3c47acccd2da382d89a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2965667925559819861
 GameObject:
   m_ObjectHideFlags: 0
