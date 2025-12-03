@@ -510,9 +510,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deathClip: {fileID: 8300000, guid: 10c90ca71be00c7459c672f4d6e75abc, type: 3}
-  _attackClip: {fileID: 8300000, guid: 4bd884b9b8e1a294386df6288ec504e7, type: 3}
-  _footstepClip: {fileID: 8300000, guid: 68d228425a8f14f4e95183f58eace05d, type: 3}
-  _jumpClip: {fileID: 8300000, guid: f78a6fd2da4dfb54baf0de9115ca0039, type: 3}
+  _attackClip: {fileID: 8300000, guid: 68ed0b58044f5ea4dbb0be8b86172d4c, type: 3}
+  _jumpClip: {fileID: 8300000, guid: 37439a704b1af2644ab712cc4a798ec8, type: 3}
+  _footstepClips:
+  - {fileID: 8300000, guid: 6064fb6fd47fad140aff6ddee6c6bb21, type: 3}
+  - {fileID: 8300000, guid: ad9849989dbbc8c48a2d23044fc8d061, type: 3}
+  - {fileID: 8300000, guid: f00fc6d3ae2c162468c6e273a5070e45, type: 3}
+  - {fileID: 8300000, guid: 6eb2d68b359602247977f30802fd045d, type: 3}
   _stepInterval: 1.2
   _pitchRandom: 0.1
   randomClips: []
