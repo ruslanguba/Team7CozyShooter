@@ -1,12 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.ParticleSystem;
 
 public class ScoreStar : MonoBehaviour
 {
     [SerializeField] private float _scoreToFill;
     [SerializeField] private float _popScale = 1.3f;      // насколько увеличивается
     [SerializeField] private float _popTime = 0.2f;       // время увеличения и уменьшения
+    [SerializeField] private ParticleSystem _particle;
 
     private Image _image;
     private float _currentScore;
@@ -33,6 +35,7 @@ public class ScoreStar : MonoBehaviour
             StopCoroutine(_popCoroutine);
 
         _popCoroutine = StartCoroutine(PopAnimation());
+        _particle.Play();
     }
     private IEnumerator PopAnimation()
     {
@@ -60,5 +63,6 @@ public class ScoreStar : MonoBehaviour
 
         transform.localScale = _originalScale;
         _popCoroutine = null;
+        
     }
 }
