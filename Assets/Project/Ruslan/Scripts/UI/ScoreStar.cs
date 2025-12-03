@@ -14,6 +14,7 @@ public class ScoreStar : MonoBehaviour
     private float _currentScore;
     private Vector3 _originalScale;
     private Coroutine _popCoroutine;
+    private float _targetFillAmount;
 
     public float ScoreToFill => _scoreToFill - _currentScore;
     public bool IsFull => _currentScore >= _scoreToFill;
@@ -28,26 +29,29 @@ public class ScoreStar : MonoBehaviour
     {
         _currentScore += score;
         _currentScore = Mathf.Min(_currentScore, _scoreToFill);
-        _image.fillAmount = _currentScore / _scoreToFill;
+        _targetFillAmount = _currentScore / _scoreToFill;
 
+        if( _currentScore >= _scoreToFill )
+            _particle.Play();
         // Запуск анимации "поп"
         if (_popCoroutine != null)
             StopCoroutine(_popCoroutine);
 
         _popCoroutine = StartCoroutine(PopAnimation());
-        _particle.Play();
     }
     private IEnumerator PopAnimation()
     {
         // Увеличение
         float t = 0;
         Vector3 targetScale = _originalScale * _popScale;
+        float startFill = _image.fillAmount;
 
         while (t < _popTime)
         {
             t += Time.deltaTime;
             float p = t / _popTime;
             transform.localScale = Vector3.Lerp(_originalScale, targetScale, p);
+            _image.fillAmount = Mathf.Lerp(startFill, _targetFillAmount, p);
             yield return null;
         }
 

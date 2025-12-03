@@ -1,24 +1,39 @@
 using System.Collections;
 using UnityEngine;
 
-public class ShaderPaintablePrototype : Damagable
+public class ShaderPaintablePrototype : InteractableBase
 {
     string _transientKey = "_Transient";
 
-    [SerializeField] Renderer _renderer;
-
+    [SerializeField] Renderer[] _renderer;
+    [SerializeField] private Material _colorChangeMaterial;
+    [SerializeField] private Collider _collider;
     [SerializeField] private float _steps = 5;
+    [SerializeField] private float _maxHitPoints = 5;
     private float _currentStep = 0;
 
     private void Awake()
     {
-        _renderer.material = new Material(_renderer.material);
+        foreach (var renderer in _renderer)
+        {
+            renderer.material = _colorChangeMaterial;
+            renderer.material = new Material(renderer.material);
+        }
+
+        if (TryGetComponent(out Collider collider))
+        {
+            _collider = collider;
+        }
+        else
+        {
+            _collider = GetComponentInChildren<Collider>();
+        }
 
         // Если ты хочешь, чтобы количество шагов зависело от хитпоинтов:
         _steps = _maxHitPoints;
     }
 
-    public override void TakeHit()
+    public override void OnInteract()
     {
         PaintStep();
     }
@@ -31,6 +46,9 @@ public class ShaderPaintablePrototype : Damagable
         _currentStep++;
 
         float t = _currentStep / _steps;
-        _renderer.material.SetFloat(_transientKey, t * 2);
+        foreach (var renderer in _renderer)
+        {
+            renderer.material.SetFloat(_transientKey, t * 2);
+        }
     }
 }

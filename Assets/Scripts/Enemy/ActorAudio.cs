@@ -5,11 +5,14 @@ public class ActorAudio : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] private AudioClip _deathClip;
     [SerializeField] private AudioClip _attackClip;
-    [SerializeField] private AudioClip _footstepClip;
     [SerializeField] private AudioClip _jumpClip;
 
-    [SerializeField] private float _stepInterval = 0.5f;      // раз в секунду
+    [Header("Footsteps")]
+    [SerializeField] private AudioClip[] _footstepClips;
+    [SerializeField] private float _stepInterval = 0.5f;
     [SerializeField] private float _pitchRandom = 0.1f;
+
+    private int _lastFootstepIndex = -1;
 
     [Header("Random Clips")]
     public AudioClip[] randomClips;
@@ -84,10 +87,21 @@ public class ActorAudio : MonoBehaviour
 
     private void PlayStep()
     {
-        if (_footstepClip == null) return;
+        if (_footstepClips == null || _footstepClips.Length == 0)
+            return;
+
+        // Случайный индекс, но не повторяем тот же самый звук дважды подряд
+        int index;
+        do
+        {
+            index = Random.Range(0, _footstepClips.Length);
+        }
+        while (index == _lastFootstepIndex && _footstepClips.Length > 1);
+
+        _lastFootstepIndex = index;
 
         audioSource.pitch = 1f + Random.Range(-_pitchRandom, _pitchRandom);
-        audioSource.PlayOneShot(_footstepClip);
+        audioSource.PlayOneShot(_footstepClips[index]);
     }
 
 }
