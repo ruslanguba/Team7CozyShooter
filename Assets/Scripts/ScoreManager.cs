@@ -26,13 +26,4 @@ public class ScoreManager : MonoBehaviour
         OnScoreAdded?.Invoke(Score);
         OnScoreChanged?.Invoke(_totalScore);
     }
-
-    private void CheckHighScore()
-    {
-        float bestScore = PlayerPrefs.GetFloat("BestScore", 0);
-        if (_totalScore > bestScore)
-        {
-            PlayerPrefs.SetFloat("BestScore", _totalScore);
-        }
-    }
 }

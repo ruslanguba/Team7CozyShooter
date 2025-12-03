@@ -28,7 +28,7 @@ public class Collectable : MonoBehaviour
             transform.Rotate(0, 1f, 0f);
     }
 
-    public void Collect(Transform target)
+    public virtual void Collect(Transform target)
     {
         if (_isCollected) return;
         _isCollected = true;

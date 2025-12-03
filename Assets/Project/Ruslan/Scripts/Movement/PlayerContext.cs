@@ -11,6 +11,7 @@ public class PlayerContext : MonoBehaviour
     public Transform BodyTransform => transform;
     public AnimatorHandler AnimatorHandler => _animatorHandler;
     public ActorAudio Audio => _audio;
+    public Animator Animator => _animator;
 
     [SerializeField] private PlayerSettings _settings;
     [SerializeField] private InputReader _inputReader;
@@ -28,6 +29,11 @@ public class PlayerContext : MonoBehaviour
     private PlayerJump _jump;
     private PlayerLook _look;
 
+    public void SetAnimator(Animator animator)
+    {
+        _animator = animator;
+    }
+
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
@@ -37,7 +43,7 @@ public class PlayerContext : MonoBehaviour
         _playerRotationHandler = GetComponent<PlayerRotationHandler>();
         _cinemachineCamera = GetComponentInChildren<CinemachineCamera>();
         _orbitalFollow = GetComponentInChildren<CinemachineOrbitalFollow>();
-        _animatorHandler = new AnimatorHandler(_animator);
+        _animatorHandler = new AnimatorHandler(this);
         _movement = new PlayerMovement(this, Camera.main, _playerRotationHandler);
         _gravity = new PlayerGravity(this);
         _jump = new PlayerJump(this, _gravity);
