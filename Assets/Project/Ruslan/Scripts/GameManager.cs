@@ -26,14 +26,16 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        DialogueManager.Instance.OnDialogueStarted += PauseGame;
+        DialogueManager.Instance.OnDialogueEnded += ContinueGame;
+    }
     private void OnEnable()
     {
         gameInput.OnPause += ShowMenu;
         gameInput.OnTub += ShowInstruction;
-        DialogueManager.Instance.OnDialogueStarted += PauseGame;
-        DialogueManager.Instance.OnDialogueEnded += ContinueGame;
     }
-
     private void OnDisable()
     {
         gameInput.OnPause -= ShowMenu;
