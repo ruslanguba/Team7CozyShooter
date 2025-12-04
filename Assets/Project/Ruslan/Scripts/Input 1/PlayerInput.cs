@@ -181,6 +181,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextSentence"",
+                    ""type"": ""Button"",
+                    ""id"": ""b99d907d-4934-47e1-ac7b-a399d16b50c1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -337,6 +346,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Tab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2dc470bb-44d4-4205-9103-c2f93b2b313a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextSentence"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -383,6 +403,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_GP_Recall = m_GP.FindAction("Recall", throwIfNotFound: true);
         m_GP_Scroll = m_GP.FindAction("Scroll", throwIfNotFound: true);
         m_GP_Tab = m_GP.FindAction("Tab", throwIfNotFound: true);
+        m_GP_NextSentence = m_GP.FindAction("NextSentence", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_OnEsc = m_Menu.FindAction("OnEsc", throwIfNotFound: true);
@@ -477,6 +498,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_GP_Recall;
     private readonly InputAction m_GP_Scroll;
     private readonly InputAction m_GP_Tab;
+    private readonly InputAction m_GP_NextSentence;
     /// <summary>
     /// Provides access to input actions defined in input action map "GP".
     /// </summary>
@@ -528,6 +550,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "GP/Tab".
         /// </summary>
         public InputAction @Tab => m_Wrapper.m_GP_Tab;
+        /// <summary>
+        /// Provides access to the underlying input action "GP/NextSentence".
+        /// </summary>
+        public InputAction @NextSentence => m_Wrapper.m_GP_NextSentence;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -584,6 +610,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Tab.started += instance.OnTab;
             @Tab.performed += instance.OnTab;
             @Tab.canceled += instance.OnTab;
+            @NextSentence.started += instance.OnNextSentence;
+            @NextSentence.performed += instance.OnNextSentence;
+            @NextSentence.canceled += instance.OnNextSentence;
         }
 
         /// <summary>
@@ -625,6 +654,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Tab.started -= instance.OnTab;
             @Tab.performed -= instance.OnTab;
             @Tab.canceled -= instance.OnTab;
+            @NextSentence.started -= instance.OnNextSentence;
+            @NextSentence.performed -= instance.OnNextSentence;
+            @NextSentence.canceled -= instance.OnNextSentence;
         }
 
         /// <summary>
@@ -831,6 +863,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTab(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NextSentence" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNextSentence(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Menu" which allows adding and removing callbacks.

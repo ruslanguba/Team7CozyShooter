@@ -5,6 +5,9 @@ using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
+    public event Action OnDialogueStarted;
+    public event Action OnDialogueEnded;
+
     public static DialogueManager Instance;
 
     [SerializeField] private DialogueUI dialogueUIPrefab;
@@ -12,6 +15,10 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<Dialogue> sentenses;
     private DialogueTrigger _currentTrigger;
+
+
+
+    public bool IsDialogActive { get; private set; }
 
     private void Awake()
     {
@@ -32,6 +39,15 @@ public class DialogueManager : MonoBehaviour
         sentenses = new Queue<Dialogue>();
     }
 
+    private void Update()
+    {
+        if(!IsDialogActive)
+            return;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            DisplayNextSentence();
+        }
+    }
     private void CreateEventSystemIfNoExist()
     {
         if (EventSystem.current == null)
@@ -44,9 +60,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialog(List<Dialogue> dialogs, DialogueTrigger trigger)
     {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
-        PlayerManager.Instance.DisableInput();
+        IsDialogActive = true;
+        OnDialogueStarted?.Invoke();
         sentenses.Clear();
         dialogueUI.ShowPanel();
         _currentTrigger = trigger;
@@ -59,6 +74,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
+        Debug.Log("next Sentence");
         if (sentenses.Count == 0)
         {
             EndDialog();
@@ -70,10 +86,9 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialog()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        OnDialogueEnded?.Invoke();
 
-        PlayerManager.Instance.EnableInput();
+        IsDialogActive = false;
         _currentTrigger.DialogueCompleted();
         dialogueUI.HidePanel();
         Debug.Log("End Dialogue");

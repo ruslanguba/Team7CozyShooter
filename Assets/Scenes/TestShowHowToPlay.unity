@@ -8643,6 +8643,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelProgressSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 4398140863521126373, guid: 2cb29353ae990934096c7e001e02409b, type: 3}
+      propertyPath: _levelId
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398140863521126373, guid: 2cb29353ae990934096c7e001e02409b, type: 3}
+      propertyPath: _screToFillFirstStar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398140863521126373, guid: 2cb29353ae990934096c7e001e02409b, type: 3}
+      propertyPath: _screToFillThirdStar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398140863521126373, guid: 2cb29353ae990934096c7e001e02409b, type: 3}
+      propertyPath: _screToFillSecondStar
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 7969951425661181974, guid: 2cb29353ae990934096c7e001e02409b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.52
@@ -9235,6 +9251,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2572561793504528677, guid: a711eac66b5fe094f866259ad4aa796a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandlePause
+      objectReference: {fileID: 0}
     - target: {fileID: 4367318077060702253, guid: a711eac66b5fe094f866259ad4aa796a, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -9246,7 +9266,7 @@ PrefabInstance:
     - target: {fileID: 5421182560032924379, guid: a711eac66b5fe094f866259ad4aa796a, type: 3}
       propertyPath: _spaceAction
       value: 
-      objectReference: {fileID: 1230241358133591586, guid: 4c92c3c2f526f174e9016441e4b60b91, type: 3}
+      objectReference: {fileID: 6603878652641075768, guid: 4c92c3c2f526f174e9016441e4b60b91, type: 3}
     - target: {fileID: 6357472206549208560, guid: a711eac66b5fe094f866259ad4aa796a, type: 3}
       propertyPath: m_Name
       value: GameManager

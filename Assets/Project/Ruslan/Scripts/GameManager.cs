@@ -30,12 +30,16 @@ public class GameManager : MonoBehaviour
     {
         gameInput.OnPause += ShowMenu;
         gameInput.OnTub += ShowInstruction;
+        DialogueManager.Instance.OnDialogueStarted += PauseGame;
+        DialogueManager.Instance.OnDialogueEnded += ContinueGame;
     }
 
     private void OnDisable()
     {
         gameInput.OnPause -= ShowMenu;
         gameInput.OnTub -= ShowInstruction;
+        DialogueManager.Instance.OnDialogueStarted -= PauseGame;
+        DialogueManager.Instance.OnDialogueEnded -= ContinueGame;
     }
 
     private void ShowMenu()
@@ -50,15 +54,31 @@ public class GameManager : MonoBehaviour
         HandlePause();
     }
 
-    private void HandlePause()
+    public void HandlePause()
     {
         _isPaused = !_isPaused;
+
         if (_isPaused)
         {
+            // Открыли меню
             PauseGame();
         }
         else
         {
+            // Закрыли меню, но нужно учитывать диалог
+            if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogActive)
+            {
+                // Идёт диалог игра должна оставаться на паузе
+                OnCloseMenu?.Invoke();        // Закрываем меню
+                                              // но не продолжаем игру
+
+                // Важно: курсор и блокировка ввода такие же как при диалоге
+                PauseGame();
+
+                return;
+            }
+
+            // Обычно продолжаем игру
             ContinueGame();
         }
     }
@@ -78,7 +98,6 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         _isPaused = false;
-
         OnCloseMenu?.Invoke();
     }
 

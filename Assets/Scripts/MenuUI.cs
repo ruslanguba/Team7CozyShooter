@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MenuUI : MonoBehaviour
 {
@@ -36,6 +37,10 @@ public class MenuUI : MonoBehaviour
         _settingsPanel.gameObject.SetActive(false);
         _exitPanel.gameObject.SetActive(false);
         _comics.SetActive(false);
+        if (EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
     }
 
     private void OpenCommics()
