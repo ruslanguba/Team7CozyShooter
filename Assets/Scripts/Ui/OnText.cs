@@ -13,6 +13,7 @@ public class OnText : MonoBehaviour
     private Color startColor;
 
     private List<Graphic> graphicsToFade;
+    private Coroutine fadeRoutine;
 
     private void Awake()
     {
@@ -38,8 +39,12 @@ public class OnText : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent<PlayerContext>(out PlayerContext playerContext))
         {
-            _object.SetActive(true);
-            StartCoroutine(FadeOutAllGraphics());
+            if (fadeRoutine == null)
+            {
+                _object.SetActive(true);
+                fadeRoutine = StartCoroutine(FadeOutAllGraphics());
+            }
+            
         }
     }
 
@@ -60,6 +65,7 @@ public class OnText : MonoBehaviour
         }
         
         _object.SetActive(false);
+        fadeRoutine = null;
     }
 
     //private void Awake()
