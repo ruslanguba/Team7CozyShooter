@@ -6,6 +6,7 @@ public class LevelCompleatHandlerBase : MonoBehaviour
     [SerializeField] private PlayerDetectorTrigger _actionSender;
     [SerializeField] private DialogueTrigger _trigger;
     [SerializeField] private bool _isCompleat;
+    [SerializeField] private string _levelID;
     private Animator _animator;
 
 
@@ -39,5 +40,8 @@ public class LevelCompleatHandlerBase : MonoBehaviour
     {
         _actionSender.gameObject.SetActive(true);
         _isCompleat = true;
+
+        PlayerPrefs.SetInt(_levelID + "_Completed", 1);
+        PlayerPrefs.Save();
     }
 }

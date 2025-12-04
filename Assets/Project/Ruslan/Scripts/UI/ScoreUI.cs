@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ScoreUI : MonoBehaviour
 {
+    [SerializeField] private string _levelId = "Level1";
     [SerializeField] private TextMeshProUGUI _enemiesToKill;
     [SerializeField] private TextMeshProUGUI _score;
     [SerializeField] private TextMeshProUGUI _addedScore;
@@ -84,6 +85,7 @@ public class ScoreUI : MonoBehaviour
 
                 // Переходим к следующей звезде
                 _currentIndex++;
+                SaveStars();
             }
             else
             {
@@ -92,5 +94,12 @@ public class ScoreUI : MonoBehaviour
                 amount = 0;
             }
         }
+    }
+
+    private void SaveStars()
+    {
+        int stars = Mathf.Clamp(_currentIndex, 0, _scoreStars.Count);
+        PlayerPrefs.SetInt(_levelId + "_Stars", stars);
+        PlayerPrefs.Save();
     }
 }
