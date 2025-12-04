@@ -4,7 +4,7 @@ public class SimpleDie : EnemyHealth
 {
     private Rigidbody _rigidbody;
     private Animator _animator;
-    [SerializeField] private float _timeToEnableHit = 1;
+    [SerializeField] private float _timeToEnableHit = 0.5f;
     private float _timer;
     [SerializeField] private bool _isCanTakeHit;
     [SerializeField] private SimpleRunEnemy _simpleRunEnemy;

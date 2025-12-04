@@ -5,7 +5,7 @@ public class AnimatorHandler
     private readonly Animator _animator;
     private readonly PlayerContext _playerContext;
 
-    private static readonly int SpeedHash = Animator.StringToHash("speed");
+    private static readonly int SpeedHash = Animator.StringToHash("_speed");
     private static readonly int IsMovingHash = Animator.StringToHash("isMoving");
     private static readonly int IsJumpHash = Animator.StringToHash("isJump");
     private static readonly int AttackTriggerHash = Animator.StringToHash("attack");
@@ -30,7 +30,7 @@ public class AnimatorHandler
     public void SetMoveDirection(int dir) => _playerContext.Animator.SetInteger(MoveDirHash, dir);
     public void SetAnimSpeedMultiplier(float multiplier) => _playerContext.Animator.SetFloat(AnimSpeedMultiplierHash, multiplier);
 
-    //public void SetSpeed(float speed) => _animator.SetFloat(SpeedHash, Mathf.Abs(speed));
+    //public void SetSpeed(float _speed) => _animator.SetFloat(SpeedHash, Mathf.Abs(_speed));
     //public void SetMoving(bool moving) => _animator.SetBool(IsMovingHash, moving);
     //public void SetBackward(bool backward) => _animator.SetBool(IsBackwardHash, backward);
     //public void SetJump() => _animator.SetTrigger(IsJumpHash);
