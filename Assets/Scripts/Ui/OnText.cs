@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class OnText : MonoBehaviour
 {
     [SerializeField] private GameObject _object;
-    [SerializeField] private float _fadeDuration = 4f;
+    [SerializeField] private float _fadeDuration = 1;
+    [SerializeField] private float _showDuration = 2;
 
     private Image text;
     private Color startColor;
@@ -37,19 +38,25 @@ public class OnText : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent<PlayerContext>(out PlayerContext playerContext))
+        if (other.gameObject.TryGetComponent(out PlayerContext playerContext))
         {
-            if (fadeRoutine == null)
+            if (fadeRoutine != null)
             {
-                _object.SetActive(true);
-                fadeRoutine = StartCoroutine(FadeOutAllGraphics());
+                StopCoroutine(fadeRoutine);
             }
-            
+            foreach (Graphic graphic in graphicsToFade)
+            {
+                graphic.color = new Color(graphic.color.r, graphic.color.g, graphic.color.b, 1f);
+            }
+            _object.SetActive(true);
+            fadeRoutine = StartCoroutine(FadeOutAllGraphics());
+
         }
     }
 
     private IEnumerator FadeOutAllGraphics()
     {
+        yield return new WaitForSeconds(_showDuration);
         float elapsedTime = 0;
         while (elapsedTime < _fadeDuration)
         {

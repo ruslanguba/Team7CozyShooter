@@ -6,7 +6,7 @@ public class Lobby1Progress : MonoBehaviour
     [SerializeField] private EnemyHealth[] first_Enemies;
     [SerializeField] private EnemyHealth[] second_Enemies;
 
-    [SerializeField] private PillowGun pillowGun;
+    //[SerializeField] private PillowGun pillowGun;
 
     [SerializeField] private DialogueTrigger first_Dilogue;
     [SerializeField] private DialogueTrigger second_Dilogue;
@@ -39,7 +39,7 @@ public class Lobby1Progress : MonoBehaviour
 
         //third_Dilogue.OnDialogueStarted += SetApplauseAnim;
 
-        pillowGun.Deactivate();
+        //pillowGun.Deactivate();
         second_Dilogue.gameObject.SetActive(false);
     }
 
@@ -74,7 +74,7 @@ public class Lobby1Progress : MonoBehaviour
 
     private void OpenFirstDoor()
     {
-        pillowGun.Activate();
+        //pillowGun.Activate();
         first_door.SetTrigger("open");
         npcAnimationHandler.SetIdleAnim();
     }

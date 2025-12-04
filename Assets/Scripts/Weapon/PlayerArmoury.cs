@@ -4,59 +4,59 @@ using UnityEngine;
 
 public class PlayerArmoury : MonoBehaviour
 {
-    [SerializeField] private GunBase[] _guns;
-    [SerializeField] private int _currentGunIndex;
-    [SerializeField] private InputReader input;
-    //[SerializeField] private GunBase _currentGun;
+    //[SerializeField] private GunBase[] _guns;
+    //[SerializeField] private int _currentGunIndex;
+    //[SerializeField] private InputReader input;
+    ////[SerializeField] private GunBase _currentGun;
 
-    //public GunBase CurrentGun => _currentGun;
+    ////public GunBase CurrentGun => _currentGun;
 
-    void Start()
-    {
-        TakeGun(_currentGunIndex);
-    }
+    //void Start()
+    //{
+    //    TakeGun(_currentGunIndex);
+    //}
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            TakeGun(0);
-        }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Alpha1))
+    //    {
+    //        TakeGun(0);
+    //    }
 
-        //else if (Input.GetKeyDown(KeyCode.Alpha2))
-        //{
-        //    TakeGun(1);
-        //}
-    }
+    //    //else if (Input.GetKeyDown(KeyCode.Alpha2))
+    //    //{
+    //    //    TakeGun(1);
+    //    //}
+    //}
 
-    private void OnDisable()
-    {
-        foreach (var gun in _guns)
-        {
-            gun.Deactivate();
-        }
-    }
-    public void TakeGun(int gunIndex)
-    {
-        _currentGunIndex = gunIndex;
+    //private void OnDisable()
+    //{
+    //    foreach (var gun in _guns)
+    //    {
+    //        gun.Deactivate();
+    //    }
+    //}
+    //public void TakeGun(int gunIndex)
+    //{
+    //    _currentGunIndex = gunIndex;
 
-        for (int i = 0; i < _guns.Length; i++)
-        {
-            if (i == gunIndex)
-            { 
-                //_currentGun = _guns[i];
-                _guns[i].Activate();
-            }
+    //    for (int i = 0; i < _guns.Length; i++)
+    //    {
+    //        if (i == gunIndex)
+    //        { 
+    //            //_currentGun = _guns[i];
+    //            _guns[i].Activate();
+    //        }
 
-            else
-            {
-                _guns[i].Deactivate();
-            }
-        }
-    }
+    //        else
+    //        {
+    //            _guns[i].Deactivate();
+    //        }
+    //    }
+    //}
 
-    public void AddBulletsForGun(int gunIndex, int numberOfBullets)
-    {
-        _guns[gunIndex].AddBullets(numberOfBullets);
-    }
+    //public void AddBulletsForGun(int gunIndex, int numberOfBullets)
+    //{
+    //    _guns[gunIndex].AddBullets(numberOfBullets);
+    //}
 }

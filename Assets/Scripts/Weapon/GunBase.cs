@@ -17,6 +17,7 @@ public abstract class GunBase : MonoBehaviour
     {
         if (input != null) 
             input = GetComponentInParent<InputReader>();
+        Activate();
     }
     protected bool IsCanShoot()
     {

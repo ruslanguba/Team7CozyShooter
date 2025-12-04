@@ -14,9 +14,9 @@ public class Collectable : MonoBehaviour
 
     private bool _isCollected;
     private Vector3 _originalScale;
-    private Collider _collider;
+    [SerializeField] private Collider _collider;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _originalScale = transform.localScale;
         _collider = GetComponent<Collider>();

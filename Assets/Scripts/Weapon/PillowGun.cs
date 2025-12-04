@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PillowGun : GunBase
 {
+
     [SerializeField] private BounceRayTrajectory _trajectory;
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private ParticleSystem _hitPartical;
@@ -10,6 +11,7 @@ public class PillowGun : GunBase
     [SerializeField] private int _maxCollisionCount;
     [SerializeField] private Transform _character;
     [SerializeField] private CollisionListener _collisionListener;
+    [SerializeField] private bool _isActiveOnSatrt = true;
     private BulletsHandler _bulletsHandler;
     private ActorAudio _audio;
     private bool _isShowTrajectory;
@@ -31,9 +33,12 @@ public class PillowGun : GunBase
 
     private void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         _trajectory.GetComponent<BounceRayTrajectory>();
         _audio = GetComponentInParent<ActorAudio>();
+        if(_isActiveOnSatrt)
+        {
+            Activate();
+        }
     }
 
     public override void Deactivate()

@@ -25,7 +25,7 @@ public class ScoreUI : MonoBehaviour
 
     private void Start()
     {
-        _scoreManager.OnScoreChanged += UpdateScoreText;
+        //_scoreManager.OnScoreChanged += UpdateScoreText;
         _scoreManager.OnScoreAdded += AddScore;
         _addedScoreImage.gameObject.SetActive(false);
 
@@ -41,17 +41,17 @@ public class ScoreUI : MonoBehaviour
 
     private void OnDisable()
     {
-        _scoreManager.OnScoreChanged -= UpdateScoreText;
+        //_scoreManager.OnScoreChanged -= UpdateScoreText;
         _scoreManager.OnScoreAdded -= AddScore;
     }
     public void UpdateEnemiesToKillText(string text)
     {
         _enemiesToKill.text = text;
     }
-    public void UpdateScoreText(float score)
-    {
-        _score.text = score.ToString();
-    }
+    //public void UpdateScoreText(float score)
+    //{
+    //    _score.text = score.ToString();
+    //}
 
     private void AddScore(float score)
     {
