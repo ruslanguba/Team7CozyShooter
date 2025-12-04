@@ -11,6 +11,11 @@ public class LevelProgressSystem : MonoBehaviour
     [SerializeField] private List<EnemyHealth> enemiesToKill;
     [SerializeField] private float _distance = 8;
 
+    [SerializeField] private string _levelId;
+    [SerializeField] private float _screToFillFirstStar;
+    [SerializeField] private float _screToFillSecondStar;
+    [SerializeField] private float _screToFillThirdStar;
+
     private ScoreUI _scoreUI;
     private RicochetUI _ricochetUI;
     private PillowUI _pilllowUI;
@@ -48,7 +53,9 @@ public class LevelProgressSystem : MonoBehaviour
             _scoreUI = FindFirstObjectByType<ScoreUI>();
         }
         _scoreUI.UpdateEnemiesToKillText(enemiesCount.ToString());
+        _scoreUI.SetStarsScore(_levelId, _screToFillFirstStar, _screToFillSecondStar, _screToFillThirdStar);
     }
+
 
     private void DetectKill(EnemyHealth enemy, int collisionsCount)
     {

@@ -10,7 +10,7 @@ public class Lobby1Progress : MonoBehaviour
 
     [SerializeField] private DialogueTrigger first_Dilogue;
     [SerializeField] private DialogueTrigger second_Dilogue;
-    [SerializeField] private DialogueTrigger third_Dilogue;
+    //[SerializeField] private DialogueTrigger third_Dilogue;
 
     [SerializeField] private Animator first_door;
     [SerializeField] private Animator second_door;
@@ -37,7 +37,7 @@ public class Lobby1Progress : MonoBehaviour
 
         second_Dilogue.OnDialogueStarted += SetApplauseAnim;
 
-        third_Dilogue.OnDialogueStarted += SetApplauseAnim;
+        //third_Dilogue.OnDialogueStarted += SetApplauseAnim;
 
         pillowGun.Deactivate();
         second_Dilogue.gameObject.SetActive(false);
@@ -50,7 +50,7 @@ public class Lobby1Progress : MonoBehaviour
 
         second_Dilogue.OnDialogueStarted -= SetApplauseAnim;
 
-        third_Dilogue.OnDialogueStarted -= SetApplauseAnim;
+        //third_Dilogue.OnDialogueStarted -= SetApplauseAnim;
     }
     private void CalculateFirstQuestProgress(EnemyHealth enemy, int collisions)
     {

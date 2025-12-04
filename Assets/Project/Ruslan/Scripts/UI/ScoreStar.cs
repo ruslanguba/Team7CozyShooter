@@ -19,6 +19,11 @@ public class ScoreStar : MonoBehaviour
     public float ScoreToFill => _scoreToFill - _currentScore;
     public bool IsFull => _currentScore >= _scoreToFill;
 
+    public void SetScoreToFill(float score)
+    {
+        _scoreToFill = score;
+    }
+
     private void Awake()
     {
         _image = GetComponent<Image>();

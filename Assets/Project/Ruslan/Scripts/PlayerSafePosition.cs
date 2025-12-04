@@ -9,6 +9,7 @@ public class PlayerSafePosition : MonoBehaviour
     [SerializeField] private float radius = 0.3f;
 
     private CharacterController characterController;
+    private PlatformParenter platformParenter;
 
     [SerializeField] private Vector3 lastSafePos;
     private float timer;
@@ -16,12 +17,13 @@ public class PlayerSafePosition : MonoBehaviour
     void Start()
     {
         characterController = GetComponentInParent<CharacterController>();
+        platformParenter = GetComponentInParent<PlatformParenter>();
         lastSafePos = player.position;
     }
 
     void Update()
     {
-        if (characterController.isGrounded && !IsStandingOnPillow())
+        if (characterController.isGrounded && !IsStandingOnPillow() && !platformParenter.IsOnPlatform())
         {
             timer -= Time.deltaTime;
             if (timer <= 0f)

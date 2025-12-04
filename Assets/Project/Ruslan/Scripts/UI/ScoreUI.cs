@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ScoreUI : MonoBehaviour
 {
-    [SerializeField] private string _levelId = "Level1";
+    [SerializeField] private string _levelId;
     [SerializeField] private TextMeshProUGUI _enemiesToKill;
     [SerializeField] private TextMeshProUGUI _score;
     [SerializeField] private TextMeshProUGUI _addedScore;
@@ -17,20 +17,26 @@ public class ScoreUI : MonoBehaviour
     private int _currentIndex = 0;
     private bool _isCompleted => _currentIndex >= _scoreStars.Count;
 
-    [SerializeField] private float _screToFillFirstStar;
-    [SerializeField] private float _screToFillSecondStar;
-    [SerializeField] private float _screToFillThirdStar;
-
 
     public void SetScoreManager(ScoreManager scoreManager)
     {
         _scoreManager = scoreManager;
     }
+
     private void Start()
     {
         _scoreManager.OnScoreChanged += UpdateScoreText;
         _scoreManager.OnScoreAdded += AddScore;
         _addedScoreImage.gameObject.SetActive(false);
+
+    }
+
+    public void SetStarsScore(string levelID, float first, float second, float third)
+    {
+        _levelId = levelID;
+        _scoreStars[0].SetScoreToFill(first);
+        _scoreStars[1].SetScoreToFill(second);
+        _scoreStars[2].SetScoreToFill(third);
     }
 
     private void OnDisable()

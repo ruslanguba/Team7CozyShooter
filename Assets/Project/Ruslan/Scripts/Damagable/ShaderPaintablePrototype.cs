@@ -12,6 +12,7 @@ public class ShaderPaintablePrototype : InteractableBase
     [SerializeField] private float _maxHitPoints = 5;
     private float _currentStep = 0;
 
+    private ScoreManager _scoreManager;
     private void Awake()
     {
         foreach (var renderer in _renderer)
@@ -27,6 +28,10 @@ public class ShaderPaintablePrototype : InteractableBase
         else
         {
             _collider = GetComponentInChildren<Collider>();
+        }
+        if(_scoreManager == null)
+        {
+            _scoreManager = FindFirstObjectByType<ScoreManager>();
         }
 
         // Если ты хочешь, чтобы количество шагов зависело от хитпоинтов:
@@ -44,7 +49,10 @@ public class ShaderPaintablePrototype : InteractableBase
             return;
 
         _currentStep++;
-
+        if(_currentStep <= _steps)
+        {
+            _scoreManager.AddScore(10);
+        }
         float t = _currentStep / _steps;
         foreach (var renderer in _renderer)
         {
