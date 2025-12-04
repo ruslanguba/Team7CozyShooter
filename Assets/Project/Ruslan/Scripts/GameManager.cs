@@ -28,8 +28,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        DialogueManager.Instance.OnDialogueStarted += PauseGame;
-        DialogueManager.Instance.OnDialogueEnded += ContinueGame;
+        DialogueManager.Instance.OnDialogueActive += StartDialog;
     }
     private void OnEnable()
     {
@@ -40,8 +39,7 @@ public class GameManager : MonoBehaviour
     {
         gameInput.OnPause -= ShowMenu;
         gameInput.OnTub -= ShowInstruction;
-        DialogueManager.Instance.OnDialogueStarted -= PauseGame;
-        DialogueManager.Instance.OnDialogueEnded -= ContinueGame;
+        DialogueManager.Instance.OnDialogueActive -= StartDialog;
     }
 
     private void ShowMenu()
@@ -116,5 +114,21 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         ContinueGame();
+    }
+
+    private void StartDialog(bool isActive)
+    {
+        if (isActive)
+        {
+            PlayerManager.Instance.DisableInput();
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+        }
+        else 
+        {
+            PlayerManager.Instance.EnableInput();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 }

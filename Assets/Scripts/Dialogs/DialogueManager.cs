@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
-    public event Action OnDialogueStarted;
+    public event Action<bool> OnDialogueActive;
     public event Action OnDialogueEnded;
 
     public static DialogueManager Instance;
@@ -61,7 +61,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialog(List<Dialogue> dialogs, DialogueTrigger trigger)
     {
         IsDialogActive = true;
-        OnDialogueStarted?.Invoke();
+        OnDialogueActive?.Invoke(IsDialogActive);
         sentenses.Clear();
         dialogueUI.ShowPanel();
         _currentTrigger = trigger;
@@ -86,9 +86,8 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialog()
     {
-        OnDialogueEnded?.Invoke();
-
         IsDialogActive = false;
+        OnDialogueActive?.Invoke(IsDialogActive);
         _currentTrigger.DialogueCompleted();
         dialogueUI.HidePanel();
         Debug.Log("End Dialogue");
