@@ -8984,7 +8984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1b0ac5f9a52d24dab0f1016f2a9f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneToLoad: Final Level 1_Max
+  _sceneToLoad: New_Level_1
 --- !u!135 &377121642
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -27718,17 +27718,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.012866072, y: 0.01286607, z: 0.040033963}
   m_Center: {x: 0, y: 0, z: 0.020016981}
---- !u!114 &1183242863 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4222001605948369635, guid: 0c57df96f6e90b149a41c9367b29a7eb, type: 3}
-  m_PrefabInstance: {fileID: 1332714733}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4e7fa8df4ad90d42b9b3e07295fdc1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1185363886
 GameObject:
   m_ObjectHideFlags: 0
@@ -48502,7 +48491,6 @@ MonoBehaviour:
   pillowGun: {fileID: 1479415855}
   first_Dilogue: {fileID: 805980331}
   second_Dilogue: {fileID: 284107335}
-  third_Dilogue: {fileID: 1183242863}
   first_door: {fileID: 1671700976}
   second_door: {fileID: 246563898}
   npcAnimationHandler: {fileID: 2076395061}
