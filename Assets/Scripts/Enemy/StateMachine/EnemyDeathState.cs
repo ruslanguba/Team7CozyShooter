@@ -15,7 +15,6 @@ public class EnemyDeathState: BaseState
         enemy.Rb.isKinematic = false;
         enemy.Rb.useGravity = true;
 
-        enemy.ActorAudio.PlayDeath();
         enemy.Animator.SetTrigger("dead");
         Object.Destroy(enemy.gameObject, 7f);
     }

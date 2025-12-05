@@ -9,14 +9,14 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private AudioClip _collisionSound;
 
-    private ParticleSystem _effect;
+    //private ParticleSystem _effect;
     private float _damage;
     private int _maxCollisionCount;
     private int _collisionCount;
 
     public void InitBullet(ParticleSystem hitEffect, float damage, int maxCollisionCount)
     {
-        _effect = hitEffect;
+        //_effect = hitEffect;
         _damage = damage;
         _maxCollisionCount = maxCollisionCount;
         _collisionCount = 0;
@@ -42,10 +42,10 @@ public class Bullet : MonoBehaviour
             interactable.OnInteract();
         }
 
-        if (_effect != null)
-        {
-            PlayPartical(_effect, transform.position);
-        }
+        //if (_effect != null)
+        //{
+        //    PlayPartical(_effect, transform.position);
+        //}
 
         if (_collisionCount >= _maxCollisionCount)
         {

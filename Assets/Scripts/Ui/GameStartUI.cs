@@ -1,12 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameStartUI : MonoBehaviour
 {
     [Header("Main Images")]
-    [SerializeField] private Image firstImage;          // первая
-    [SerializeField] private Image[] collageImages;     // остальные
+    [SerializeField] private Image firstImage;
+    [SerializeField] private Image[] collageImages;
 
     [Header("Settings")]
     [SerializeField] private float fadeTime = 1.2f;
@@ -31,16 +32,14 @@ public class GameStartUI : MonoBehaviour
             skip = true;
     }
 
-    // ---------------- initialization ------------------
     void InitImages()
     {
-        // первая полностью видима
         Color c1 = firstImage.color;
         c1.a = 1f;
         firstImage.color = c1;
+
         firstImage.transform.localScale = Vector3.one;
 
-        // остальные прозрачны и увеличены
         foreach (var img in collageImages)
         {
             Color c = img.color;
@@ -51,21 +50,25 @@ public class GameStartUI : MonoBehaviour
         }
     }
 
-    // ---------------- sequence ------------------
     IEnumerator SequenceRoutine()
     {
-        // Запускаем затемнение и увеличение первой
-        StartCoroutine(FadeAndGrowFirst());
+        // Первая картинка
+        yield return StartCoroutine(FadeAndGrowFirst());
 
-        // запускаем показ остальных картинок
+        // Остальные
         while (collageIndex < collageImages.Length)
         {
+            skip = false; // чтобы Space переключал только текущий этап
+
             yield return StartCoroutine(ShowNextCollageImage(collageImages[collageIndex]));
+
             collageIndex++;
         }
+
+        // В конце — грузим сцену
+        SceneManager.LoadScene(_sceneToLoad);
     }
 
-    // ---------------- first image animation ------------------
     IEnumerator FadeAndGrowFirst()
     {
         float t = 0f;
@@ -76,32 +79,28 @@ public class GameStartUI : MonoBehaviour
 
         while (t < fadeTime)
         {
+            if (skip) break;
+
             t += Time.deltaTime;
             float p = t / fadeTime;
 
-            // затемнение
             c.a = Mathf.Lerp(1f, 0.5f, p);
             firstImage.color = c;
 
-            // увеличение
             firstImage.transform.localScale = Vector3.Lerp(startScale, endScale, p);
 
             yield return null;
         }
     }
 
-    // ---------------- other images animation ------------------
     IEnumerator ShowNextCollageImage(Image img)
     {
-        skip = false;
-
         float t = 0f;
         Color c = img.color;
 
         Vector3 startScale = Vector3.one * appearScale;
         Vector3 endScale = Vector3.one;
 
-        // fade-in + scale-down
         while (t < fadeTime)
         {
             if (skip) break;
@@ -109,17 +108,14 @@ public class GameStartUI : MonoBehaviour
             t += Time.deltaTime;
             float p = t / fadeTime;
 
-            // появление
             c.a = p;
             img.color = c;
 
-            // уменьшение из 1.12 1.0
             img.transform.localScale = Vector3.Lerp(startScale, endScale, p);
 
             yield return null;
         }
 
-        // на всякий случай выставляем финальные значения
         c.a = 1f;
         img.color = c;
         img.transform.localScale = endScale;
