@@ -14,6 +14,8 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private List<Dialogue> sentence;
     [SerializeField] private List<Dialogue> sentenceEn;
 
+    [SerializeField] private AudioClip[] mumbels;
+
     private void OnEnable()
     {
         _actionSender = GetComponentInChildren<PlayerDetectorTrigger>();

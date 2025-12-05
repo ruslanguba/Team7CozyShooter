@@ -67,7 +67,10 @@ public class ActorAudio : MonoBehaviour
     public void PlayJump()
     {
         if (_jumpClip != null)
+        {
+            audioSource.pitch = Random.Range(0.9f, 1.1f); // Случайный питч
             audioSource.PlayOneShot(_jumpClip);
+        }
     }
     public void TickFootsteps(bool isMoving)
     {

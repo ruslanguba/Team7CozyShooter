@@ -10,6 +10,7 @@ public class PropsMover : MonoBehaviour
     [SerializeField] private bool _isInterracted;
 
     [SerializeField] private float _floatingTime = 10;
+
     private int _pointIndex;
     private float _timer;
 

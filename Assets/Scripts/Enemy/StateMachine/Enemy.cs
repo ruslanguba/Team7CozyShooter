@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private Animator animator;
     [SerializeField] private ActorAudio actorAudio;
+    [SerializeField] private AnimationEventListener eventListener;
 
     private EnemyHealth health;
     public Rigidbody Rb => rb;
@@ -58,9 +59,11 @@ public class Enemy : MonoBehaviour
 
         health = GetComponent<EnemyHealth>();
         animator = GetComponentInChildren<Animator>();
+        eventListener = GetComponentInChildren<AnimationEventListener>();
         rotationHandler = GetComponent<EnemyRotationHandler>();
         actorAudio = GetComponent<ActorAudio>();
         playerTransform = PlayerManager.Instance.GetPlayerTransform;
+
         stateMachine = new EnemyStateMachine();
 
         patrolState = new EnemyPatrolState(this, stateMachine);
@@ -71,8 +74,14 @@ public class Enemy : MonoBehaviour
         stateMachine.Initialize(patrolState);
         if (health != null)
             SubscribeToDeath();
+        SubscribeToJump();
         float randomOffset = Random.Range(0f, 0.5f);
         animator.Play("Walk", 0, randomOffset);
+    }
+
+    private void SubscribeToJump()
+    {
+        eventListener.OnAnimationJump += actorAudio.PlayJump;
     }
 
     private void SubscribeToDeath()

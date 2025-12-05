@@ -4,6 +4,7 @@ using UnityEngine;
 public class AudioSettingsData : ScriptableObject
 {
     public SceneMusicEntry[] entries;
+    public float StartVolume;
 }
 
 [System.Serializable]

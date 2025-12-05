@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public event Action<EnemyHealth, int> OnDeath;
     [SerializeField] private float _health = 2f;
+    [SerializeField] private AudioClip _clip;
     //[SerializeField] private ParticleSystem _particleSystem;
     protected int _collisionsCount;
 
@@ -28,6 +29,10 @@ public class EnemyHealth : MonoBehaviour
 
     protected virtual void Die()
     {
+        if (_clip != null)
+        {
+            AudioManager.Instance.PlaySFX(_clip);
+        }
         OnDeath?.Invoke(this, _collisionsCount);
     }
 

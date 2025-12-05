@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        SetStartVoliums();
     }
     private void OnEnable()
     {
@@ -75,6 +76,8 @@ public class AudioManager : MonoBehaviour
     {
         float dB = Mathf.Log10(Mathf.Clamp(value, 0.001f, 1f)) * 20f;
         audioMixer.SetFloat(parameter, dB);
+
+        PlayerPrefs.SetFloat(parameter, value);
     }
 
     public float GetVolume(string parameter)
@@ -83,7 +86,14 @@ public class AudioManager : MonoBehaviour
         {
             return Mathf.Pow(10f, value / 20f);
         }
-        return 1f;
+        return 1;
     }
 
+    private void SetStartVoliums()
+    {
+        Debug.Log("SetStart");
+        float startVolium = musicDatabase.StartVolume;
+        SetMusicVolume(startVolium);
+        SetSFXVolume(startVolium);    
+    }
 }

@@ -15,6 +15,9 @@ public class Lobby1Progress : MonoBehaviour
     [SerializeField] private Animator first_door;
     [SerializeField] private Animator second_door;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip doorOpenSound;
+    [SerializeField] private AudioClip[] mombleSound;
     [SerializeField] private NPCAnimationHandler npcAnimationHandler;
 
     [SerializeField] private int _counter;
@@ -36,7 +39,7 @@ public class Lobby1Progress : MonoBehaviour
         first_Dilogue.OnDialogueEnded += OpenFirstDoor;
 
         second_Dilogue.OnDialogueStarted += SetApplauseAnim;
-
+        second_Dilogue.OnDialogueEnded += StopAudio;
         //third_Dilogue.OnDialogueStarted += SetApplauseAnim;
 
         //pillowGun.Deactivate();
@@ -49,6 +52,7 @@ public class Lobby1Progress : MonoBehaviour
         first_Dilogue.OnDialogueEnded -= OpenFirstDoor;
 
         second_Dilogue.OnDialogueStarted -= SetApplauseAnim;
+        second_Dilogue.OnDialogueEnded -= StopAudio;
 
         //third_Dilogue.OnDialogueStarted -= SetApplauseAnim;
     }
@@ -75,23 +79,33 @@ public class Lobby1Progress : MonoBehaviour
     private void OpenFirstDoor()
     {
         //pillowGun.Activate();
+        audioSource.Stop();
+        audioSource.transform.position = first_door.transform.position;
+        audioSource.PlayOneShot(doorOpenSound);
         first_door.SetTrigger("open");
         npcAnimationHandler.SetIdleAnim();
     }
 
     private void OpenSecondDoor()
     {
+        audioSource.Stop();
+        audioSource.transform.position = second_door.transform.position;
+        audioSource.PlayOneShot(doorOpenSound);
         second_door.SetTrigger("open");
         npcAnimationHandler.SetIdleAnim();
     }
 
     private void SetTalkAnim()
     {
+        int rnd = Random.Range(0, mombleSound.Length);
+        audioSource.PlayOneShot(mombleSound[rnd]);
         npcAnimationHandler.SetTalkAnim();
     }
 
     private void SetApplauseAnim()
     {
+        int rnd = Random.Range(0, mombleSound.Length);
+        audioSource.PlayOneShot(mombleSound[rnd]);
         StartCoroutine(StartApplauseAndTalk());
     }
 
@@ -100,5 +114,10 @@ public class Lobby1Progress : MonoBehaviour
         npcAnimationHandler.SetisApplauseAnim();
         yield return new WaitForSeconds(3);
         npcAnimationHandler.SetTalkAnim();
+    }
+
+    private void StopAudio()
+    {
+        audioSource.Stop();
     }
 }

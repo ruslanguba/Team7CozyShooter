@@ -41,11 +41,20 @@ public class PillowGun : GunBase
         }
     }
 
+    private void OnDisable()
+    {
+        if (input != null)
+            input.OnFireRealesed -= StartShot;
+    }
+
     public override void Deactivate()
     {
         base.Deactivate();
+
+        if (input != null)
+            input.OnFireRealesed -= StartShot;
+
         _isActive = false;
-        input.OnFireRealesed -= StartShot;
     }
 
     override protected void Update()
@@ -81,17 +90,16 @@ public class PillowGun : GunBase
 
     private void StartShot()
     {
-        if (IsCanShoot())
-        {
-            Bullet newBullet = Instantiate(_bulletPrefab, _spawn.position, _spawn.rotation);
-            LounchBullet(newBullet);
-            _collisionListener.Bind(newBullet);
-            //_bulletsHandler.RegisterBullet(newBullet);
-            _audio.PlayAttack();
-            shootingTimer = _shotPeriod;
-            Destroy(newBullet.gameObject, _bulletLifeTime);
+        if (!IsCanShoot()) return;
+        if (_spawn == null || _character == null) return; // <<< добавь
 
-        }
+        Bullet newBullet = Instantiate(_bulletPrefab, _spawn.position, _spawn.rotation);
+        LounchBullet(newBullet);
+        _collisionListener.Bind(newBullet);
+        //_bulletsHandler.RegisterBullet(newBullet);
+        _audio.PlayAttack();
+        shootingTimer = _shotPeriod;
+        Destroy(newBullet.gameObject, _bulletLifeTime);
     }
 
     private void CalculateTrajectory()

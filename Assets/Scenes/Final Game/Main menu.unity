@@ -498,7 +498,6 @@ GameObject:
   - component: {fileID: 26568318}
   - component: {fileID: 26568320}
   - component: {fileID: 26568319}
-  - component: {fileID: 26568321}
   m_Layer: 5
   m_Name: SettingsSoundMenu
   m_TagString: Untagged
@@ -569,20 +568,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26568317}
   m_CullTransparentMesh: 1
---- !u!114 &26568321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 26568317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e60cf8a277e07ad4592833ff377fc931, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicSlider: {fileID: 2627197438537360645}
-  sfxSlider: {fileID: 7669395880453530844}
 --- !u!1 &84022027
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,11 +704,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84022027}
   m_CullTransparentMesh: 1
---- !u!82 &97438335 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2695034290023861826, guid: 1b0b203977d2001468b19820c84ea2d5, type: 3}
-  m_PrefabInstance: {fileID: 1241349760}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &97868208
 GameObject:
   m_ObjectHideFlags: 0
@@ -5749,12 +5729,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2695034290023861826, guid: 1b0b203977d2001468b19820c84ea2d5, type: 3}
       propertyPath: m_Volume
-      value: 0.15
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2695034290023861826, guid: 1b0b203977d2001468b19820c84ea2d5, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: 70934f2ea4853fb4d9e68c29b329009b, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3873943439839788325, guid: 1b0b203977d2001468b19820c84ea2d5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5896,7 +5876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1267818437
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10054,11 +10034,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!82 &2135510547 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4036201863235746518, guid: 1b0b203977d2001468b19820c84ea2d5, type: 3}
-  m_PrefabInstance: {fileID: 1241349760}
-  m_PrefabAsset: {fileID: 0}
 --- !u!222 &150833888395055975
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10080,6 +10055,7 @@ GameObject:
   - component: {fileID: 1944135270368219024}
   - component: {fileID: 7605059262880213294}
   - component: {fileID: 1420448509}
+  - component: {fileID: 7605059262880213295}
   m_Layer: 5
   m_Name: CanvasMenu
   m_TagString: Untagged
@@ -10118,7 +10094,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7440196981959472134}
   - {fileID: 243004931}
   - {fileID: 1735254923}
   - {fileID: 1601389492}
@@ -10606,19 +10581,7 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 97438335}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: set_volume
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.5
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!222 &2650319239978513411
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10849,6 +10812,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7440196981959472134}
   - {fileID: 395196509235827908}
   - {fileID: 6058474005924655878}
   - {fileID: 26568318}
@@ -11601,12 +11565,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 395196509235827908}
+  m_Father: {fileID: 3263357688766727494}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -31}
-  m_SizeDelta: {x: 875.2455, y: 129.22607}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -0.00012207031, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7454082923455089920
 MonoBehaviour:
@@ -11695,6 +11659,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7605059262880213295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326765697402203827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e60cf8a277e07ad4592833ff377fc931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSlider: {fileID: 2627197438537360645}
+  sfxSlider: {fileID: 7669395880453530844}
 --- !u!1 &7657270056044439655
 GameObject:
   m_ObjectHideFlags: 0
@@ -11765,19 +11743,7 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2135510547}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: set_volume
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &7785054799450803236
 MonoBehaviour:
   m_ObjectHideFlags: 0

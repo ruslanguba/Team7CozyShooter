@@ -428,6 +428,7 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   animator: {fileID: 0}
   actorAudio: {fileID: 272754007688124369}
+  eventListener: {fileID: 0}
 --- !u!114 &7867341581838299553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,7 +472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deathClip: {fileID: 8300000, guid: c9071bf4358e6ca41802daf7c9fab3d0, type: 3}
   _attackClip: {fileID: 8300000, guid: f4fffbfbee271d549b8981c0e5c91609, type: 3}
-  _jumpClip: {fileID: 0}
+  _jumpClip: {fileID: 8300000, guid: 37439a704b1af2644ab712cc4a798ec8, type: 3}
   _footstepClips: []
   _stepInterval: 0.5
   _pitchRandom: 0.1
@@ -498,11 +499,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0.1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 15
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -534,8 +535,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.12446213
-      value: 0.42816466
+      time: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -565,7 +566,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.8
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -889,6 +890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7509043285741154948}
   - component: {fileID: 8364465496547956959}
+  - component: {fileID: 2664952440298182896}
   m_Layer: 0
   m_Name: Shadow_Jumping
   m_TagString: Untagged
@@ -935,6 +937,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2664952440298182896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7169356471821559870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1355444023bdd74da99426a82e01e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8045360532027790233
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,7 +52,6 @@ public class NPCHandler : MonoBehaviour
     {
         _isTalking = !_isTalking;
         SetTalking(_isTalking);
-        Debug.Log(_isTalking);
     }
 
     private IEnumerator SmoothLookAt(Vector3 targetPos)
