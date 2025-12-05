@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         DialogueManager.Instance.OnDialogueActive += StartDialog;
     }
     private void OnEnable()
