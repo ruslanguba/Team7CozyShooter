@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         Time.timeScale = 1;
-        var request = new SceneTransitionRequest("Main menu");
+        var request = new SceneTransitionRequest("Main menu 1");
         SceneTransitionManager.Instance.Transition(request);
     }
 

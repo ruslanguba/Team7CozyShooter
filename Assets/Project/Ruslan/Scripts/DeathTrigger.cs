@@ -9,5 +9,10 @@ public class DeathTrigger : MonoBehaviour
             playerSafePosition.ReturnPlayerToPlatform();
             Debug.Log(other);
         }
+
+        if (other.TryGetComponent(out EnemyHealth health))
+        {
+            health.TakeDamage(20, 1);
+        }
     }
 }

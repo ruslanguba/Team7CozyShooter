@@ -985,8 +985,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deathClip: {fileID: 0}
   _attackClip: {fileID: 0}
-  _footstepClip: {fileID: 8300000, guid: 4a6f542561b6d884ead0aee9667dbcf5, type: 3}
   _jumpClip: {fileID: 0}
+  _footstepClips: []
   _stepInterval: 0.5
   _pitchRandom: 0.1
   randomClips: []
@@ -1003,7 +1003,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 7069134366539633842, guid: 8de0b759cfa01ae43bdf9da6e2971854, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 4a6f542561b6d884ead0aee9667dbcf5, type: 3}
+  m_Resource: {fileID: 8300000, guid: 59630db0d6e3fd04f8fa2f61984a3682, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.8
   m_Pitch: 1
@@ -1105,6 +1105,7 @@ MonoBehaviour:
   _acceleration: 10
   _stoppingDistannce: 2
   _animator: {fileID: 546880259793113395}
+  _health: {fileID: 0}
 --- !u!114 &8068560695212955412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,6 +1119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 2
+  _clip: {fileID: 0}
   _timeToEnableHit: 1
   _isCanTakeHit: 0
   _simpleRunEnemy: {fileID: 4943319331511835042}
